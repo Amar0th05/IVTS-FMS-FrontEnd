@@ -33,6 +33,8 @@
       <link rel="stylesheet" type="text/css" href="assets/icon/font-awesome/css/font-awesome.min.css">
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   </head>
 
   <body themebg-pattern="theme1">
@@ -105,7 +107,7 @@
                     <div class="col-sm-12">
                         <!-- Authentication card start -->
     
-                            <form class="md-float-material form-material">
+                            <form class="md-float-material form-material" id="login-form">
                                 <div class="text-center">
                                     <!-- <img src="assets/images/logo.png" alt="logo.png"> -->
                                 </div>
@@ -119,12 +121,12 @@
                                         </div>
                                         
                                         <div class="form-group form-primary">
-                                            <input type="text" name="email" class="form-control">
+                                            <input type="text" name="mail" class="form-control" id="mail" required>
                                             <span class="form-bar"></span>
                                             <label class="float-label">Your Email Address</label>
                                         </div>
                                         <div class="form-group form-primary">
-                                            <input type="password" name="password" class="form-control">
+                                            <input type="password" name="password" id="password" class="form-control" required>
                                             <span class="form-bar"></span>
                                             <label class="float-label">Password</label>
                                         </div>
@@ -132,7 +134,7 @@
                                             <div class="col-12">
                                                 <div class="checkbox-fade fade-in-primary d-">
                                                     <label>
-                                                        <input type="checkbox" value="">
+                                                        <input type="checkbox" value="remember" id="remember">
                                                         <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                                         <span class="text-inverse">Remember me</span>
                                                     </label>
@@ -144,7 +146,7 @@
                                         </div>
                                         <div class="row m-t-30">
                                             <div class="col-md-12">
-                                                <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Sign in</button>
+                                                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Sign in</button>
                                             </div>
                                         </div>
                                         <hr/>
@@ -225,6 +227,17 @@
 <!-- jquery slimscroll js -->
 <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 <script type="text/javascript" src="assets/js/common-pages.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script type="module" src="./assets/js/axiosInstance.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script src="assets/js/popup.js"></script>
+
+<script src="./assets/js/login.js"></script>
+
 </body>
 
 </html>

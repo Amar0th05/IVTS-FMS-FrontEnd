@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="keywords" content="" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
@@ -244,6 +244,16 @@
                                     </div>
                                 </form>
                             </div>
+                            <div class="pcoded-navigation-label">Invoices</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li>
+                                    <a href="index.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">Invoices</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
                             <div class="pcoded-navigation-label">Man Power Management</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="active">
@@ -262,7 +272,7 @@
                                 </li>
                                 <li>
                                     <a href="contract-logs.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>BC</b></span>
+                                        <span class="pcoded-micon"><i class="ti-notepad"></i><b>BC</b></span>
                                         <span class="pcoded-mtext">Contract Logs</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
@@ -707,7 +717,17 @@
     <script src="assets/js/pcoded.min.js"></script>
     <script src="assets/js/vertical/vertical-layout.min.js "></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script type="module" src="./assets/js/axiosInstance.js"></script>
+
     <script type="text/javascript" src="assets/js/script.js "></script>
+    <script>
+        const token=localStorage.getItem('token');
+        if(token===null){
+            window.location.href="login.html";
+        }
+    </script>
 </body>
 
 </html>

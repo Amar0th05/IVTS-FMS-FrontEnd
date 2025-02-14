@@ -36,6 +36,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
@@ -256,9 +258,19 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="pcoded-navigation-label">Man Power Management</div>
+                            <div class="pcoded-navigation-label">Invoices</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li>
+                                    <a href="index.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">Invoices</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pcoded-navigation-label">Man Power Management</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li >
                                     <a href="index.html" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext">Dashboard</span>
@@ -274,12 +286,11 @@
                                 </li>
                                 <li class="active">
                                     <a href="contract-logs.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>BC</b></span>
+                                        <span class="pcoded-micon"><i class="ti-notepad"></i><b>BC</b></span>
                                         <span class="pcoded-mtext">Contract Logs</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-
                             </ul>
 
                     </nav>
@@ -335,7 +346,7 @@
 
                                                     <div class="card-block">
 
-                                                        <!-----------------------------------------------MODAl-START--------------------------------------------------------------------->
+<!-----------------------------------------------ADD-NEW-LOG-MODAl-START--------------------------------------------------------------------->
 
                                                         <div class="modal fade" id="addNewModal" tabindex="-1"
                                                             role="dialog" aria-labelledby="addNewModalLabel"
@@ -345,7 +356,7 @@
                                                                     <!-- Modal Header -->
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="addNewModalLabel">
-                                                                            Add New Data</h5>
+                                                                            Add New Contract Log</h5>
                                                                         <button type="button" class="close"
                                                                             data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
@@ -356,14 +367,26 @@
                                                                     <div class="modal-body">
                                                                         <form>
                                                                             <div class="row">
-                                                                               <div class="col-md-12">
+                                                                               <div class="col-md-6">
                                                                                 <div class="form-group">
-                                                                                    <label for="staffId">Staff
-                                                                                        ID</label>
+                                                                                    <label for="staffID">Staff ID</label>
+                                                                                    <select class="form-control form-control-sm" id="staffId">
+                                                                                        <option value="" disabled selected>Select Satff ID</option>
+                                                                                        <option value="staff id 1">Staff ID 1</option>
+                                                                                        <option value="staff id 2">Staff ID 2</option>
+                                                                                        <option value="staff id 3">Staff ID 3</option>
+                                                                                        <option value="staff id 4">Staff ID 4</option>
+                                                                                        <option value="staff id 5">Staff ID 5</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                               </div>
+                                                                               <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="staffName">Staff Name</label>
                                                                                     <input type="text"
                                                                                         class="form-control form-control-sm"
-                                                                                        id="staffId"
-                                                                                        placeholder="Enter Staff ID">
+                                                                                        id="staffName"
+                                                                                        placeholder="Enter Staff Name">
                                                                                 </div>
                                                                                </div>
                                                                             </div>
@@ -441,17 +464,111 @@
                                                                     <!-- Modal Footer -->
                                                                     <div class="modal-footer">
                                                                         <button type="button"
-                                                                            class="btn btn-secondary btn-sm"
-                                                                            data-dismiss="modal">Close</button>
+                                                                            class="btn btn-danger btn-sm"
+                                                                            data-dismiss="modal">Exit</button>
                                                                         <button type="button"
-                                                                            class="btn btn-primary btn-sm">Save
-                                                                            changes</button>
+                                                                            class="btn btn-success btn-sm" id="add_log_btn" data-dismiss="modal">Submit</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <!---------------------------------------------------------------------------------------------MODAL-END---------------------------------------------------->
+ <!---------------------------------------------------------------------------------------------ADD-NEW-LOG-MODAL-END---------------------------------------------------->
+ <!-----------------------------------------------UPDATE-LOG-MODAl-START--------------------------------------------------------------------->
+ 
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">
+                    Update Contract Log</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                         <div class="form-group">
+                             <label for="staffID">Staff ID</label>
+                             <select class="form-control form-control-sm" id="staffId">
+                                 <option value="" disabled selected>Select Satff ID</option>
+                                 <option value="staff id 1">Staff ID 1</option>
+                                 <option value="staff id 2">Staff ID 2</option>
+                                 <option value="staff id 3">Staff ID 3</option>
+                                 <option value="staff id 4">Staff ID 4</option>
+                                 <option value="staff id 5">Staff ID 5</option>
+                             </select>
+                         </div>
+                        </div>
+                        <div class="col-md-6">
+                         <div class="form-group">
+                             <label for="staffName">Staff Name</label>
+                             <input type="text"
+                                 class="form-control form-control-sm"
+                                 id="staffName"
+                                 placeholder="Enter Staff Name">
+                         </div>
+                        </div>
+                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="basicPay">Basic Pay</label>
+                                <input type="number" class="form-control form-control-sm" id="basicPay"
+                                    placeholder="Enter Basic Pay">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="allowance">Allowance</label>
+                                <input type="number" class="form-control form-control-sm" id="allowance"
+                                    placeholder="Enter Allowance">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="grossPay">Gross Pay</label>
+                                <input type="number" class="form-control form-control-sm" id="grossPay"
+                                    placeholder="0.0" aria-disabled="true" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="designation">Current Designation</label>
+                                <select class="form-control form-control-sm" id="designation">
+                                    <option value="" disabled selected>Select Designation</option>
+                                    <option value="Designation 1">Designation 1</option>
+                                    <option value="Designation 2">Designation 2</option>
+                                    <option value="Designation 3">Designation 3</option>
+                                    <option value="Designation 4">Designation 4</option>
+                                    <option value="Designation 5">Designation 5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
+                <button type="button" class="btn btn-success btn-sm">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---------------------------------------------------------------------------------------------UPDATE-LOG-MODAL-END---------------------------------------------------->
 
                                                         <div class="d-flex justify-content-end mb-1">
                                                             <button
@@ -475,10 +592,28 @@
                                                                             <th>Allowance</th>
                                                                             <th>Gross Pay</th>
                                                                             <th>Current Designation</th>
+                                                                            <!-- <th>Actions</th> -->
+                                                                            <th>Update</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-
+                                                                        <tr>
+                                                                            <td>1</td>
+                                                                            <td>01/01/2021</td>
+                                                                            <td>01/01/2022</td>
+                                                                            <td>10000</td>
+                                                                            <td>5000</td>
+                                                                            <td>15000</td>
+                                                                            <td>Designation 1</td>
+                                                                            <td>
+                                                                                <button class="btn btn-edit d-flex align-items-center justify-content-center p-0 " style="width: 40px; height: 40px;" data-toggle="modal" data-target="#updateModal">
+                                                                                    <i class="ti-pencil text-white" style="font-size: larger;"></i>
+                                                                                </button>
+                                                                                <!-- <button class="btn btn-danger d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px;" data-toggle="modal" data-target="#updateModal">
+                                                                                    <i class="ti-trash text-white" style="font-size: larger;"></i>
+                                                                                </button> -->
+                                                                            </td>
+                                                                        </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -520,12 +655,17 @@
 
     <!-- jQuery and DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
     <!-- waves js -->
     <script src="assets/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
     <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- toastjr script to create popup -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <!-- slimscroll js -->
     <script src="assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
@@ -537,10 +677,12 @@
         $(document).ready(function () {
             $('#myTable').DataTable({
                 "paging": true,
-                "pageLength": 5,
-                "lengthMenu": [5, 10, 25, 50]
+                "pageLength": 25,
+                "lengthMenu": [5, 10, 25, 50,100]
             });
         });
+       
+        // calcuating gross pay from basic pay and allowance
         document.getElementById('basicPay').addEventListener('input',updateGrossPay);
         document.getElementById('allowance').addEventListener('input',updateGrossPay);
         function updateGrossPay(){
@@ -549,10 +691,14 @@
             let grossPayField=document.getElementById('grossPay');
             grossPayField.value=parseFloat(basicPay+allowance);
         }
+
     </script>
 
-
+    <script src="assets/js/contract-logs.js"></script>
+    <script src="assets/js/popup.js"></script>
     <script type="text/javascript" src="assets/js/script.js "></script>
+
+    
 </body>
 
 </html>

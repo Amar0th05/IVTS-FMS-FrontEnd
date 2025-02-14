@@ -11863,7 +11863,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
 .cyan-colors ul li:nth-child(8) p:before {
 	content: "#49e4fb";
 }
-
+.btn-edit{
+	background-color: #3a6eff;
+}
 .cyan-colors ul li:nth-child(7) {
 	background-color: #58e6fb;
 }
