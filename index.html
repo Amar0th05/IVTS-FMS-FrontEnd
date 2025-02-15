@@ -202,7 +202,7 @@
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="login.html">
+                                        <a href="index.html" id="logout-button">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
                                     </li>
@@ -230,7 +230,7 @@
                                         <li class="more-details">
                                             <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
                                             <a href="#!"><i class="ti-settings"></i>Settings</a>
-                                            <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                            <a href="index.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -727,6 +727,12 @@
         if(token===null){
             window.location.href="login.html";
         }
+
+        document.getElementById('logout-button').addEventListener('click',logout);
+        function logout(){
+            localStorage.removeItem('token');
+        }
+
     </script>
 </body>
 

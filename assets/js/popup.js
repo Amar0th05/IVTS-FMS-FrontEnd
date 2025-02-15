@@ -38,8 +38,21 @@ function showWarningPopupFadeInDown(message) {
     toastr.warning(message);
 }
 
+function showSucessPopupFadeInDownLong(message){
+
+    toastr.options = {
+        positionClass: "toast-top-right",
+        showMethod: "fadeIn",  
+        hideMethod: "fadeOut" ,
+        timeOut:3000
+    };
+    toastr.success(message);
+
+}
+
 
 window.showPopupBottomRight = showPopupBottomRight;
 window.showPopupFadeInDown = showPopupFadeInDown;
 window.showErrorPopupFadeInDown = showErrorPopupFadeInDown;
 window.showWarningPopupFadeInDown = showWarningPopupFadeInDown;
+window.showSucessPopupFadeInDownLong = showSucessPopupFadeInDownLong;
