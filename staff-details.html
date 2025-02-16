@@ -336,7 +336,6 @@
                                                             <ul class="list-unstyled card-option">
                                                                 <li><i class="fa fa fa-wrench open-card-option"></i>
                                                                 </li>
-                                                                <li><i class="fa fa-window-maximize full-card"></i></li>
                                                                 <li><i class="fa fa-minus minimize-card"></i></li>
                                                                 <li><i class="fa fa-refresh reload-card"></i></li>
                                                             </ul>
@@ -361,22 +360,22 @@
                                                         
                                                                     <!-- Modal Body -->
                                                                     <div class="modal-body">
-                                                                        <form>
+                                                                        <form id="new-staff-form">
                                                                             <div class="row">
                                                                                 <!-- Left Column -->
                                                                                 <div class="col-md-6">
                                                                                     <!-- Staff ID -->
                                                                                     <div class="form-group">
-                                                                                        <label for="staffId">Staff ID</label>
-                                                                                        <input type="text" class="form-control form-control-sm" id="staffId"
-                                                                                            placeholder="Enter Staff ID">
+                                                                                        <label for="staffID">Staff ID</label>
+                                                                                        <input type="text" name="staffID" maxlength="20" class="form-control form-control-sm" id="staffId"
+                                                                                            placeholder="Enter Staff ID" required>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <!-- Staff Name -->
                                                                                     <div class="form-group">
                                                                                         <label for="staffName">Staff Name</label>
-                                                                                        <input type="text" class="form-control form-control-sm" id="staffName"
+                                                                                        <input type="text" name="staffName" maxlength="25" class="form-control form-control-sm" id="staffName"
                                                                                             placeholder="Enter Staff Name">
                                                                                     </div>
                                                         
@@ -387,15 +386,15 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label for="dateOfBirth">Date of Birth</label>
-                                                                                        <input type="date" class="form-control form-control-sm" id="dateOfBirth">
+                                                                                        <input type="date" name="dateOfBirth" class="form-control form-control-sm" id="dateOfBirth">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <!-- Aadhaar Number -->
                                                                                     <div class="form-group">
                                                                                         <label for="aadharNumber">Aadhaar Number</label>
-                                                                                        <input type="number" class="form-control form-control-sm" id="aadharNumber"
-                                                                                            placeholder="Aadhaar Number" maxlength="12">
+                                                                                        <input type="number"  name="aadharNumber" class="form-control form-control-sm" id="aadharNumber"
+                                                                                            placeholder="Aadhaar Number">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -404,7 +403,7 @@
                                                                                     <!-- Contact Number -->
                                                                                     <div class="form-group">
                                                                                         <label for="contactNumber">Contact Number</label>
-                                                                                        <input type="number" class="form-control form-control-sm" id="contactNumber"
+                                                                                        <input type="tel" maxlength="10" name="contactNumber" class="form-control form-control-sm" id="contactNumber"
                                                                                             placeholder="Enter Contact Number">
                                                                                     </div>
                                                                                 </div>
@@ -412,7 +411,7 @@
                                                                                     <!-- Email ID -->
                                                                                     <div class="form-group">
                                                                                         <label for="emailId">Email ID</label>
-                                                                                        <input type="email" class="form-control form-control-sm" id="emailId"
+                                                                                        <input type="email"  name="mail" class="form-control form-control-sm" id="email"
                                                                                             placeholder="Enter Email ID">
                                                                                     </div>
                                                         
@@ -423,7 +422,7 @@
                                                                                     <!-- Permanent Address -->
                                                                                     <div class="form-group">
                                                                                         <label for="permanentAddress">Permanent Address</label>
-                                                                                        <textarea class="form-control form-control-sm" id="permanentAddress" rows="2"
+                                                                                        <textarea class="form-control form-control-sm" id="permanentAddress" maxlength="255" name="permanentAddress" rows="2"
                                                                                             placeholder="Enter Permanent Address"></textarea>
                                                                                     </div>
                                                                                 </div>
@@ -431,14 +430,10 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
                                                                                     <div class="form-group">
-                                                                                        <label for="location">Location of Work</label>
-                                                                                        <select class="form-control form-control-sm" id="location">
+                                                                                        <label for="locationOfWork">Location of Work</label>
+                                                                                        <select class="form-control form-control-sm" id="locationSelect" name="locationOfWork">
                                                                                             <option value="" disabled selected>Select Location</option>
-                                                                                            <option value="Location 1">Location 1</option>
-                                                                                            <option value="Location 2">Location 2</option>
-                                                                                            <option value="Location 3">Location 3</option>
-                                                                                            <option value="Location 4">Location 4</option>
-                                                                                            <option value="Location 5">Location 5</option>
+                                                                                           
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
@@ -448,14 +443,14 @@
                                                                                     <!-- Date of Joining -->
                                                                                     <div class="form-group">
                                                                                         <label for="dateOfJoining">Date of Joining</label>
-                                                                                        <input type="date" class="form-control form-control-sm" id="dateOfJoining">
+                                                                                        <input type="date" name="dateOfJoining" class="form-control form-control-sm" id="dateOfJoining">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <!-- Salary at Joining -->
                                                                                     <div class="form-group">
                                                                                         <label for="salary">Salary at Joining</label>
-                                                                                        <input type="number" class="form-control form-control-sm" id="salary"
+                                                                                        <input type="number" name="salary" class="form-control form-control-sm" id="salary"
                                                                                             placeholder="Enter Salary">
                                                                                     </div>
                                                                                 </div>
@@ -464,7 +459,7 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label for="qualifications">Qualifications</label>
-                                                                                        <input type="text" class="form-control form-control-sm" id="qualifications"
+                                                                                        <input type="text" name="qualifications" class="form-control form-control-sm" maxlength="100" id="qualifications"
                                                                                             placeholder="Enter qualifications">
                                                                                     </div>
                                                                                 </div>
@@ -472,13 +467,9 @@
                                                                                     <!-- Highest Qualification -->
                                                                                     <div class="form-group">
                                                                                         <label for="highestQualification">Highest Qualification</label>
-                                                                                        <select class="form-control form-control-sm" id="highestQualification">
+                                                                                        <select class="form-control form-control-sm" id="highestQualificationSelect" name="highestQualification">
                                                                                             <option value="" disabled selected>Select Qualification</option>
-                                                                                            <option value="Qualification 1">Qualification 1</option>
-                                                                                            <option value="Qualification 2">Qualification 2</option>
-                                                                                            <option value="Qualification 3">Qualification 3</option>
-                                                                                            <option value="Qualification 4">Qualification 4</option>
-                                                                                            <option value="Qualification 5">Qualification 5</option>
+                                                                                            
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
@@ -487,8 +478,8 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label for="certifications">Certifications</label>
-                                                                                        <input type="text" class="form-control form-control-sm" id="certifications"
-                                                                                            placeholder="Enter Certifications">
+                                                                                        <input type="text" name="certifications" class="form-control form-control-sm" id="certifications"
+                                                                                           maxlength="255"  placeholder="Enter Certifications">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
@@ -496,13 +487,8 @@
                                                                                     <!-- Courses -->
                                                                                     <div class="form-group">
                                                                                         <label for="courses">Courses</label>
-                                                                                        <select class="form-control form-control-sm" id="courses">
+                                                                                        <select class="form-control form-control-sm" id="courseSelect" name="courses">
                                                                                             <option value="" disabled selected>Select Course</option>
-                                                                                            <option value="Course 1">Course 1</option>
-                                                                                            <option value="Course 2">Course 2</option>
-                                                                                            <option value="Course 3">Course 3</option>
-                                                                                            <option value="Course 4">Course 4</option>
-                                                                                            <option value="Course 5">Course 5</option>
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
@@ -525,7 +511,7 @@
                                                                     <!-- Modal Footer -->
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
-                                                                        <button type="button" class="btn btn-success btn-sm" id="add_staff_btn" data-dismiss="modal">Submit</button>
+                                                                        <button type="submit" class="btn btn-success btn-sm" id="add_staff_btn" data-dismiss="modal">Submit</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -548,22 +534,22 @@
 
          <!-- Modal Body -->
          <div class="modal-body">
-             <form>
+             <form id="update-staff-form">
                  <div class="row">
                      <!-- Left Column -->
                      <div class="col-md-6">
                          <!-- Staff ID -->
                          <div class="form-group">
-                             <label for="staffId">Staff ID</label>
-                             <input type="text" class="form-control form-control-sm" id="staffId"
+                             <label for="update-staffId">Staff ID</label>
+                             <input type="text" name="staffID" class="form-control form-control-sm" id="update-staffId" maxlength="20"
                                  placeholder="Enter Staff ID">
                          </div>
                      </div>
                      <div class="col-md-6">
                          <!-- Staff Name -->
                          <div class="form-group">
-                             <label for="staffName">Staff Name</label>
-                             <input type="text" class="form-control form-control-sm" id="staffName"
+                             <label for="update-staffName">Staff Name</label>
+                             <input type="text" maxlength="25" class="form-control form-control-sm" name="staffName" id="update-staffName"
                                  placeholder="Enter Staff Name">
                          </div>
 
@@ -573,15 +559,15 @@
                  <div class="row">
                      <div class="col-md-6">
                          <div class="form-group">
-                             <label for="dateOfBirth">Date of Birth</label>
-                             <input type="date" class="form-control form-control-sm" id="dateOfBirth">
+                             <label for="update-dateOfBirth">Date of Birth</label>
+                             <input type="date" name="dateOfBirth" class="form-control form-control-sm" id="update-dateOfBirth">
                          </div>
                      </div>
                      <div class="col-md-6">
                          <!-- Aadhaar Number -->
                          <div class="form-group">
-                             <label for="aadharNumber">Aadhaar Number</label>
-                             <input type="number" class="form-control form-control-sm" id="aadharNumber"
+                             <label for="update-aadharNumber" id="aadharLabel">Aadhaar Number</label>
+                             <input type="number" name="aadharNumber" class="form-control form-control-sm" id="update-aadharNumber"
                                  placeholder="Aadhaar Number" maxlength="12">
                          </div>
                      </div>
@@ -590,16 +576,16 @@
                      <div class="col-md-6">
                          <!-- Contact Number -->
                          <div class="form-group">
-                             <label for="contactNumber">Contact Number</label>
-                             <input type="number" class="form-control form-control-sm" id="contactNumber"
+                             <label for="update-contactNumber">Contact Number</label>
+                             <input type="tel" class="form-control form-control-sm" maxlength="10" name="contactNumber" id="update-contactNumber"
                                  placeholder="Enter Contact Number">
                          </div>
                      </div>
                      <div class="col-md-6">
                          <!-- Email ID -->
                          <div class="form-group">
-                             <label for="emailId">Email ID</label>
-                             <input type="email" class="form-control form-control-sm" id="emailId"
+                             <label for="update-mail">Email ID</label>
+                             <input type="email" name="mail" class="form-control form-control-sm" id="update-mail"
                                  placeholder="Enter Email ID">
                          </div>
 
@@ -609,8 +595,8 @@
                      <div class="col-md-12">
                          <!-- Permanent Address -->
                          <div class="form-group">
-                             <label for="permanentAddress">Permanent Address</label>
-                             <textarea class="form-control form-control-sm" id="permanentAddress" rows="2"
+                             <label for="update-permanentAddress">Permanent Address</label>
+                             <textarea class="form-control form-control-sm" id="update-permanentAddress" name="permanentAddress" rows="2" maxlength="255"
                                  placeholder="Enter Permanent Address"></textarea>
                          </div>
                      </div>
@@ -618,14 +604,14 @@
                  <div class="row">
                      <div class="col-md-12">
                          <div class="form-group">
-                             <label for="location">Location of Work</label>
-                             <select class="form-control form-control-sm" id="location">
+                             <label for="update-location">Location of Work</label>
+                             <select class="form-control form-control-sm" id="update-location" name="locationOfWork">
                                  <option value="" disabled selected>Select Location</option>
-                                 <option value="Location 1">Location 1</option>
-                                 <option value="Location 2">Location 2</option>
-                                 <option value="Location 3">Location 3</option>
-                                 <option value="Location 4">Location 4</option>
-                                 <option value="Location 5">Location 5</option>
+                                 <option value="1">Location 1</option>
+                                 <option value="2">Location 2</option>
+                                 <option value="3">Location 3</option>
+                                 <option value="4">Location 4</option>
+                                 <option value="9">Location 5</option>
                              </select>
                          </div>
                      </div>
@@ -634,15 +620,15 @@
                      <div class="col-md-6">
                          <!-- Date of Joining -->
                          <div class="form-group">
-                             <label for="dateOfJoining">Date of Joining</label>
-                             <input type="date" class="form-control form-control-sm" id="dateOfJoining">
+                             <label for="update-dateOfJoining">Date of Joining</label>
+                             <input type="date" name="dateOfJoining" class="form-control form-control-sm" id="update-dateOfJoining">
                          </div>
                      </div>
                      <div class="col-md-6">
                          <!-- Salary at Joining -->
                          <div class="form-group">
-                             <label for="salary">Salary at Joining</label>
-                             <input type="number" class="form-control form-control-sm" id="salary"
+                             <label for="update-salary">Salary at Joining</label>
+                             <input type="number" name="salary" class="form-control form-control-sm" id="update-salary"
                                  placeholder="Enter Salary">
                          </div>
                      </div>
@@ -650,22 +636,22 @@
                  <div class="row d-flex align-items-center">
                      <div class="col-md-6">
                          <div class="form-group">
-                             <label for="qualifications">Qualifications</label>
-                             <input type="text" class="form-control form-control-sm" id="qualifications"
+                             <label for="update-qualifications">Qualifications</label>
+                             <input type="text" name="qualifications" maxlength="100" class="form-control form-control-sm" id="update-qualifications"
                                  placeholder="Enter qualifications">
                          </div>
                      </div>
                      <div class="col-md-6">
                          <!-- Highest Qualification -->
                          <div class="form-group">
-                             <label for="highestQualification">Highest Qualification</label>
-                             <select class="form-control form-control-sm" id="highestQualification">
+                             <label for="update-highestQualification">Highest Qualification</label>
+                             <select class="form-control form-control-sm" id="update-highestQualification" name="highestQualification">
                                  <option value="" disabled selected>Select Qualification</option>
-                                 <option value="Qualification 1">Qualification 1</option>
-                                 <option value="Qualification 2">Qualification 2</option>
-                                 <option value="Qualification 3">Qualification 3</option>
-                                 <option value="Qualification 4">Qualification 4</option>
-                                 <option value="Qualification 5">Qualification 5</option>
+                                 <option value="1">Qualification 1</option>
+                                 <option value="2">Qualification 2</option>
+                                 <option value="3">Qualification 3</option>
+                                 <option value="4">Qualification 4</option>
+                                 <option value="5">Qualification 5</option>
                              </select>
                          </div>
                      </div>
@@ -673,23 +659,18 @@
                  <div class="row d-flex align-items-center">
                      <div class="col-md-6">
                          <div class="form-group">
-                             <label for="certifications">Certifications</label>
-                             <input type="text" class="form-control form-control-sm" id="certifications"
-                                 placeholder="Enter Certifications">
+                             <label for="update-certifications">Certifications</label>
+                             <input type="text" class="form-control form-control-sm" id="update-certifications"
+                                 placeholder="Enter Certifications" name="certifications">
                          </div>
                      </div>
                      <div class="col-md-6">
 
                          <!-- Courses -->
                          <div class="form-group">
-                             <label for="courses">Courses</label>
-                             <select class="form-control form-control-sm" id="courses">
+                             <label for="update-courses">Courses</label>
+                             <select class="form-control form-control-sm" id="update-courseSelect" name="courses">
                                  <option value="" disabled selected>Select Course</option>
-                                 <option value="Course 1">Course 1</option>
-                                 <option value="Course 2">Course 2</option>
-                                 <option value="Course 3">Course 3</option>
-                                 <option value="Course 4">Course 4</option>
-                                 <option value="Course 5">Course 5</option>
                              </select>
                          </div>
                      </div>
@@ -712,7 +693,7 @@
          <!-- Modal Footer -->
          <div class="modal-footer">
              <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
-             <button type="button" class="btn btn-success btn-sm">Update</button>
+             <button type="button" id="update_staff_btn" class="btn btn-success btn-sm">Update</button>
          </div>
      </div>
  </div>
@@ -746,7 +727,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr class="align-items-center">
+                                                                        <!-- <tr class="align-items-center">
                                                                             <td>1</td>
                                                                             <td>Divyan</td>
                                                                             <td>Sirkali</td>
@@ -763,12 +744,12 @@
                                                                                     <button class="btn btn-edit d-flex align-items-center justify-content-center p-0 " style="width: 40px; height: 40px;" data-toggle="modal" data-target="#updateModal">
                                                                                         <i class="ti-pencil text-white" style="font-size: larger;"></i>
                                                                                     </button>
-                                                                                    <!-- <button class="btn btn-danger d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px;" data-toggle="modal" data-target="#updateModal">
+                                                                                    <button class="btn btn-danger d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px;" data-toggle="modal" data-target="#updateModal">
                                                                                         <i class="ti-trash text-white" style="font-size: larger;"></i>
-                                                                                    </button> -->
+                                                                                    </button>
                                                                                 </div>
                                                                             </td>
-                                                                        </tr>
+                                                                        </tr> -->
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -836,11 +817,12 @@
             });
         });
 
-        function toggleSwitch(element) {
-        element.classList.toggle('active');
-
-    }
+        
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script type="module" src="./assets/js/axiosInstance.js"></script>
+    
     <script src="assets/js/popup.js"></script>
     <script src="assets/js/staff-details.js"></script>
     <script type="text/javascript" src="assets/js/script.js "></script>
