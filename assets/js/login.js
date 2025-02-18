@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         const remember=document.getElementById('remember').checked? 'true' : 'false';
 
         try{
-            await axiosInstance.post('/login',{
+            await axiosInstance.post('/auth/login',{
                 
                 mail,
                 password,

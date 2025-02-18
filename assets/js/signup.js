@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             try {
-                axiosInstance.post('http://localhost:3000/register', {
+                axiosInstance.post('http://localhost:3000/auth/register', {
                     name,
                     mail,
                     password,

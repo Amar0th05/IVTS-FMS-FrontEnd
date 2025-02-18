@@ -1,3 +1,12 @@
+const token=localStorage.getItem('token');
+if(!token){
+    window.location.href = 'login.html';
+}
+
+document.getElementById('logout-button').addEventListener('click',logout);
+function logout(){
+    localStorage.removeItem('token');
+}
 
 
 const addStaffButton = document.getElementById('add_staff_btn');
@@ -5,55 +14,61 @@ const updateStaffButton = document.getElementById('update_staff_btn');
 
 
 async function loadCourseOptions(id) {
-    axiosInstance.get('/courses/')
-        .then((response)=>{
-            const courses=response.data.courses;
-            const select = document.getElementById(id);
-            select.innerHTML = '<option value="">Select Course</option>';
-            courses.forEach(course => {
-                const option = document.createElement("option");
-                option.value = course.course_id;
-                option.textContent = course.course_name;
-                select.appendChild(option);
-            });
-        }).catch((error)=>{
-            console.error(error);
-        })
+    try {
+        const response = await axiosInstance.get('/courses/');
+        const courses = response.data.courses;
+        const select = document.getElementById(id);
+
+        select.innerHTML = '<option value="">Select Course</option>';
+        courses.forEach(course => {
+            const option = document.createElement("option");
+            option.value = course.course_id;
+            option.textContent = course.course_name;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error loading courses:", error);
+    }
 }
 
+
 async function loadOrganisationOptions(id) {
-    axiosInstance.get('/organisations')
-        .then((response)=>{
-            const organisations=response.data.organisations;
-            const select = document.getElementById(id);
-            select.innerHTML = '<option value="">Select organisations</option>';
-            organisations.forEach(organisation => {
-                const option = document.createElement("option");
-                option.value = organisation.org_id;
-                option.textContent = organisation.organisation_name;
-                select.appendChild(option);
-            });
-        }).catch((error)=>{
-            console.error(error);
-        })
-};
+    try {
+        const response = await axiosInstance.get('/organisations');
+        const organisations = response.data.organisations;
+        const select = document.getElementById(id);
+
+        select.innerHTML = '<option value="">Select Organisation</option>';
+        organisations.forEach(organisation => {
+            const option = document.createElement("option");
+            option.value = organisation.org_id;
+            option.textContent = organisation.organisation_name;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error loading organisations:", error);
+    }
+}
+
 
 async function loadHighestQualificationsOptions(id) {
-    axiosInstance.get('/hq')
-        .then((response)=>{
-            const highestQualifications=response.data.highestQualifications;
-            const select = document.getElementById(id);
-            select.innerHTML = '<option value="">Select Higheset Qualification</option>';
-            highestQualifications.forEach(highestQualification => {
-                const option = document.createElement("option");
-                option.value = highestQualification.qual_id;
-                option.textContent = highestQualification.highest_qualification;
-                select.appendChild(option);
-            });
-        }).catch((error)=>{
-            console.error(error);
-        })
-};
+    try {
+        const response = await axiosInstance.get('/hq');
+        const highestQualifications = response.data.highestQualifications;
+        const select = document.getElementById(id);
+
+        select.innerHTML = '<option value="">Select Highest Qualification</option>';
+        highestQualifications.forEach(qualification => {
+            const option = document.createElement("option");
+            option.value = qualification.qual_id;
+            option.textContent = qualification.highest_qualification;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error loading highest qualifications:", error);
+    }
+}
+
 
 addStaffButton.addEventListener('click', (e) => {
     
@@ -87,9 +102,9 @@ addStaffButton.addEventListener('click', (e) => {
     if (validateForm(formData)) {
         axiosInstance.post('/staff',{
             data: data
-        }).then((response) => {
+        }).then(async (response) => {
             table.clear();
-            fetchAllData();
+            await fetchAllData();
             showSucessPopupFadeInDownLong(response.data.message);
             form.reset();
         }).catch((error) => {
@@ -132,9 +147,9 @@ updateStaffButton.addEventListener('click', (e) => {
     if (validateForm(formData)) {
         axiosInstance.put('/staff',{
             data: data
-        }).then((response) => {
+        }).then(async (response) => {
             table.clear();
-            fetchAllData();
+            await fetchAllData();
             showSucessPopupFadeInDownLong(response.data.message);
             
         }).catch((error) => {
@@ -180,10 +195,11 @@ function addRow(data){
         </div>`
         ,
         `<div class="row d-flex justify-content-center">
-            <button class="btn btn-edit d-flex align-items-center justify-content-center p-0 " style="width: 40px; height: 40px;" data-toggle="modal" data-target="#updateModal" onclick="loadUpdateDetails('${data.staffID}')">
-                <i class="ti-pencil text-white" style="font-size: larger;"></i>
-            </button>
-        </div>`
+            <div class="d-flex align-items-center justify-content-center p-0 " style="width: 40px; height: 40px;cursor:pointer" data-toggle="modal" data-target="#updateModal" onclick="loadUpdateDetails('${data.staffID}')">
+                <i class="ti-pencil-alt text-inverse" style="font-size: larger;"></i>
+            </div>
+        </div>`,
+        
     ]).draw(false);
 };
 
@@ -194,10 +210,10 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         return;
     }
     
-    loadCourseOptions('courseSelect');
-    loadOrganisationOptions("locationSelect");
-    loadHighestQualificationsOptions("highestQualificationSelect");
-    fetchAllData();
+    await loadCourseOptions('courseSelect');
+    await loadOrganisationOptions("locationSelect");
+    await loadHighestQualificationsOptions("highestQualificationSelect");
+    await fetchAllData();
 });
 
 
@@ -214,23 +230,21 @@ async function toggleStatus(element, id) {
             element.classList.toggle('active');
         }
     } catch (error) {
-        showErrorPopupFadeInDown(error.response?.data?.message || 'Failed to update status. Please try again later.');
+        showErrorPopupFadeInDown(error);
     }
 }
 
 
-function fetchAllData(){
-    axiosInstance.get('/staff/all')
-    .then((response)=>{
-       
-       
-        response.data.staffDetails.map(staffDetail => {
+async function fetchAllData() {
+   try{
+    const response = await axiosInstance.get('/staff/all');
+    response.data.staffDetails.map(staffDetail => {
         addRow(staffDetail);
-       })
-    })
-    .catch((error)=>{
-        console.error(error);
     });
+   } catch(error){
+    console.error("Error fetching staff details:", error);
+   }
+    
 }
 
 function limitLength(str, length) {
@@ -240,9 +254,9 @@ function limitLength(str, length) {
     return str;
 };
 
-document.querySelector('.reload-card').addEventListener('click', () => {
+document.querySelector('.reload-card').addEventListener('click', async () => {
     table.clear();
-    fetchAllData();
+    await fetchAllData();
 });
 
 
@@ -296,9 +310,9 @@ function validateForm(formData) {
 }
 
 async function loadUpdateDetails(id) {
-    loadCourseOptions('update-courseSelect');
-    loadHighestQualificationsOptions('update-highestQualification');
-    loadOrganisationOptions('update-location');
+    await loadCourseOptions('update-courseSelect');
+    await loadHighestQualificationsOptions('update-highestQualification');
+    await loadOrganisationOptions('update-location')
     try {
         const response = await axiosInstance.get(`/staff/${id}`);
         console.log(response.data);

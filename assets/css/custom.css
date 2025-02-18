@@ -27,3 +27,51 @@
 .toggle-btn.active .slider {
     transform: translateX(20px);
 }
+
+   .dt-button {
+    all:unset !important;
+    background-color: #448aff !important; 
+    color: white !important;  
+    border-radius: 2px !important; 
+    padding: 8px 10px !important; 
+    font-size: 14px; 
+    border: hidden !important;
+    cursor: pointer !important;
+    text-transform: uppercase; 
+}
+.dt-button:first-of-type{
+    margin-left: 10px !important;
+}
+.dt-button:hover {
+    background-color: #7eabf8 !important;
+    border-color: #004085; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+
+.buttons-excel {
+    background-color: #4CAF50 ;
+}
+
+.buttons-excel:hover {
+    background-color: #45a049 ;
+}
+
+.buttons-csv {
+    background-color: #ff9800 ;
+}
+
+.buttons-csv:hover {
+    background-color: #fb8c00;
+}
+
+.buttons-pdf {
+    background-color: #f44336;
+}
+
+.buttons-pdf:hover {
+    background-color: #e53935;
+}
+.dataTables_paginate {
+    margin-top: 20px !important;
+}
