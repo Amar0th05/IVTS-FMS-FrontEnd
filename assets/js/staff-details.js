@@ -1,11 +1,7 @@
-const token=localStorage.getItem('token');
-if(!token){
-    window.location.href = 'login.html';
-}
 
 document.getElementById('logout-button').addEventListener('click',logout);
 function logout(){
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
 }
 
 
@@ -15,8 +11,8 @@ const updateStaffButton = document.getElementById('update_staff_btn');
 
 async function loadCourseOptions(id) {
     try {
-        const response = await axiosInstance.get('/courses/');
-        const courses = response.data.courses;
+        // const response = await axiosInstance.get(API_ROUTES.courses);
+        const courses = await api.getCourses();
         const select = document.getElementById(id);
 
         select.innerHTML = '<option value="">Select Course</option>';
@@ -34,8 +30,7 @@ async function loadCourseOptions(id) {
 
 async function loadOrganisationOptions(id) {
     try {
-        const response = await axiosInstance.get('/organisations');
-        const organisations = response.data.organisations;
+        const organisations = await api.getOrganisations();
         const select = document.getElementById(id);
 
         select.innerHTML = '<option value="">Select Organisation</option>';
@@ -53,8 +48,8 @@ async function loadOrganisationOptions(id) {
 
 async function loadHighestQualificationsOptions(id) {
     try {
-        const response = await axiosInstance.get('/hq');
-        const highestQualifications = response.data.highestQualifications;
+        // const response = await axiosInstance.get(API_ROUTES.getHighestQualifications);
+        const highestQualifications = await api.getHighestQualifications();
         const select = document.getElementById(id);
 
         select.innerHTML = '<option value="">Select Highest Qualification</option>';
@@ -70,7 +65,7 @@ async function loadHighestQualificationsOptions(id) {
 }
 
 
-addStaffButton.addEventListener('click', (e) => {
+addStaffButton.addEventListener('click', async (e) => {
     
     e.preventDefault();
     let form = document.getElementById('new-staff-form');
@@ -100,22 +95,28 @@ addStaffButton.addEventListener('click', (e) => {
     data['status']=true;
 
     if (validateForm(formData)) {
-        axiosInstance.post('/staff',{
-            data: data
-        }).then(async (response) => {
+        try {
+            // const response = await axiosInstance.post(API_ROUTES.staff, {
+            //     data: data
+            // });
+            
+
+            const responseData=await api.addStaff(data);
+
             table.clear();
             await fetchAllData();
-            showSucessPopupFadeInDownLong(response.data.message);
+            showSucessPopupFadeInDownLong(responseData.message);
             form.reset();
-        }).catch((error) => {
+        } catch (error) {
             showErrorPopupFadeInDown(error.response?.data?.message || 'Failed to add staff. Please try again later.');
-        });
+        }
+        
 
     }
 });
 
 
-updateStaffButton.addEventListener('click', (e) => {
+updateStaffButton.addEventListener('click', async (e) => {
     
     e.preventDefault();
     let form = document.getElementById('update-staff-form');
@@ -145,18 +146,16 @@ updateStaffButton.addEventListener('click', (e) => {
     data['status']=true;
 
     if (validateForm(formData)) {
-        axiosInstance.put('/staff',{
-            data: data
-        }).then(async (response) => {
+        try {
+            const responseData=await api.updateStaff(data);
             table.clear();
             await fetchAllData();
-            showSucessPopupFadeInDownLong(response.data.message);
-            
-        }).catch((error) => {
+            showSucessPopupFadeInDownLong(responseData.message);
+        } catch (error) {
             showErrorPopupFadeInDown(error.response?.data?.message || 'Failed to add staff. Please try again later.');
-        });
-
+        }
     }
+    
 });
 
 
@@ -188,6 +187,8 @@ function addRow(data){
       data.staffName,
       data.locationOfWork,
       data.dateOfJoining,
+      data.currentSalary,
+      data.currentDesignation,
         `<div class="container">
             <div class="toggle-btn ${data.status===true?'active':''}" onclick="toggleStatus(this,'${data.staffID}')">
                 <div class="slider"></div>
@@ -204,11 +205,14 @@ function addRow(data){
 };
 
 document.addEventListener('DOMContentLoaded',async ()=>{
-    const token=localStorage.getItem('token');
-    if(!token){
+    const token = sessionStorage.getItem('token');
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (!token || !user) {
         window.location.href = 'login.html';
-        return;
+    } else if (user.role === 2) {
+        window.location.href = 'user-details.html';
     }
+
     
     await loadCourseOptions('courseSelect');
     await loadOrganisationOptions("locationSelect");
@@ -223,8 +227,8 @@ async function toggleStatus(element, id) {
     if (!id) return;
 
     try {
-        const response = await axiosInstance.put(`/staff/status/${id}`);
-        showSucessPopupFadeInDownLong(response.data.message);
+        const data=await api.toggleStaffStatus(id);
+        // showSucessPopupFadeInDownLong(data.message);
 
         if (element) {
             element.classList.toggle('active');
@@ -237,8 +241,11 @@ async function toggleStatus(element, id) {
 
 async function fetchAllData() {
    try{
-    const response = await axiosInstance.get('/staff/all');
-    response.data.staffDetails.map(staffDetail => {
+    // const response = await axiosInstance.get(API_ROUTES.getAllStaffs);
+
+    const staffDetails=await api.getAllStaffs();
+
+    staffDetails.map(staffDetail => {
         addRow(staffDetail);
     });
    } catch(error){
@@ -305,7 +312,7 @@ function validateForm(formData) {
         return false;
     }
 
-    console.log("Validation successful!", Object.fromEntries(formData.entries()));
+
     return true;
 }
 
@@ -314,8 +321,8 @@ async function loadUpdateDetails(id) {
     await loadHighestQualificationsOptions('update-highestQualification');
     await loadOrganisationOptions('update-location')
     try {
-        const response = await axiosInstance.get(`/staff/${id}`);
-        console.log(response.data);
+        const response = await axiosInstance.get(API_ROUTES.getStaff(id));
+
         const data = response.data.staffDetail;
         document.getElementById('update-staffId').value = data.staffID;
         document.getElementById('update-staffName').value = data.staffName;
@@ -333,7 +340,7 @@ async function loadUpdateDetails(id) {
 
         document.getElementById('update-certifications').value = data.certifications;
         document.getElementById('update-salary').value = data.salary ? parseFloat(data.salary) : '';
-        console.log(parseFloat(data.salary));
+
         document.getElementById('update-permanentAddress').value = data.permanentAddress;
     } catch (error) {
         console.error(error);

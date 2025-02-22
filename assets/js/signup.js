@@ -24,29 +24,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            const userData={
+                name,
+                mail,
+                password,
+            }
 
 
             try {
-                axiosInstance.post('http://localhost:3000/auth/register', {
-                    name,
-                    mail,
-                    password,
-                }).then((response) => {
-                    showPopupFadeInDown('Registration successful. You can now login.');
-                    setTimeout(() => {
-                        window.location.href = 'login.html';
-                    }, 1200)
-
-                }).catch((error) => {
-                    showErrorPopupFadeInDown(error.response.data.message || 'Registration failed. Please try again.');
-                    e.target.reset();
-                });
+              
+                const data=await api.register(userData);
+                showPopupFadeInDown('Registration successful. You can now login.');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1200);
             } catch (error) {
                 console.error('Error:', error);
-                showErrorPopupFadeInDown('An unexpected error occurred. Please try again later.');
+                showErrorPopupFadeInDown(error.response?.data?.message || 'Registration failed. Please try again.');
                 e.target.reset();
-
             }
+            
 
 
 

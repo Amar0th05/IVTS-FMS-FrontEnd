@@ -1,7 +1,3 @@
-const token = localStorage.getItem('token');
-if (token === null) {
-    window.location.href = "login.html";
-}
 
 //table instance 
 
@@ -13,7 +9,7 @@ async function addRow(data){
         table = $('#myTable').DataTable();
     }
     if(!data){
-        console.log('no data to add');
+        throw new Error('no data to add');
         return;
     }
     if(data.status){
@@ -67,8 +63,6 @@ addNewUserButton.addEventListener('click',()=>{
    if(validateForm(data)){
     addNewUser(data);
     return;
-   }else{
-    console.log('form is not valid');
    }
     
 });
@@ -90,8 +84,6 @@ updateUserButton.addEventListener('click',async ()=>{
     if(validateUpdateForm(data)){
         updateUserData(data);
         return;
-       }else{
-        console.log('form is not valid');
        }
     
 });
@@ -103,21 +95,28 @@ function updatePassword(id){
 
     const updatePasswordField = document.getElementById('update-password');
     const confirmPasswordField=document.getElementById('update-confirmPassword');
+    const label=document.getElementById('confirm-password-label');
 
     updatePasswordField.addEventListener('input', () => {
         if (updatePasswordField.value !== confirmPasswordField.value) {
-            confirmPasswordField.setCustomValidity('Passwords do not match');
+            label.style.color ='red';
+            label.textContent = 'Passwords do not match';
             valid = false;
         } else {
+            label.style.removeProperty('color');
+            label.textContent = 'Confirm Password';
             confirmPasswordField.setCustomValidity('');
             valid=true;
         }
     });
     confirmPasswordField.addEventListener('input', () => {
         if (updatePasswordField.value !== confirmPasswordField.value) {
-            confirmPasswordField.setCustomValidity('Passwords do not match');
+            label.style.color ='red';
+            label.textContent = 'Passwords do not match';
             valid = false;
         } else {
+            label.style.removeProperty('color');
+            label.textContent = 'Confirm Password';
             confirmPasswordField.setCustomValidity('');
             valid=true;
         }
@@ -152,19 +151,19 @@ function updatePassword(id){
 //fetch all users
 async function fetchAllUsers(){
     try{
-        const response=await axiosInstance.get('/user/all');
-        response.data.users.forEach((user)=>{
+        const users=await api.getAllUsers();
+        users.forEach((user)=>{
             addRow(user);
         });
     }catch(error){
-        console.log('Error fetching users:', error);
+        console.error('Error fetching users:', error);
     }
 }
 
 //logout
 document.getElementById('logout-button').addEventListener('click', logout);
 function logout() {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
 }
 
 //toggle status
@@ -172,8 +171,8 @@ async function toggleStatus(element, id) {
     if (!id) return;
 
     try {
-        const response = await axiosInstance.put(`/user/status/${id}`);
-        showSucessPopupFadeInDownLong(response.data.message);
+        const data = await api.toggleUserStatus(id);
+        // showSucessPopupFadeInDownLong(data.message);
         if (element) {
             element.classList.toggle('active');
         }
@@ -184,6 +183,19 @@ async function toggleStatus(element, id) {
 
 //dom loaded
 document.addEventListener('DOMContentLoaded',async()=>{
+
+    const token = sessionStorage.getItem('token');
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (token === null || user === null) {
+        window.location.href = "login.html";
+    } else if (user.role !== 2) {
+        window.location.href = "index.html";
+    }
+
+    document.getElementById('user-name-display').textContent=user.name;
+    document.getElementById('more-details').textContent=user.name;
+
+
     await fetchAllUsers();
     await fetchAllRoles('roleSelect');
 });
@@ -237,8 +249,8 @@ function validateUpdateForm(formData){
 //get all roles
 async function fetchAllRoles(id){
     try{
-        const response=await axiosInstance.get('/roles/all');
-        const roles=response.data.roles;
+       
+        const roles=await api.getAllRoles();
         const select=document.getElementById(id);
         select.innerHTML='';
         roles.forEach(role=>{
@@ -254,11 +266,10 @@ async function fetchAllRoles(id){
 
 async function addNewUser(userData){
     try{
-        const response=await axiosInstance.post('/user',{
-            userData
-        });
-        if(response.data.message){
-            showSucessPopupFadeInDownLong(response.data.message);
+       
+        const data=await api.createUser(userData);
+        if(data.message){
+            showSucessPopupFadeInDownLong(data.message);
         }
         table.clear();
         fetchAllUsers();
@@ -270,11 +281,12 @@ async function addNewUser(userData){
 
 async function updateUserData(userData){
     try{
-        const response=await axiosInstance.put(`/user`,{
-            userData
-        });
-        if(response.data.message){
-            showSucessPopupFadeInDownLong(response.data.message);
+        // const response=await axiosInstance.put(API_ROUTES.user,{
+        //     userData
+        // });
+        const data=await api.updateUser(userData);
+        if(data.message){
+            showSucessPopupFadeInDownLong(data.message);
         }
         table.clear();
         fetchAllUsers();
@@ -289,7 +301,8 @@ async function loadUpdateUser(id){
     await fetchAllRoles('update-roleSelect');
     try{
         
-        const user=await axiosInstance.get(`/user/${id}`).then(res=>res.data.user);
+
+        const user=await api.getUser(id);
      
         if(!user){
             showErrorPopupFadeInDown("User not found");

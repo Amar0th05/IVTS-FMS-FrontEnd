@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>iVTS-FMS</title>
+    <title>Courses</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -203,7 +203,7 @@
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="" id="logout-button">
+                                        <a href="index.html" id="logout-button">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
                                     </li>
@@ -252,7 +252,7 @@
                                 <div class="accordion-content" style="display: block;">
                                 
                                     <ul class="pcoded-item pcoded-left-item">
-                                        <li class="active">
+                                        <li>
                                             <a href="user-details.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
                                                 <span class="pcoded-mtext">User Details</span>
@@ -264,7 +264,7 @@
                                 </div>
                             <div class="pcoded-navigation-label">Master Management</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li>
+                                <li  class="active">
                                     <a href="courses.html" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-book"></i><b>D</b></span>
                                         <span class="pcoded-mtext">Courses</span>
@@ -319,7 +319,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="index.html"> <i class="fa fa-home"></i> </a>
                                             </li>
-                                            <li class="breadcrumb-item"><a href="#!">User Details</a>
+                                            <li class="breadcrumb-item"><a href="#!">Courses</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -352,92 +352,17 @@
 
                                                     <div class="card-block">
 
-<!-----------------------------------------------ADD-NEW-USER-MODAl-START--------------------------------------------------------------------->
 
-                                                        <div class="modal fade" id="addNewModal" tabindex="-1"
-                                                            role="dialog" aria-labelledby="addNewModalLabel"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog modal-lg" role="document">
-                                                                <div class="modal-content">
-                                                                    <!-- Modal Header -->
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="addNewModalLabel">
-                                                                            Add New User</h5>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-
-                                                                    <!-- Modal Body -->
-                                                                    <div class="modal-body">
-                                                                        <form id="addNewUserForm">
-                                                                            <div class="row">
-                                                                               <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="userName">User Name</label>
-                                                                                    <input type="text" name="name" maxlength="25"
-                                                                                        class="form-control form-control-sm"
-                                                                                        id="userName"
-                                                                                        placeholder="Enter Name">
-                                                                                </div>
-                                                                               </div>
-                                                                               <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="userEmail">Email</label>
-                                                                                    <input type="email" name="mail"
-                                                                                        class="form-control form-control-sm"
-                                                                                        id="userEmail"
-                                                                                        placeholder="Enter user Email">
-                                                                                </div>
-                                                                               </div>
-                                                                            </div>
-                                                                            <div class="row d-flex align-items-center">
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="password">Password</label>
-                                                                                        <input type="password"
-                                                                                            class="form-control form-control-sm"
-                                                                                            id="password" name="password">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
-                                                                                        <label for="role">Role</label>
-                                                                                        <select class="form-control form-control-sm" id="roleSelect" name="role">
-                                                                                           
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            
-                                                                        </form>
-                                                                    </div>
-
-                                                                    <!-- Modal Footer -->
-                                                                    <div class="modal-footer">
-                                                                        <button type="button"
-                                                                            class="btn btn-danger btn-sm"
-                                                                            data-dismiss="modal">Exit</button>
-                                                                        <button type="button"
-                                                                            class="btn btn-success btn-sm" id="add_user_btn" data-dismiss="modal">Submit</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
- <!---------------------------------------------------------------------------------------------ADD-NEW-USER-MODAL-END---------------------------------------------------->
- <!-----------------------------------------------UPDATE-USER-MODAl-START--------------------------------------------------------------------->
+ <!-----------------------------------------------UPDATE-COURSE-MODAl-START--------------------------------------------------------------------->
  
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+<div class="modal fade" id="updatecourseModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
                 <h5 class="modal-title" id="updateModalLabel">
-                    Update User</h5>
+                    Update Course</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -445,113 +370,34 @@
 
             <!-- Modal Body -->
             <div class="modal-body">
-                <form id="updateUserForm">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="update-userID">User ID</label>
-                                <input type="text"
-                                    class="form-control form-control-sm"
-                                    id="update-userID" name="updateuserID"
-                                    placeholder="User ID" readonly>
-                            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="update-courseName">Course Name</label>
+                            <input type="text" class="form-control form-control-sm" id="update-courseName" name="courseName"
+                                placeholder="Enter Course Name">
                         </div>
-                        <div class="col-md-6">
-                         <div class="form-group">
-                             <label for="update-userName">User Name</label>
-                             <input type="text"
-                                 class="form-control form-control-sm"
-                                 id="update-userName" name="userName"
-                                 placeholder="Enter User Name">
-                         </div>
-                        </div>
-                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="update-mail">Mail</label>
-                                <input type="email" name="mail" class="form-control form-control-sm" id="update-mail"
-                                    placeholder="User Email">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="role">Role</label>
-                                <select class="form-control form-control-sm" id="update-roleSelect" name="role">
-                                    <option value="" disabled selected>Select Role</option>
-                                </select>
-                            </div>
-                        </div>
-                        
                     </div>
-                </form>
+                </div>
             </div>
 
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
-                <button type="button" class="btn btn-success btn-sm" id="update_user_btn">Update</button>
+                <button type="button" class="btn btn-success btn-sm" id="update_course_btn">Update</button>
             </div>
         </div>
     </div>
 </div>
 
 <!---------------------------------------------------------------------------------------------UPDATE-USER-MODAL-END---------------------------------------------------->
-<!-----------------------------------------------UPDATE-PASSWORD-MODAl-START--------------------------------------------------------------------->
- 
-<div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">
-                    Reset Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form id="updatePasswordForm">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="update-password" >Password</label>
-                                <input type="password" class="form-control form-control-sm" id="update-password" name="password"
-                                    placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="update-confirmPassword" id="confirm-password-label">Confirm Password</label>
-                                <input type="password" class="form-control form-control-sm" id="update-confirmPassword"
-                                    name="confirmPassword" placeholder="Confirm Password">
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
-                <button type="button" class="btn btn-success btn-sm" id="reset_password_btn">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!---------------------------------------------------------------------------------------------UPDATE-PASSWORD-MODAL-END---------------------------------------------------->
-
-                                                        <div class="d-flex justify-content-end mb-1">
-                                                            <button
-                                                                class="btn btn-primary d-flex align-items-center gap-2 px-sm-4 py-sm-2 rounded-pill shadow"
-                                                                data-toggle="modal" data-target="#addNewModal">
-                                                                <i class="ti-plus text-white fs-5"></i>
-                                                                <span class="fw-bold">Add New</span>
+                                                        <div class="d-flex justify-content-end align-items-center mb-5">
+                                                            <div class="w-25">
+                                                                <input type="text" name="name" maxlength="25" class="form-control" id="course-name-input"
+                                                                    placeholder="Enter Course Name">
+                                                            </div>
+                                                            <button class="btn btn-success d-flex align-items-center  px-sm-4 py-sm-1 rounded-pill shadow border" style="padding: 6.5px 20px !important; margin-left: 3px !important;" id="add_course_btn">
+                                                                <span class="fw-bold">Add course</span>
                                                             </button>
                                                         </div>
 
@@ -561,17 +407,35 @@
                                                                     class="table table-striped table-border-small rounded table-hover">
                                                                     <thead class="bg-primary text-white">
                                                                         <tr>
-                                                                            <th>User ID</th>
-                                                                            <th>Name</th>
-                                                                            <th>Mail</th>
-                                                                            <th>Role</th>
+                                                                            <th>Course Name</th>
+                                                                            <th>Created On</th>
                                                                             <th>Status</th>
-                                                                            <th>Update</th>
-                                                                            <th>Reset Password</th>
+                                                                             <th>Update</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        
+                                                                        <!-- <tr>
+                                                                            <td>1</td>
+                                                                            <td>course name</td>
+                                                                            <td>1/1/2005</td>
+                                                                            <td>
+                                                                                <div class="container">
+                                                                                    <div class="toggle-btn ${data.status===true?'active':''}" onclick="toggleStatus(this,'${data.userID}')">
+                                                                                        <div class="slider"></div>
+                                                                                    </div>
+                                                                                </div>
+ 
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="row d-flex justify-content-center">
+                                                                                    <span class="d-flex align-items-center justify-content-center p-0 " style="cursor:pointer;" data-toggle="modal" data-target="#updateModal" onclick="loadUpdateUser(${data.userID})">
+                                                                                        <i class="ti-pencil-alt text-inverse" style="font-size: larger;"></i>
+                                                                                    </span>
+                                                                                </div>
+
+                                                                            </td>
+                                                                    
+                                                                        </tr> -->
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -682,25 +546,25 @@
                     {
                         extend: 'excelHtml5',
                         text: 'Export to Excel',
-                        title: 'User Details',
+                        title: 'Course Details',
                         exportOptions: {
-                             columns: [0, 1,2,3] 
+                             columns: [0, 1] 
                         }
                     },
                     {
                         extend: 'csvHtml5',
                         text: 'Export to CSV',
-                        title: 'User Details',
+                        title: 'Course Details',
                         exportOptions: {
-                             columns: [0, 1,2,3] 
+                             columns: [0, 1] 
                         }
                     },
                     {
                         extend: 'pdfHtml5',
                         text: 'Export to PDF',
-                        title: 'User Details',
+                        title: 'Course Details',
                         exportOptions: {
-                             columns: [0, 1,2,3] 
+                             columns: [0, 1] 
                         }
                     }
                 ]
@@ -709,6 +573,8 @@
     
         
     </script>
+
+
 
 
  <!--  DataTables Buttons Extension JS -->
@@ -732,9 +598,12 @@
     <script type="module" src="./assets/js/axiosInstance.js"></script>
     
     <script src="assets/js/popup.js"></script>
-    <script src="./assets/js/userDetails.js"></script>
+    <script src="./assets/js/courses.js"></script>
+
     <script  src="./assets/js/api.js"></script>
     <script src="./assets/js/apiRequests.js"></script>
+
+
     <script>
         function toggleAccordion(button) {
           const content = button.parentElement.nextElementSibling;
@@ -745,6 +614,8 @@
           }
         }
     </script>
+
+
 </body>
 
 </html>

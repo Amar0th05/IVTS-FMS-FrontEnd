@@ -1,0 +1,89 @@
+const api = {
+    getActiveStaffs: () => fetchData(API_ROUTES.getActiveStaffs, "staffs"),
+
+    getActiveDesignations: () => fetchData(API_ROUTES.getactiveDesignations, "designations"),
+
+    getAllDesignations:()=>fetchData(API_ROUTES.getAllDesignations,"designations"),
+
+    getDesignationById:(id)=>fetchData(API_ROUTES.designationsBase+`/${id}`),
+    
+    updateDesignation:(id,data)=>putData(API_ROUTES.designationsBase+`/${id}`,{name:data}),
+
+    
+    createDesignation: (designationName) => postData(API_ROUTES.designationsBase+'/add', { name:designationName }),
+
+    getAllContractLogs: () => fetchData(API_ROUTES.getAllContractLogs),
+
+    getLog: (id) => fetchData(`/cl/log/${id}`),
+
+    getCourses: () => fetchData(API_ROUTES.courses, "courses"),
+
+    getAllCourses:()=> fetchData(API_ROUTES.getAllCourses, "courses"),
+
+    createCourse: (courseName) => postData(API_ROUTES.coursesBase, { courseName }),
+
+    getOrganisations: () => fetchData(API_ROUTES.getOrganisations, "organisations"),
+
+    getHighestQualifications: () => fetchData(API_ROUTES.getHighestQualifications, "highestQualifications"),
+
+    getAllHighestQualifications:()=> fetchData(API_ROUTES.getAllHighestQualifications, "highestQualifications"),
+
+    getQualificationById:(id)=>fetchData(API_ROUTES.highestQualificationsBase+`/${id}`,"highestQualification"),
+
+    createHighestQualification: (qualificationName) => postData(API_ROUTES.addHighestQualification, { name:qualificationName }),
+
+    updateHighestQualification:(id,data)=>putData(API_ROUTES.highestQualificationsBase+`/${id}`,{name:data}),
+
+    addContractLog: (data) => postData(API_ROUTES.contractLogs, { data }),
+
+    updateContractLog: (data) => putData(API_ROUTES.contractLogs,  {data} ),
+
+    resetPassword: (mail) => postData(API_ROUTES.resetPassword, { mail }),
+
+    register: (userData) => postData(API_ROUTES.register, {userData}),
+
+    login: async (mail, password) => {
+        const response = await postData(API_ROUTES.login, { mail, password });
+        const token = response.headers?.authorization?.split(" ")[1] || null;
+        return { data: response.data, token };
+    },
+
+    addStaff: (data) => postData(API_ROUTES.staff, { data }),
+    
+
+    updateStaff: (data) => putData(API_ROUTES.staff, { data }),
+
+    toggleStaffStatus: (id) => putData(`/staff/status/${id}`),
+
+    getAllStaffs: () => fetchData(API_ROUTES.getAllStaffs, "staffDetails"),
+
+    getAllUsers: () => fetchData(API_ROUTES.getAllUsers, "users"),
+
+    toggleUserStatus: async (id) => await putData(`/user/status/${id}`),
+
+
+
+    getAllRoles: () => fetchData(API_ROUTES.getAllRoles, "roles"),
+    getRoleById :(id) => fetchData(API_ROUTES.rolesBase+`/${id}`,"role"),
+
+    createUser: (userData) => postData(API_ROUTES.user,{userData}),
+
+    updateUser: (userData) => putData(API_ROUTES.user, {userData}),
+    getUser:(id)=>fetchData(`/user/${id}`,"user"),
+
+
+    getAllOrganisations: () => fetchData(API_ROUTES.getAllOrganisations, "organisations"),
+
+    getOrganisationById:(id)=>fetchData(API_ROUTES.organisationsBase+`/${id}`,"organisation"),
+
+    updateOrganisation:(id,data)=>putData(API_ROUTES.organisationsBase+`/${id}`,{name:data}),
+
+    createOrganisation: (organisationName) => postData(API_ROUTES.organisationsBase+'/add', { name: organisationName }),
+
+};
+
+const fetchData = (url, key) => axiosInstance.get(url).then(res => key ? res.data[key] : res.data);
+const postData = (url, payload) => axiosInstance.post(url, payload).then(res => res.data);
+const putData = (url, payload) => axiosInstance.put(url, payload).then(res => res.data);
+
+window.api = api;

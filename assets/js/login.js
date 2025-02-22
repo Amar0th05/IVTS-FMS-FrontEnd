@@ -1,11 +1,11 @@
 
 document.addEventListener('DOMContentLoaded',()=>{
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if(token){
         showPopupFadeInDown(`already logged in`);
         document.querySelector("#login-form").remove(); 
         setTimeout(() => {
-            window.location.href = 'index.html';
+            window.location.href = window.history.go(-1);
         },1500);
     }
     
@@ -18,35 +18,40 @@ document.addEventListener('DOMContentLoaded',()=>{
         const password=loginData.get('password');
         const remember=document.getElementById('remember').checked? 'true' : 'false';
 
-        try{
-            await axiosInstance.post('/auth/login',{
-                
+     
+
+
+        try {
+            const response = await axiosInstance.post(API_ROUTES.login, {
                 mail,
                 password,
-               
-            }).then((response)=>{
-                const authHeader = response.headers['authorization'];
-                if(authHeader){
-                    const token=authHeader.split(' ')[1];
-                    localStorage.setItem('token', token);
-                    showPopupFadeInDown(`Login Successful`);
-                    e.target.reset();
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                },1000);
-                }else{
-                    showErrorPopupFadeInDown('Invalid credentials. Please try again.');
-                }
-                
-            }).catch((error)=>{
-                showErrorPopupFadeInDown(error.response.data.message || 'Login failed. Please try again.');
             });
-           
+            
+            const user=response.data.user;
+            
 
-        }catch(error){
-            console.error('Error:',error);
-            showErrorPopupFadeInDown('An unexpected error occurred. Please try again later.');
+            const authHeader = response.headers['authorization'];
+            if (authHeader) {
+                const token = authHeader.split(' ')[1];
+                sessionStorage.setItem('token', token);
+                sessionStorage.setItem('user', JSON.stringify(user));
+                showPopupFadeInDown(`Login Successful`);
+                e.target.reset();
+                setTimeout(() => {
+                    if(user.role===2){
+                        window.location.href = 'user-details.html';
+                    }else{
+                        window.location.href = 'index.html';
+                    }
+                }, 1000);
+            } else {
+                showErrorPopupFadeInDown('Invalid credentials. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showErrorPopupFadeInDown(error.response?.data?.message || 'Login failed. Please try again.');
         }
+        
     });
      
 });

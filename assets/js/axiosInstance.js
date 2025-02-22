@@ -8,10 +8,11 @@ const axiosInstance=axios.create({
 axiosInstance.interceptors.request.use(
     (config)=>{
         if(!config.url.includes('login')&&!config.url.includes('register')){
-            const token = localStorage.getItem('token');
+            const token = sessionStorage.getItem('token');
             if(token){
                 config.headers['Authorization'] = `Bearer ${token}`;
             }
+            
         }
         return config;
     },
@@ -20,10 +21,24 @@ axiosInstance.interceptors.request.use(
     }
 );
 
+// axiosInstance.interceptors.response.use(
+//     (response)=>{
+//         return response;
+//     },
+//     (error)=>{
+//         if(error.response?.status === 401){
+//             showErrorPopupFadeInDown('Session expired. please login again.');
+//             setTimeout(() => {
+//                 logout();
+//             }, 1500);
+//         }
+//         return Promise.reject(error);
+// });
+
 function logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.href = '/login';
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    window.location.href = 'login.html';
 }
 
 window.logout = logout;

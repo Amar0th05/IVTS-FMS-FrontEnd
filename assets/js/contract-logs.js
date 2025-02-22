@@ -1,7 +1,7 @@
 
 document.getElementById('logout-button').addEventListener('click',logout);
 function logout(){
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
 }
 
 document.getElementById('staffId-select').addEventListener('change', (e) => {
@@ -16,8 +16,9 @@ const updateLogButton = document.getElementById('update_log_btn');
 
 async function loadStaffOptions(id) {
     try {
-        const response = await axiosInstance.get('/activestaffs/all');  
-        const staffs = response.data.staffs;
+        // const response = await axiosInstance.get(API_ROUTES.getActiveStaffs);  
+        // const staffs = response.data.staffs;
+        const staffs=await api.getActiveStaffs();
         const select = document.getElementById(id);
         select.innerHTML = '<option value="">Select staff id</option>';
 
@@ -28,13 +29,13 @@ async function loadStaffOptions(id) {
             select.appendChild(option);
         });
     } catch (error) {
-        console.error("Error loading staff options:", error);
+        showErrorPopupFadeInDown(error.message);
     }
 }
 async function loadDesignationOptions(id) {
     try {
-        const response = await axiosInstance.get('/designations/active');
-        const designations = response.data.designations;
+        // const response = await axiosInstance.get(API_ROUTES.getactiveDesignations);
+        const designations = await api.getActiveDesignations();
         const select = document.getElementById(id);
         select.innerHTML = '<option value="">Select designation</option>';
 
@@ -51,7 +52,7 @@ async function loadDesignationOptions(id) {
 
 
 
-addLogButton.addEventListener('click', (e) => {
+addLogButton.addEventListener('click', async (e) => {
     
     e.preventDefault();
     let form = document.getElementById('addNewLogForm');
@@ -77,29 +78,34 @@ addLogButton.addEventListener('click', (e) => {
         }
     });
     
-
+    data['currentDesignation'] = parseInt(data['designationSelect'], 10);
     if (validateForm(formData)) {
-        axiosInstance.post('/cl',{
-            data: data
-        }).then(async (response) => {
+        try {
+            // const response = await axiosInstance.post(API_ROUTES.contractLogs, {
+            //     data: data
+            // });
+            
+            
+            await api.addContractLog(data);
+            console.log(data);
             table.clear();
             await fetchAllData();
-            showPopupFadeInDown(response.data.message);
+            showPopupFadeInDown("contract log added successfully!");
             form.reset();
-        }).catch((error) => {
+        } catch (error) {
+            console.log(error);
             showErrorPopupFadeInDown(error.response?.data?.message || 'Failed to add log. Please try again later.');
-        });
-
+        }
     }
 });
 
-updateLogButton.addEventListener('click', (e) => {
+updateLogButton.addEventListener('click', async (e) => {
 
     e.preventDefault();
     let form = document.getElementById('updateLogForm');
     let formData = new FormData(form);
 
-    console.log(Object.fromEntries(formData));
+
 
     const data = {};
 
@@ -127,17 +133,18 @@ updateLogButton.addEventListener('click', (e) => {
     data.grossPay = parseFloat(grossPayField.value) || null;
 
     if (validateUpdateForm(formData)) {
-        console.log(data);
-        axiosInstance.put('/cl', {
-            data
-        }).then(async (response) => {
+        try {
+         
+            const responseData=await api.updateContractLog(data);
+        
             table.clear();
             await fetchAllData();
-            showPopupFadeInDown(response.data.message);
+            showPopupFadeInDown(responseData.message);
             form.reset();
-        }).catch((error) => {
+        } catch (error) {
             showErrorPopupFadeInDown(error.response?.data?.message || 'Failed to update log. Please try again later.');
-        });
+        }
+        
 
     }else{
         console.error('invalid form data');
@@ -184,10 +191,10 @@ function addRow(data){
 
 async function fetchAllData() {
     try {
-        const response = await axiosInstance.get('/cl/all');
-        // console.log(response.data);
-
-        response.data.contractDetails.forEach(contractLog => {
+       const data=await api.getAllContractLogs();
+     
+        
+       data.contractDetails.forEach(contractLog => {
             addRow(contractLog);
         });
     } catch (error) {
@@ -198,9 +205,13 @@ async function fetchAllData() {
 
 
 document.addEventListener('DOMContentLoaded',async ()=>{
-    const token=localStorage.getItem('token');
-    if(!token){
+    const token=sessionStorage.getItem('token');
+    const user=JSON.parse(sessionStorage.getItem('user'));
+    if(!token||!user){
         window.location.href = 'login.html';
+        return;
+    }else if(user.role===2){
+        window.location.href = 'user-details.html';
         return;
     }
     await loadStaffOptions('staffId-select');
@@ -258,13 +269,14 @@ async function loadUpdateLogs(id) {
     await loadDesignationOptions('update-designation');
     
     try {
-        const response = await axiosInstance.get(`/cl/log/${id}`);
+        // const response = await axiosInstance.get(API_ROUTES.getLog(id));
+        const response=await api.getLog(id);
 
         
-        const data = response.data.contractLog;
-        // console.log(data);
+        const data = response.contractLog;
+
         document.getElementById('update-staffId').value = data.staffID;
-        // console.log(data.staffID);
+      
         const selectedOption = document.getElementById('update-staffId').options[
             document.getElementById('update-staffId').selectedIndex
         ];
@@ -274,7 +286,7 @@ async function loadUpdateLogs(id) {
         document.getElementById('update-grossPay').value = data.grossPay ? parseFloat(data.grossPay) : '';
         document.getElementById('update-basicPay').value = data.basicPay ? parseFloat(data.basicPay) : '';
         document.getElementById('update-allowance').value = data.allowance ? parseFloat(data.allowance) : '';
-        // console.log(data.currentDesignation);
+    
         document.getElementById('update-designation').value = data.currentDesignation;
     } catch (error) {
         console.error(error);
