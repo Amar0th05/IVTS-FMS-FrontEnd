@@ -35,6 +35,48 @@
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    
+    
+
+    <style>
+         #chartdiv {
+      width: 100%;
+      height: 280px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    
+    .am5chart-Legend {
+      margin-top: 20px; 
+    }
+    #payHikeChart {
+      width: 100%;
+      height: 300px;
+      /* Adjust this as needed */
+      min-height: 250px;
+    }
+  
+    .card-block {
+      padding: 10px;
+      /* Reduce padding */
+    }
+    .hover-effect {
+      transition: all 0.2s ease-in-out;
+    }
+
+    .hover-effect:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
 </head>
 
 <body>
@@ -312,339 +354,211 @@
                                     <!-- Page-body start -->
                                     <div class="page-body">
                                         <div class="row">
-                                            <!-- Material statustic card start -->
-                                            <div class="col-xl-4 col-md-12">
-                                                <div class="card mat-stat-card">
-                                                    <div class="card-block">
-                                                        <div class="row align-items-center b-b-default">
-                                                            <div class="col-sm-6 b-r-default p-b-20 p-t-20">
-                                                                <div class="row align-items-center text-center">
-                                                                    <div class="col-4 p-r-0">
-                                                                        <i class="far fa-user text-c-purple f-24"></i>
-                                                                    </div>
-                                                                    <div class="col-8 p-l-0">
-                                                                        <h5>10K</h5>
-                                                                        <p class="text-muted m-b-0">Visitors</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6 p-b-20 p-t-20">
-                                                                <div class="row align-items-center text-center">
-                                                                    <div class="col-4 p-r-0">
-                                                                        <i class="fas fa-volume-down text-c-green f-24"></i>
-                                                                    </div>
-                                                                    <div class="col-8 p-l-0">
-                                                                        <h5>100%</h5>
-                                                                        <p class="text-muted m-b-0">Volume</p>
-                                                                    </div>
-                                                                </div>
+                                                <div class="col-xl-8 col-md-12" >
+                                                    <div class="card text-start">
+                                                        <div class="card-header">
+                                                            <h5>Overview</h5>
+                                                            <div class="card-header-right">
+                                                                <ul class="list-unstyled card-option">
+                                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                                                </ul>
                                                             </div>
                                                         </div>
-                                                        <div class="row align-items-center">
-                                                            <div class="col-sm-6 p-b-20 p-t-20 b-r-default">
-                                                                <div class="row align-items-center text-center">
-                                                                    <div class="col-4 p-r-0">
-                                                                        <i class="far fa-file-alt text-c-red f-24"></i>
-                                                                    </div>
-                                                                    <div class="col-8 p-l-0">
-                                                                        <h5>2000+</h5>
-                                                                        <p class="text-muted m-b-0">Files</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6 p-b-20 p-t-20">
-                                                                <div class="row align-items-center text-center">
-                                                                    <div class="col-4 p-r-0">
-                                                                        <i class="far fa-envelope-open text-c-blue f-24"></i>
-                                                                    </div>
-                                                                    <div class="col-8 p-l-0">
-                                                                        <h5>120</h5>
-                                                                        <p class="text-muted m-b-0">Mails</p>
-                                                                    </div>
-                                                                </div>
+                                                        <div class="card-block">
+                                                            <div id="chartdiv">
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
+                                                </div>
+                                                <div class="col-xl-4 col-md-12">
+                                                    <div class="card text-start">
+                                                        <div class="card-header">
+                                                            <h5>Experience Overview</h5>
+                                                            <div class="card-header-right">
+                                                                <ul class="list-unstyled card-option">
+                                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-block" style="height: 320px;">
+                                                            <p class="">
+                                                               
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6 col-md-12">
+                                                    <div class="card text-start">
+                                                        <div class="card-header">
+                                                            <h5>Highest Education Qualification</h5>
+                                                            <div class="card-header-right">
+                                                                <ul class="list-unstyled card-option">
+                                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-block" style="height: 300px;">
+                                                            <div id="educationChart" style="width: 100%; height: 100%;"></div>
+
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="col-xl-6 col-md-12">
+                                                    <div class="card text-start">
+                                                        <div class="card-header">
+                                                            <h5>Certification Courses</h5>
+                                                            <div class="card-header-right">
+                                                                <ul class="list-unstyled card-option">
+                                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-block" style="height: 300px;">
+                                                            <div id="certificationChart" style="width: 100%; height: 100%;"></div>
+
+                                                        </div>
+                                                    </div>
+                                                    
                                                 </div>
                                             </div>
-                                            <div class="col-xl-4 col-md-12">
-                                                <div class="card mat-stat-card">
-                                                    <div class="card-block">
-                                                        <div class="row align-items-center b-b-default">
-                                                            <div class="col-sm-6 b-r-default p-b-20 p-t-20">
-                                                                <div class="row align-items-center text-center">
-                                                                    <div class="col-4 p-r-0">
-                                                                        <i class="fas fa-share-alt text-c-purple f-24"></i>
-                                                                    </div>
-                                                                    <div class="col-8 p-l-0">
-                                                                        <h5>1000</h5>
-                                                                        <p class="text-muted m-b-0">Share</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6 p-b-20 p-t-20">
-                                                                <div class="row align-items-center text-center">
-                                                                    <div class="col-4 p-r-0">
-                                                                        <i class="fas fa-sitemap text-c-green f-24"></i>
-                                                                    </div>
-                                                                    <div class="col-8 p-l-0">
-                                                                        <h5>600</h5>
-                                                                        <p class="text-muted m-b-0">Network</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row align-items-center">
-                                                            <div class="col-sm-6 p-b-20 p-t-20 b-r-default">
-                                                                <div class="row align-items-center text-center">
-                                                                    <div class="col-4 p-r-0">
-                                                                        <i class="fas fa-signal text-c-red f-24"></i>
-                                                                    </div>
-                                                                    <div class="col-8 p-l-0">
-                                                                        <h5>350</h5>
-                                                                        <p class="text-muted m-b-0">Returns</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6 p-b-20 p-t-20">
-                                                                <div class="row align-items-center text-center">
-                                                                    <div class="col-4 p-r-0">
-                                                                        <i class="fas fa-wifi text-c-blue f-24"></i>
-                                                                    </div>
-                                                                    <div class="col-8 p-l-0">
-                                                                        <h5>100%</h5>
-                                                                        <p class="text-muted m-b-0">Connections</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                           
+                                            <div class="row d-flex align-items-stretch h-100">
+                                              <div class="col-xl-8 col-md-12 d-flex flex-column">
+                                                <div class="card text-start flex-grow-1">
+                                                  <div class="card-header">
+                                                    <h5>Pay Hike Overview</h5>
+                                                  </div>
+                                                  <div class="card-block d-flex align-items-center justify-content-center">
+                                                    <div id="payHikeChart"></div> 
+                                                  </div>
                                                 </div>
+                                              </div>
+                                            
+                                              <div class="col-xl-4 col-md-12 d-flex flex-column">
+                                                <div class="row flex-grow-1 mb-2">
+                                                  <div class="col-12">
+                                                    <div class="card text-start shadow-sm border-0 rounded-3 hover-effect">
+                                                      <div class="card-body text-center">
+                                                        <h5 class="text-dark fw-bold">Highest Pay Hike</h5>
+                                                        <p class="mb-1">BALAM BOMMA GIRIDHARAN</p>
+                                                        <p class="mb-1">VPA</p>
+                                                        <p class="fw-bold text-primary" style="font-size: 30px;">60%</p>
+                                                      </div>
+                                                    </div>
+                                                    
+                                                  </div>
+                                                </div>
+                                                <div class="row flex-grow-1">
+                                                  <div class="col-12">
+                                                    <div class="card text-start shadow-sm border-0 rounded-3 hover-effect">
+                                                      <div class="card-body text-center">
+                                                        <h5 class="text-dark fw-bold">Lowest Pay Hike</h5>
+                                                        <p class="mb-1">NAME</p>
+                                                        <p class="mb-1">Department</p>
+                                                        <p class="fw-bold text-danger" style="font-size: 30px;">2%</p>
+                                                      </div>
+                                                    </div>
+                                                    
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
-                                            <div class="col-xl-4 col-md-12">
-                                                <div class="card mat-clr-stat-card text-white green ">
-                                                    <div class="card-block">
-                                                        <div class="row">
-                                                            <div class="col-3 text-center bg-c-green">
-                                                                <i class="fas fa-star mat-icon f-24"></i>
-                                                            </div>
-                                                            <div class="col-9 cst-cont">
-                                                                <h5>4000+</h5>
-                                                                <p class="m-b-0">Ratings Received</p>
-                                                            </div>
-                                                        </div>
+                                            
+                                            <div class="row">
+                                              <!-- 1st box -->
+                                              <div class="col-md-4 col-sm-12">
+                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100">
+                                                  <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                                    <!-- Icon -->
+                                                    <div class="mb-2 text-primary" style="font-size: 2rem;">
+                                                      
+                                                      <i class="bi bi-people-fill"></i>
                                                     </div>
+                                                    
+                                                    <h5 class="card-title mb-0 fw-bold">37</h5>
+                                                    <!-- Label -->
+                                                    <small class="text-muted">Total Manpower Deployed</small>
+                                                  </div>
                                                 </div>
-                                                <div class="card mat-clr-stat-card text-white blue">
-                                                    <div class="card-block">
-                                                        <div class="row">
-                                                            <div class="col-3 text-center bg-c-blue">
-                                                                <i class="fas fa-trophy mat-icon f-24"></i>
-                                                            </div>
-                                                            <div class="col-9 cst-cont">
-                                                                <h5>17</h5>
-                                                                <p class="m-b-0">Achievements</p>
-                                                            </div>
-                                                        </div>
+                                              </div>
+                                              
+                                              <div class="col-md-4 col-sm-12">
+                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100">
+                                                  <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                                    <!-- Icon -->
+                                                    <div class="mb-2 text-success" style="font-size: 2rem;">
+                                                      
+                                                      <i class="bi bi-currency-rupee"></i>
                                                     </div>
+                                                   
+                                                    <h5 class="card-title mb-0 fw-bold">₹ 0</h5>
+                                                    <small class="text-muted">Total Manning Cost / month</small>
+                                                  </div>
                                                 </div>
+                                              </div>
+
+                                             
+                                              <div class="col-md-4 col-sm-12">
+                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100">
+                                                  <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                                    
+                                                    <div class="mb-2 text-success" style="font-size: 2rem;">
+                                                     
+                                                      <i class="bi bi-currency-rupee"></i>
+                                                    </div>
+                                                    
+                                                    <h5 class="card-title mb-0 fw-bold">₹ 0</h5>
+                                                    <!-- Label -->
+                                                    <small class="text-muted">Invoice Raised / month</small>
+                                                  </div>
+                                                </div>
+                                              </div>
                                             </div>
-                                            <!-- Material statustic card end -->
-                                            <!-- order-visitor start -->
-
-
-                                            <!-- order-visitor end -->
-
-                                            <!--  sale analytics start -->
-                                            <div class="col-xl-6 col-md-12">
-                                                <div class="card table-card">
+                                            
+                                              <div class="row" style="margin-top: 20px;">
+                                                <div class="col-xl-12 col-md-12">
+                                                  <div class="card text-start">
                                                     <div class="card-header">
-                                                        <h5>Member’s performance</h5>
-                                                        <div class="card-header-right">
-                                                            <ul class="list-unstyled card-option">
-                                                                <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                                                <li><i class="fa fa-window-maximize full-card"></i></li>
-                                                                <li><i class="fa fa-minus minimize-card"></i></li>
-                                                                <li><i class="fa fa-refresh reload-card"></i></li>
-                                                                <li><i class="fa fa-trash close-card"></i></li>
-                                                            </ul>
-                                                        </div>
+                                                      <h5>Manning Cost Vs Invoice Cost</h5>
+                                                      <div class="card-header-right">
+                                                        <ul class="list-unstyled card-option">
+                                                          <li><i class="fa fa-wrench open-card-option"></i></li>
+                                                          <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                          <li><i class="fa fa-minus minimize-card"></i></li>
+                                                          <li><i class="fa fa-refresh reload-card"></i></li>
+                                                        </ul>
+                                                      </div>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-hover m-b-0 without-header">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-inline-block align-middle">
-                                                                                <img src="assets/images/avatar-4.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                                                <div class="d-inline-block">
-                                                                                    <h6>Shirley Hoe</h6>
-                                                                                    <p class="text-muted m-b-0">Sales executive , NY</p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                            <h6 class="f-w-700">$78.001<i class="fas fa-level-down-alt text-c-red m-l-10"></i></h6>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-inline-block align-middle">
-                                                                                <img src="assets/images/avatar-2.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                                                <div class="d-inline-block">
-                                                                                    <h6>James Alexander</h6>
-                                                                                    <p class="text-muted m-b-0">Sales executive , EL</p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                            <h6 class="f-w-700">$89.051<i class="fas fa-level-up-alt text-c-green m-l-10"></i></h6>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-inline-block align-middle">
-                                                                                <img src="assets/images/avatar-4.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                                                <div class="d-inline-block">
-                                                                                    <h6>Shirley Hoe</h6>
-                                                                                    <p class="text-muted m-b-0">Sales executive , NY</p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                            <h6 class="f-w-700">$89.051<i class="fas fa-level-up-alt text-c-green m-l-10"></i></h6>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-inline-block align-middle">
-                                                                                <img src="assets/images/avatar-2.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                                                <div class="d-inline-block">
-                                                                                    <h6>Nick Xander</h6>
-                                                                                    <p class="text-muted m-b-0">Sales executive , EL</p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="text-right">
-                                                                            <h6 class="f-w-700">$89.051<i class="fas fa-level-up-alt text-c-green m-l-10"></i></h6>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-
-                                                        </div>
+                                                      <div id="payHikeBreakdownChart" style="width: 100%; min-height: 500px;"></div>
                                                     </div>
+                                                  </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-xl-6 col-md-12">
-                                                <div class="row">
-                                                    <!-- sale card start -->
-
-                                                    <div class="col-md-6">
-                                                        <div class="card text-center order-visitor-card">
-                                                            <div class="card-block">
-                                                                <h6 class="m-b-0">Total Subscription</h6>
-                                                                <h4 class="m-t-15 m-b-15"><i class="fa fa-arrow-down m-r-15 text-c-red"></i>7652</h4>
-                                                                <p class="m-b-0">48% From Last 24 Hours</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="card text-center order-visitor-card">
-                                                            <div class="card-block">
-                                                                <h6 class="m-b-0">Order Status</h6>
-                                                                <h4 class="m-t-15 m-b-15"><i class="fa fa-arrow-up m-r-15 text-c-green"></i>6325</h4>
-                                                                <p class="m-b-0">36% From Last 6 Months</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="card bg-c-red total-card">
-                                                            <div class="card-block">
-                                                                <div class="text-left">
-                                                                    <h4>489</h4>
-                                                                    <p class="m-0">Total Comment</p>
-                                                                </div>
-                                                                <span class="label bg-c-red value-badges">15%</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="card bg-c-green total-card">
-                                                            <div class="card-block">
-                                                                <div class="text-left">
-                                                                    <h4>$5782</h4>
-                                                                    <p class="m-0">Income Status</p>
-                                                                </div>
-                                                                <span class="label bg-c-green value-badges">20%</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="card text-center order-visitor-card">
-                                                            <div class="card-block">
-                                                                <h6 class="m-b-0">Unique Visitors</h6>
-                                                                <h4 class="m-t-15 m-b-15"><i class="fa fa-arrow-down m-r-15 text-c-red"></i>652</h4>
-                                                                <p class="m-b-0">36% From Last 6 Months</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="card text-center order-visitor-card">
-                                                            <div class="card-block">
-                                                                <h6 class="m-b-0">Monthly Earnings</h6>
-                                                                <h4 class="m-t-15 m-b-15"><i class="fa fa-arrow-up m-r-15 text-c-green"></i>5963</h4>
-                                                                <p class="m-b-0">36% From Last 6 Months</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- sale card end -->
-                                                </div>
-                                            </div>
-
-                                            <!--  sale analytics end -->
-
-                                            <!-- Project statustic start -->
-                                            <div class="col-xl-12">
-                                                <div class="card proj-progress-card">
-                                                    <div class="card-block">
-                                                        <div class="row">
-                                                            <div class="col-xl-3 col-md-6">
-                                                                <h6>Published Project</h6>
-                                                                <h5 class="m-b-30 f-w-700">532<span class="text-c-green m-l-10">+1.69%</span></h5>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar bg-c-red" style="width:25%"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3 col-md-6">
-                                                                <h6>Completed Task</h6>
-                                                                <h5 class="m-b-30 f-w-700">4,569<span class="text-c-red m-l-10">-0.5%</span></h5>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar bg-c-blue" style="width:65%"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3 col-md-6">
-                                                                <h6>Successfull Task</h6>
-                                                                <h5 class="m-b-30 f-w-700">89%<span class="text-c-green m-l-10">+0.99%</span></h5>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar bg-c-green" style="width:85%"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3 col-md-6">
-                                                                <h6>Ongoing Project</h6>
-                                                                <h5 class="m-b-30 f-w-700">365<span class="text-c-green m-l-10">+0.35%</span></h5>
-                                                                <div class="progress">
-                                                                    <div class="progress-bar bg-c-yellow" style="width:45%"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Project statustic end -->
-                                        </div>
+                                              </div>
+                                              
+                                              
+                                               
+                                              
                                     </div>
+                                    
                                     <!-- Page-body end -->
                                 </div>
                                 <div id="styleSelector"> </div>
@@ -739,6 +653,612 @@
     </script>
     <script  src="./assets/js/api.js"></script>
     <script src="./assets/js/apiRequests.js"></script>
+
+
+    <script>
+        am5.ready(function() {
+          
+          var root = am5.Root.new("chartdiv");
+      
+          root.setThemes([am5themes_Animated.new(root)]);
+      
+          var chart = root.container.children.push(
+            am5xy.XYChart.new(root, {
+              panX: true,
+              panY: true,
+              wheelX: "panX",
+              wheelY: "zoomX",
+              paddingBottom: 100 ,
+            })
+          );
+      
+          var chartData = [
+            {
+              entity: "HQ",
+             
+              vtsOperator: 1,
+             
+              projectEngineer: 1,
+             
+            },
+            {
+              entity: "ChPA",
+             
+              vtsOperator: 4,
+              
+              projectEngineer: 1,
+            
+            },
+            {
+              entity: "KPL",
+              vtsOperator: 6,
+              
+              seniorProjectEngineer: 1,
+              projectEngineer: 1,
+             
+            },
+            {
+              entity: "NMPA",
+              vtsManager: 3,
+              vtsOperator: 6,
+              seniorEngineer: 1,
+            },
+            {
+              entity: "PPA",
+              projectManager: 1,
+            },
+            {
+              entity: "VoCPA",
+              vtsOperator: 4,
+              labAssistant: 1
+            },
+            {
+              entity: "VPA",
+              vtsOperator: 4,
+              seniorEngineer: 1,
+            },
+            {
+              entity: "JNPA",
+              projectManager: 0,
+              vtsManager: 0,
+              vtsOperator: 0,
+              juniorVtsOperator: 0,
+              seniorProjectEngineer: 0,
+              projectEngineer: 0,
+              seniorEngineer: 0,
+              juniorEngineer: 0,
+              labAssistant: 0
+            }
+          ];
+      
+          var xAxis = chart.xAxes.push(
+            am5xy.CategoryAxis.new(root, {
+              categoryField: "entity",
+              renderer: am5xy.AxisRendererX.new(root, {
+                minGridDistance: 0,
+              })
+            })
+          );
+        xAxis.get("renderer").labels.template.setAll({
+            fontSize: "10px"
+        });
+
+          xAxis.data.setAll(chartData);
+      
+          var yAxis = chart.yAxes.push(
+            am5xy.ValueAxis.new(root, {
+              renderer: am5xy.AxisRendererY.new(root, {
+                strokeOpacity: 0.1
+              })
+            })
+          );
+
+          yAxis.get("renderer").labels.template.setAll({
+        fontSize: "10px"
+      });
+      
+          function createSeries(field, name, color) {
+            var series = chart.series.push(
+              am5xy.ColumnSeries.new(root, {
+                name: name,
+                xAxis: xAxis,
+                yAxis: yAxis,
+                valueYField: field,
+                categoryXField: "entity",
+                stacked: true, // Enable stacking
+                tooltip: am5.Tooltip.new(root, {
+                  labelText: "[bold]{name}[/]\n{categoryX}: {valueY}",
+                })
+              })
+            );
+      
+            if (color) {
+              series.columns.template.set("fill", am5.color(color));
+            }
+      
+            series.columns.template.setAll({
+              width: am5.percent(45),
+              minWidth: 45,
+              strokeOpacity: 0,
+            });
+      
+            series.bullets.push(function() {
+              return am5.Bullet.new(root, {
+                locationY: 0.5,
+                sprite: am5.Label.new(root, {
+                  text: "{valueY}",
+                  centerY: am5.p50,
+                  populateText: true,
+                  fontSize:'12px'
+                })
+              });
+            });
+      
+            series.data.setAll(chartData);
+            series.appear();
+      
+            return series;
+          }
+      
+          createSeries("projectManager", "Project Manager", 0x007BFF); 
+          createSeries("vtsManager", "VTS Manager", 0x5CBBF1);         
+          createSeries("vtsOperator", "VTS Operator", 0x34D399);      
+          createSeries("juniorVtsOperator", "Junior VTS Operator", 0xF9D342);  
+          createSeries("seniorProjectEngineer", "Senior Project Engineer", 0xFF6A5C);  
+          createSeries("projectEngineer", "Project Engineer", 0xFFB86C);  
+          createSeries("seniorEngineer", "Senior Engineer", 0x9A7BBF);   
+          createSeries("juniorEngineer", "Junior Engineer", 0x6D7F8B); 
+          createSeries("labAssistant", "Laboratory Assistant", 0xA2B9B3); 
+      
+          var legend = chart.children.push(am5.Legend.new(root, {
+            centerX: am5.p50,
+            x: am5.p50,
+            y: am5.p100, 
+            marginTop: 20, 
+            layout: am5.GridLayout.new(root, { maxColumns:4 }) 
+          }));
+          legend.labels.template.setAll({
+            fontSize: "10px"});
+
+          legend.data.setAll(chart.series.values);
+          
+      
+          chart.appear(1000, 100);
+        }); 
+
+        am5.ready(function() {
+
+
+var root = am5.Root.new("educationChart"); 
+
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+
+var chart = root.container.children.push(
+  am5xy.XYChart.new(root, {
+    panX: false,
+    panY: false,
+    wheelX: "panX",
+    wheelY: "zoomX",
+    layout: root.verticalLayout,
+    paddingTop: 20,
+    paddingBottom: 30
+  })
+);
+
+
+var data = [
+  { qualification: "Post Graduation", count: 2 },
+  { qualification: "Under Graduation", count: 5 },
+  { qualification: "Diploma", count: 6 },
+  { qualification: "SSLC", count: 5 },
+  { qualification: "HSC", count: 0 }
+];
+
+
+var xAxis = chart.xAxes.push(
+  am5xy.CategoryAxis.new(root, {
+    categoryField: "qualification",
+    renderer: am5xy.AxisRendererX.new(root, {
+      minGridDistance: 20,
+      
+    })
+  })
+);
+
+xAxis.get("renderer").labels.template.setAll({
+  fontSize: "10px"
+});
+
+xAxis.data.setAll(data);
+
+var yAxis = chart.yAxes.push(
+  am5xy.ValueAxis.new(root, {
+    min: 0,  
+    renderer: am5xy.AxisRendererY.new(root, {})
+  })
+);
+
+yAxis.get("renderer").labels.template.setAll({
+  fontSize: "10px"                                                                                                                  
+});
+
+var series = chart.series.push(
+  am5xy.ColumnSeries.new(root, {
+    name: "Count",
+    xAxis: xAxis,
+    yAxis: yAxis,
+    valueYField: "count",
+    categoryXField: "qualification",
+    tooltip: am5.Tooltip.new(root, {
+      labelText: "{categoryX}: {valueY}"
+    })
+  })
+);
+
+series.columns.template.setAll({
+  width: am5.percent(40),
+  minWidth:20,
+  fill: am5.color(0x5BF0cE),  
+  strokeOpacity:0,
+  cornerRadiusTL: 5,
+  cornerRadiusTR: 5
+});
+
+series.bullets.push(function () {
+  return am5.Bullet.new(root, {
+    locationY: 0.5,
+    sprite: am5.Label.new(root, {
+      text: "{valueY}",
+      populateText: true,
+      centerX: am5.p50,
+      centerY: am5.p50,
+      fontSize: "15px",
+      fill: am5.color(0xffffff)
+    })
+  });
+});
+
+series.data.setAll(data);
+
+
+chart.appear(1000, 100);
+series.appear();
+
+});
+
+
+
+      </script>
+      <script>
+         am5.ready(function() {
+
+
+var root = am5.Root.new("certificationChart"); 
+
+
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+var chart = root.container.children.push(
+  am5xy.XYChart.new(root, {
+    panX: false,
+    panY: false,
+    wheelX: "panX",
+    wheelY: "zoomX",
+    layout: root.verticalLayout,
+    paddingTop: 20,
+    paddingBottom: 30
+  })
+);
+
+
+var data = [
+  { certification: "GDMSS", count: 4 },
+  { certification: "VTS 103A", count: 5 },
+  { certification: "GDMSS & VTS 103A", count: 3 },
+  { certification: "NA", count: 4 },
+];
+
+
+var xAxis = chart.xAxes.push(
+  am5xy.CategoryAxis.new(root, {
+    categoryField: "certification",
+    renderer: am5xy.AxisRendererX.new(root, {
+      minGridDistance: 20,
+    
+    })
+  })
+);
+
+xAxis.get("renderer").labels.template.setAll({
+  fontSize: "10px"
+});
+
+xAxis.data.setAll(data);
+
+var yAxis = chart.yAxes.push(
+  am5xy.ValueAxis.new(root, {
+    min: 0,  // if all counts are >= 0
+    renderer: am5xy.AxisRendererY.new(root, {})
+  })
+);
+
+yAxis.get("renderer").labels.template.setAll({
+  fontSize: "10px"                                                                                                                  
+});
+
+var series = chart.series.push(
+  am5xy.ColumnSeries.new(root, {
+    name: "Count",
+    xAxis: xAxis,
+    yAxis: yAxis,
+    valueYField: "count",
+    categoryXField: "certification",
+    tooltip: am5.Tooltip.new(root, {
+      labelText: "{categoryX}: {valueY}"
+    })
+  })
+);
+
+series.columns.template.setAll({
+  width: am5.percent(40),
+  minWidth:20,
+  fill: am5.color(0x5BF0cE),   
+  strokeOpacity:0,
+  cornerRadiusTL: 5,
+  cornerRadiusTR: 5
+});
+
+series.bullets.push(function () {
+  return am5.Bullet.new(root, {
+    locationY: 0.5,
+    sprite: am5.Label.new(root, {
+      text: "{valueY}",
+      populateText: true,
+      centerX: am5.p50,
+      centerY: am5.p50,
+      fontSize: "15px",
+      fill: am5.color(0xffffff)
+    })
+  });
+});
+
+series.data.setAll(data);
+
+
+chart.appear(1000, 100);
+series.appear();
+
+});
+
+
+
+      </script>
+      <script>
+        am5.ready(function() {
+        
+       
+          var root = am5.Root.new("payHikeChart");
+        
+          root.setThemes([
+            am5themes_Animated.new(root)
+          ]);
+        
+          
+          var chart = root.container.children.push(
+            am5percent.PieChart.new(root, {
+              layout: root.verticalLayout,
+              innerRadius: 0 
+            })
+          );
+        
+        
+          
+          var data = [
+            { category: "0", value: 9 },
+            { category: "less than 5 %", value: 13 },
+            { category: "5 to 10 %", value: 1 },
+            { category: ">10 % hike", value: 13 }
+          ];
+
+          var series = chart.series.push(
+            am5percent.PieSeries.new(root, {
+              name: "Pay Hike Series",
+              categoryField: "category",
+              valueField: "value",
+              tooltip: am5.Tooltip.new(root, {
+                labelText: "{category}: {value} ({valuePercentTotal.formatNumber('0.000')}%)"
+              })
+              
+            })
+          );
+        
+         
+          series.data.setAll(data);
+        
+        
+          series.set("radius", am5.percent(70));
+          series.set("marginTop", 15);
+          series.slices.template.setAll({
+            stroke: am5.color(0xffffff),
+            strokeWidth: 2
+          });
+        
+          
+          series.labels.template.setAll({
+            text: "{value} | {valuePercentTotal.formatNumber('0.000')}%",
+            radius: 20,
+            fontSize: "12px",
+            fill: am5.color("#000"),
+            forceHidden: false,    
+            oversizedBehavior: "none"
+          });
+        
+    
+          var legend = chart.children.push(
+            am5.Legend.new(root, {
+              centerX: am5.p50,
+              x: am5.p50,
+              layout: root.horizontalLayout,
+              paddingTop: 10
+            })
+          );
+          legend.data.setAll(series.dataItems);
+        
+         
+          series.appear(1000, 100);
+          chart.appear(1000, 100);
+        
+        }); // end am5.ready()
+        </script>
+        <script>
+            am5.ready(function() {
+            
+              var root = am5.Root.new("payHikeBreakdownChart");
+            
+              
+              root.setThemes([am5themes_Animated.new(root)]);
+            
+             
+              var chart = root.container.children.push(
+                am5xy.XYChart.new(root, {
+                  panX: true,
+                  panY: true,
+                  wheelX: "panX",
+                  wheelY: "zoomX",
+                  layout: root.verticalLayout,
+                  paddingLeft: 70,
+                  paddingRight: 70,
+                  paddingTop: 30,
+                  paddingBottom: 30
+                })
+              );
+            
+           
+              var data = [
+                { organisation: "JNPA", actualCost: 0, invoiceRaised: 10542336, other: 0 },
+                { organisation: "VPA", actualCost: 226750, invoiceRaised: 477842, other: 0 },
+                { organisation: "VoCPA", actualCost: 267000, invoiceRaised: 500000, other: 0 },
+                { organisation: "PPA", actualCost: 75000, invoiceRaised: 0, other: 0 },
+                { organisation: "NMPA", actualCost: 1029734, invoiceRaised: 1260000, other: 0 },
+                { organisation: "KPL", actualCost: 306042, invoiceRaised: 750000, other: 0 },
+                { organisation: "ChPA", actualCost: 267500, invoiceRaised: 1045945, other: 0 },
+                { organisation: "HQ", actualCost: 0, invoiceRaised: 92562, other: 0 }
+              ];
+            
+              
+              var yAxis = chart.yAxes.push(
+                am5xy.CategoryAxis.new(root, {
+                  categoryField: "organisation",
+                  renderer: am5xy.AxisRendererY.new(root, {
+                    inversed: true,
+                    cellStartLocation: 0, 
+                    cellEndLocation: 1    
+                  })
+                })
+              );
+              yAxis.data.setAll(data);
+            
+              var xAxis = chart.xAxes.push(
+                am5xy.ValueAxis.new(root, {
+                  min: 0,
+                  renderer: am5xy.AxisRendererX.new(root, {
+                    strokeOpacity: 0.1,
+                    minGridDistance: 50
+                  })
+                })
+              );
+            
+              xAxis.get("renderer").labels.template.setAll({
+                fontSize: "10px"
+              });
+            
+              
+              function createSeries(field, name, color) {
+                var series = chart.series.push(
+                  am5xy.ColumnSeries.new(root, {
+                    name: name,
+                    xAxis: xAxis,
+                    yAxis: yAxis,
+                    valueXField: field,
+                    categoryYField: "organisation",
+                    tooltip: am5.Tooltip.new(root, {
+                      pointerOrientation: "horizontal",
+                      labelText: "[bold]{name}[/]\n{categoryY}: {valueX}"
+                    })
+                  })
+                );
+            
+               
+                if (color) {
+                  series.columns.template.set("fill", am5.color(color));
+                  series.columns.template.set("stroke", am5.color(color));
+                }
+            
+                series.columns.template.setAll({
+                  height: am5.percent(100),
+                  strokeOpacity: 0
+                });
+            
+                series.bullets.push(function () {
+                  return am5.Bullet.new(root, {
+                    locationX: 1,
+                    locationY: 0.5,
+                    sprite: am5.Label.new(root, {
+                      centerY: am5.p50,
+                      text: "{valueX}",
+                      populateText: true,
+                      dx: 5,
+                      fill: am5.color("#000"),
+                      fontSize: "12px"
+                    })
+                  });
+                });
+            
+                series.data.setAll(data);
+                series.appear(1000);
+                return series;
+              }
+            
+             
+              createSeries("actualCost", "Actual Manning Cost / Month", 0x0066cc); 
+              createSeries("invoiceRaised", "Invoice Raised / Month", 0x5DE2E7);   
+              createSeries("other", "Other", 0xff9900);                          
+            
+             
+              var legend = chart.children.push(
+                am5.Legend.new(root, {
+                  centerX: am5.p50,
+                  x: am5.p50,
+                  layout: am5.GridLayout.new(root, {
+                    maxColumns: 3,
+                    fixedWidthGrid: false,
+                    useDefault: true
+                  })
+                })
+              );
+              legend.data.setAll(chart.series.values);
+            
+             
+              var cursor = chart.set(
+                "cursor",
+                am5xy.XYCursor.new(root, {
+                  behavior: "zoomY"
+                })
+              );
+              cursor.lineY.set("forceHidden", true);
+              cursor.lineX.set("forceHidden", true);
+            
+              
+              chart.appear(1000, 100);
+            }); 
+            </script>
+            
+            
 </body>
 
 </html>

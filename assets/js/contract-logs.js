@@ -87,7 +87,7 @@ addLogButton.addEventListener('click', async (e) => {
             
             
             await api.addContractLog(data);
-            console.log(data);
+            // console.log(data);
             table.clear();
             await fetchAllData();
             showPopupFadeInDown("contract log added successfully!");
@@ -100,6 +100,9 @@ addLogButton.addEventListener('click', async (e) => {
 });
 
 updateLogButton.addEventListener('click', async (e) => {
+    const id = updateLogButton.dataset.contractID;
+
+    // console.log('from update: ',id);
 
     e.preventDefault();
     let form = document.getElementById('updateLogForm');
@@ -127,6 +130,7 @@ updateLogButton.addEventListener('click', async (e) => {
         }else{
             data[key] = value;
         }
+        
     });
 
     const grossPayField = document.getElementById('update-grossPay');
@@ -134,7 +138,8 @@ updateLogButton.addEventListener('click', async (e) => {
 
     if (validateUpdateForm(formData)) {
         try {
-         
+            data.contractID = id;
+            // console.log(data);
             const responseData=await api.updateContractLog(data);
         
             table.clear();
@@ -142,6 +147,7 @@ updateLogButton.addEventListener('click', async (e) => {
             showPopupFadeInDown(responseData.message);
             form.reset();
         } catch (error) {
+            console.log(error);
             showErrorPopupFadeInDown(error.response?.data?.message || 'Failed to update log. Please try again later.');
         }
         
@@ -214,6 +220,11 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         window.location.href = 'user-details.html';
         return;
     }
+
+
+    document.getElementById('user-name-display').innerText=user.name;
+    document.getElementById('more-details').innerText=user.name;
+
     await loadStaffOptions('staffId-select');
     await loadDesignationOptions('designationSelect');
     
@@ -288,6 +299,7 @@ async function loadUpdateLogs(id) {
         document.getElementById('update-allowance').value = data.allowance ? parseFloat(data.allowance) : '';
     
         document.getElementById('update-designation').value = data.currentDesignation;
+        updateLogButton.dataset.contractID = id;
     } catch (error) {
         console.error(error);
     }

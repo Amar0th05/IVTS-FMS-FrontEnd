@@ -213,7 +213,9 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         window.location.href = 'user-details.html';
     }
 
-    
+    document.getElementById('user-name-display').innerText=user.name;
+    document.getElementById('more-details').innerText=user.name;
+
     await loadCourseOptions('courseSelect');
     await loadOrganisationOptions("locationSelect");
     await loadHighestQualificationsOptions("highestQualificationSelect");
