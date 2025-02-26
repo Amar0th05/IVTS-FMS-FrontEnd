@@ -62,14 +62,7 @@
       padding: 10px;
       /* Reduce padding */
     }
-    .hover-effect {
-      transition: all 0.2s ease-in-out;
-    }
-
-    .hover-effect:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    }
+    
   </style>
 
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
@@ -458,9 +451,9 @@
                                                     <div class="card text-start shadow-sm border-0 rounded-3 hover-effect">
                                                       <div class="card-body text-center">
                                                         <h5 class="text-dark fw-bold">Highest Pay Hike</h5>
-                                                        <p class="mb-1">BALAM BOMMA GIRIDHARAN</p>
-                                                        <p class="mb-1">VPA</p>
-                                                        <p class="fw-bold text-primary" style="font-size: 30px;">60%</p>
+                                                        <p class="mb-1" id="hph-name">BALAM BOMMA GIRIDHARAN</p>
+                                                        <p class="mb-1" id="hph-org">VPA</p>
+                                                        <p class="fw-bold text-primary" id="hph-hike" style="font-size: 30px;">60%</p>
                                                       </div>
                                                     </div>
                                                     
@@ -471,9 +464,9 @@
                                                     <div class="card text-start shadow-sm border-0 rounded-3 hover-effect">
                                                       <div class="card-body text-center">
                                                         <h5 class="text-dark fw-bold">Lowest Pay Hike</h5>
-                                                        <p class="mb-1">NAME</p>
-                                                        <p class="mb-1">Department</p>
-                                                        <p class="fw-bold text-danger" style="font-size: 30px;">2%</p>
+                                                        <p class="mb-1" id="lph-name">NAME</p>
+                                                        <p class="mb-1" id="lph-org">Department</p>
+                                                        <p class="fw-bold text-danger" id="lph-hike" style="font-size: 30px;">2%</p>
                                                       </div>
                                                     </div>
                                                     
@@ -493,7 +486,7 @@
                                                       <i class="bi bi-people-fill"></i>
                                                     </div>
                                                     
-                                                    <h5 class="card-title mb-0 fw-bold">37</h5>
+                                                    <h5 class="card-title mb-0 fw-bold" id="manpower-deployed">37</h5>
                                                     <!-- Label -->
                                                     <small class="text-muted">Total Manpower Deployed</small>
                                                   </div>
@@ -509,7 +502,7 @@
                                                       <i class="bi bi-currency-rupee"></i>
                                                     </div>
                                                    
-                                                    <h5 class="card-title mb-0 fw-bold">₹ 0</h5>
+                                                    <h5 class="card-title mb-0 fw-bold" id="total-manning-cost">₹ 0</h5>
                                                     <small class="text-muted">Total Manning Cost / month</small>
                                                   </div>
                                                 </div>
@@ -525,7 +518,7 @@
                                                       <i class="bi bi-currency-rupee"></i>
                                                     </div>
                                                     
-                                                    <h5 class="card-title mb-0 fw-bold">₹ 0</h5>
+                                                    <h5 class="card-title mb-0 fw-bold" id="invoice-raised">₹ 0</h5>
                                                     <!-- Label -->
                                                     <small class="text-muted">Invoice Raised / month</small>
                                                   </div>
@@ -548,7 +541,7 @@
                                                       </div>
                                                     </div>
                                                     <div class="card-block">
-                                                      <div id="payHikeBreakdownChart" style="width: 100%; min-height: 500px;"></div>
+                                                      <div id="payHikeBreakdownChart" style="width: 100%; min-height: 650px;"></div>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -634,8 +627,10 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script type="module" src="./assets/js/axiosInstance.js"></script>
-
+    <script  src="./assets/js/api.js"></script>
+    <script src="./assets/js/apiRequests.js"></script>
     <script type="text/javascript" src="assets/js/script.js "></script>
+    <!-- <script src="/assets/js/index.js"></script> -->
     <script>
         const token=sessionStorage.getItem('token');
         const user=JSON.parse(sessionStorage.getItem('user'));
@@ -651,182 +646,205 @@
         }
 
     </script>
-    <script  src="./assets/js/api.js"></script>
-    <script src="./assets/js/apiRequests.js"></script>
 
 
     <script>
-        am5.ready(function() {
-          
-          var root = am5.Root.new("chartdiv");
-      
-          root.setThemes([am5themes_Animated.new(root)]);
-      
-          var chart = root.container.children.push(
-            am5xy.XYChart.new(root, {
-              panX: true,
-              panY: true,
-              wheelX: "panX",
-              wheelY: "zoomX",
-              paddingBottom: 100 ,
-            })
-          );
-      
-          var chartData = [
-            {
-              entity: "HQ",
-             
-              vtsOperator: 1,
-             
-              projectEngineer: 1,
-             
-            },
-            {
-              entity: "ChPA",
-             
-              vtsOperator: 4,
-              
-              projectEngineer: 1,
-            
-            },
-            {
-              entity: "KPL",
-              vtsOperator: 6,
-              
-              seniorProjectEngineer: 1,
-              projectEngineer: 1,
-             
-            },
-            {
-              entity: "NMPA",
-              vtsManager: 3,
-              vtsOperator: 6,
-              seniorEngineer: 1,
-            },
-            {
-              entity: "PPA",
-              projectManager: 1,
-            },
-            {
-              entity: "VoCPA",
-              vtsOperator: 4,
-              labAssistant: 1
-            },
-            {
-              entity: "VPA",
-              vtsOperator: 4,
-              seniorEngineer: 1,
-            },
-            {
-              entity: "JNPA",
-              projectManager: 0,
-              vtsManager: 0,
-              vtsOperator: 0,
-              juniorVtsOperator: 0,
-              seniorProjectEngineer: 0,
-              projectEngineer: 0,
-              seniorEngineer: 0,
-              juniorEngineer: 0,
-              labAssistant: 0
-            }
-          ];
-      
-          var xAxis = chart.xAxes.push(
-            am5xy.CategoryAxis.new(root, {
-              categoryField: "entity",
-              renderer: am5xy.AxisRendererX.new(root, {
-                minGridDistance: 0,
-              })
-            })
-          );
-        xAxis.get("renderer").labels.template.setAll({
-            fontSize: "10px"
-        });
+      am5.ready(async function() {
+ 
+  var root = am5.Root.new("chartdiv");
+  root.setThemes([am5themes_Animated.new(root)]);
 
-          xAxis.data.setAll(chartData);
-      
-          var yAxis = chart.yAxes.push(
-            am5xy.ValueAxis.new(root, {
-              renderer: am5xy.AxisRendererY.new(root, {
-                strokeOpacity: 0.1
-              })
-            })
-          );
+  var chart = root.container.children.push(
+    am5xy.XYChart.new(root, {
+      panX: true,
+      panY: true,
+      wheelX: "panX",
+      wheelY: "zoomX",
+      paddingBottom: 100,
+    })
+  );
 
-          yAxis.get("renderer").labels.template.setAll({
-        fontSize: "10px"
+
+  let backendData;
+  try {
+    const response = await fetch('http://localhost:3000/dashboard/staffs/organisation', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+      }
+    });
+ 
+    backendData = await response.json();
+    // console.log('API response:', backendData.result);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return; 
+  }
+
+
+  const orgNameMapping = {
+    "Head Quarters": "HQ",
+    "Chennai Port Authority": "ChPA",
+    "Jawaharlal Nehru Port Authority": "JNPA",
+    "Kamarajar Port Limited": "KPL",
+    "New Mangalore Port Authority": "NMPA",
+    "Paradip Port Authority": "PPA",
+    "VOC Port Authority": "VoCPA",
+    "Visakhapatnam Port Authority": "VPA",
+    "Cochin Port Authority":"CPA",
+    "Syama Prasad Mookerjee Port Authority":"SPMPA",
+    "Deendayal Port Authority":"DPA",
+    "Mumbai Port Authority":"MbPA",
+    "Marmugao Port Authority":"MPA",
+  };
+
+
+  function getOrganizationShortForm(orgName) {
+    if (orgNameMapping[orgName]) {
+      return orgNameMapping[orgName];
+    }
+  
+    return orgName
+      .split(" ")
+      .map(word => word.charAt(0))
+      .join("")
+      .toUpperCase();
+  }
+
+
+  const designationSet = new Set();
+  backendData.result.forEach(item => {
+    Object.keys(item).forEach(key => {
+      if (key !== "entity") {
+        designationSet.add(key);
+      }
+    });
+  });
+  const allDesignations = Array.from(designationSet);
+  
+  function toCamelCase(str) {
+    return str
+      .split(" ")
+      .map((word, i) =>
+        i === 0
+          ? word.toLowerCase()
+          : word.charAt(0).toUpperCase() + word.slice(1)
+      )
+      .join("");
+  }
+
+  
+  const chartData = backendData.result.map(item => {
+    let newItem = { entity: getOrganizationShortForm(item.entity) };
+    allDesignations.forEach(designation => {
+      const key = toCamelCase(designation);
+      newItem[key] = item.hasOwnProperty(designation) ? item[designation] : 0;
+    });
+    return newItem;
+  });
+
+  // console.log("Transformed chartData:", chartData);
+
+
+  var xAxis = chart.xAxes.push(
+    am5xy.CategoryAxis.new(root, {
+      categoryField: "entity",
+      renderer: am5xy.AxisRendererX.new(root, { minGridDistance: 0 })
+    })
+  );
+  xAxis.get("renderer").labels.template.setAll({ fontSize: "10px" });
+  xAxis.data.setAll(chartData);
+
+  var yAxis = chart.yAxes.push(
+    am5xy.ValueAxis.new(root, {
+      renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 })
+    })
+  );
+  yAxis.get("renderer").labels.template.setAll({ fontSize: "10px" });
+
+ 
+  const validDesignations = allDesignations.filter(designation => {
+    const key = toCamelCase(designation);
+    return chartData.some(item => item[key] > 0);
+  });
+  // console.log("Valid (non-zero) designations:", validDesignations);
+
+
+  function createSeries(field, name, color) {
+    var series = chart.series.push(
+      am5xy.ColumnSeries.new(root, {
+        name: name,
+        xAxis: xAxis,
+        yAxis: yAxis,
+        valueYField: field,
+        categoryXField: "entity",
+        stacked: true,
+        tooltip: am5.Tooltip.new(root, {
+          labelText: "[bold]{name}[/]\n{categoryX}: {valueY}"
+        })
+      })
+    );
+
+    if (color) {
+      series.columns.template.set("fill", am5.color(color));
+    }
+
+    series.columns.template.setAll({
+      width: am5.percent(45),
+      minWidth: 45,
+      strokeOpacity: 0
+    });
+
+    
+    series.bullets.push(function() {
+      let label = am5.Label.new(root, {
+        text: "{valueY}",
+        centerY: am5.p50,
+        populateText: true,
+        fontSize: "12px"
       });
-      
-          function createSeries(field, name, color) {
-            var series = chart.series.push(
-              am5xy.ColumnSeries.new(root, {
-                name: name,
-                xAxis: xAxis,
-                yAxis: yAxis,
-                valueYField: field,
-                categoryXField: "entity",
-                stacked: true, // Enable stacking
-                tooltip: am5.Tooltip.new(root, {
-                  labelText: "[bold]{name}[/]\n{categoryX}: {valueY}",
-                })
-              })
-            );
-      
-            if (color) {
-              series.columns.template.set("fill", am5.color(color));
-            }
-      
-            series.columns.template.setAll({
-              width: am5.percent(45),
-              minWidth: 45,
-              strokeOpacity: 0,
-            });
-      
-            series.bullets.push(function() {
-              return am5.Bullet.new(root, {
-                locationY: 0.5,
-                sprite: am5.Label.new(root, {
-                  text: "{valueY}",
-                  centerY: am5.p50,
-                  populateText: true,
-                  fontSize:'12px'
-                })
-              });
-            });
-      
-            series.data.setAll(chartData);
-            series.appear();
-      
-            return series;
-          }
-      
-          createSeries("projectManager", "Project Manager", 0x007BFF); 
-          createSeries("vtsManager", "VTS Manager", 0x5CBBF1);         
-          createSeries("vtsOperator", "VTS Operator", 0x34D399);      
-          createSeries("juniorVtsOperator", "Junior VTS Operator", 0xF9D342);  
-          createSeries("seniorProjectEngineer", "Senior Project Engineer", 0xFF6A5C);  
-          createSeries("projectEngineer", "Project Engineer", 0xFFB86C);  
-          createSeries("seniorEngineer", "Senior Engineer", 0x9A7BBF);   
-          createSeries("juniorEngineer", "Junior Engineer", 0x6D7F8B); 
-          createSeries("labAssistant", "Laboratory Assistant", 0xA2B9B3); 
-      
-          var legend = chart.children.push(am5.Legend.new(root, {
-            centerX: am5.p50,
-            x: am5.p50,
-            y: am5.p100, 
-            marginTop: 20, 
-            layout: am5.GridLayout.new(root, { maxColumns:4 }) 
-          }));
-          legend.labels.template.setAll({
-            fontSize: "10px"});
+  
+      label.adapters.add("text", function(text, target) {
+        const dataItem = target.dataItem;
+        if (dataItem && dataItem.get("valueY") === 0) {
+          return "";
+        }
+        return text;
+      });
+      return am5.Bullet.new(root, {
+        locationY: 0.5,
+        sprite: label
+      });
+    });
 
-          legend.data.setAll(chart.series.values);
-          
-      
-          chart.appear(1000, 100);
-        }); 
+    series.data.setAll(chartData);
+    series.appear();
+    return series;
+  }
 
-        am5.ready(function() {
+ 
+  validDesignations.forEach(designation => {
+    const key = toCamelCase(designation);
+    createSeries(key, designation, null); 
+  });
+
+  
+  var legend = chart.children.push(am5.Legend.new(root, {
+    centerX: am5.p50,
+    x: am5.p50,
+    y: am5.p100,
+    marginTop: 20,
+    layout: am5.GridLayout.new(root, { maxColumns: 4 })
+  }));
+  legend.labels.template.setAll({ fontSize: "10px" });
+  legend.data.setAll(chart.series.values);
+
+  chart.appear(1000, 100);
+});
+ 
+
+am5.ready(async function() {
 
 
 var root = am5.Root.new("educationChart"); 
@@ -849,13 +867,27 @@ var chart = root.container.children.push(
 );
 
 
-var data = [
-  { qualification: "Post Graduation", count: 2 },
-  { qualification: "Under Graduation", count: 5 },
-  { qualification: "Diploma", count: 6 },
-  { qualification: "SSLC", count: 5 },
-  { qualification: "HSC", count: 0 }
-];
+
+var response=await fetch('http://localhost:3000/dashboard/staffs/hq',{
+    method:'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem('token')
+    }
+}).then(response => response.json());
+
+// console.log('result : ',result);
+
+var data=response.result;
+// console.log('data: ',data);
+
+// var data = [
+//   { qualification: "Post Graduation", count: 2 },
+//   { qualification: "Under Graduation", count: 5 },
+//   { qualification: "Diploma", count: 6 },
+//   { qualification: "SSLC", count: 5 },
+//   { qualification: "HSC", count: 0 }
+// ];
 
 
 var xAxis = chart.xAxes.push(
@@ -933,7 +965,7 @@ series.appear();
 
       </script>
       <script>
-         am5.ready(function() {
+         am5.ready(async function() {
 
 
 var root = am5.Root.new("certificationChart"); 
@@ -956,17 +988,27 @@ var chart = root.container.children.push(
 );
 
 
-var data = [
-  { certification: "GDMSS", count: 4 },
-  { certification: "VTS 103A", count: 5 },
-  { certification: "GDMSS & VTS 103A", count: 3 },
-  { certification: "NA", count: 4 },
-];
 
+var response=await fetch('http://localhost:3000/dashboard/staffs/courses',{
+    method:'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem('token')
+    }
+}).then(response => response.json());
+
+// var data = [
+//   { course: "GDMSS", count: 4 },
+//   { course: "VTS 103A", count: 5 },
+//   { course: "GDMSS & VTS 103A", count: 3 },
+//   { course: "NA", count: 4 },
+// ];
+
+var data=response.result;
 
 var xAxis = chart.xAxes.push(
   am5xy.CategoryAxis.new(root, {
-    categoryField: "certification",
+    categoryField: "course",
     renderer: am5xy.AxisRendererX.new(root, {
       minGridDistance: 20,
     
@@ -997,7 +1039,7 @@ var series = chart.series.push(
     xAxis: xAxis,
     yAxis: yAxis,
     valueYField: "count",
-    categoryXField: "certification",
+    categoryXField: "course",
     tooltip: am5.Tooltip.new(root, {
       labelText: "{categoryX}: {valueY}"
     })
@@ -1039,7 +1081,7 @@ series.appear();
 
       </script>
       <script>
-        am5.ready(function() {
+        am5.ready(async function() {
         
        
           var root = am5.Root.new("payHikeChart");
@@ -1056,14 +1098,40 @@ series.appear();
             })
           );
         
-        
           
-          var data = [
-            { category: "0", value: 9 },
-            { category: "less than 5 %", value: 13 },
-            { category: "5 to 10 %", value: 1 },
-            { category: ">10 % hike", value: 13 }
-          ];
+          const response=await fetch('http://localhost:3000/dashboard/hike',{
+            method:'GET',
+            headers:{
+              'Authorization':'Bearer '+sessionStorage.getItem('token'),
+              'Content-Type':'application/json'
+            }
+          }).then(response => response.json());
+
+          const hikes=response.hikes;
+          
+          var data=[
+            { category: "0", value: 0 },
+            { category: "less than 5 %", value:0 },
+            { category: "5 to 10 %", value: 0 },
+            { category: ">10 % hike", value: 0 }
+          ]
+
+          hikes.forEach(hike => {
+            if(hike==0){
+              data[0].value+=1;
+            }else
+            if(hike>0 && hike<5){
+              data[1].value+=1;
+            }
+            else if(hike>=5 && hike<10){
+              data[2].value+=1;
+            }
+            else if(hike>=10){
+              data[3].value+=1;
+            } 
+          });
+
+         
 
           var series = chart.series.push(
             am5percent.PieSeries.new(root, {
@@ -1116,7 +1184,7 @@ series.appear();
         }); // end am5.ready()
         </script>
         <script>
-            am5.ready(function() {
+            am5.ready(async function() {
             
               var root = am5.Root.new("payHikeBreakdownChart");
             
@@ -1137,18 +1205,97 @@ series.appear();
                   paddingBottom: 30
                 })
               );
+                
+              
+              const orgNameMapping = {
+                "Head Quarters": "HQ",
+                "Chennai Port Authority": "ChPA",
+                "Jawaharlal Nehru Port Authority": "JNPA",
+                "Kamarajar Port Limited": "KPL",
+                "New Mangalore Port Authority": "NMPA",
+                "Paradip Port Authority": "PPA",
+                "VOC Port Authority": "VoCPA",
+                "Visakhapatnam Port Authority": "VPA",
+                "Cochin Port Authority":"CPA",
+                "Syama Prasad Mookerjee Port Authority":"SPMPA",
+                "Deendayal Port Authority":"DPA",
+                "Mumbai Port Authority":"MbPA",
+                "Marmugao Port Authority":"MPA",
+              };
+
+
+              function getOrganizationShortForm(orgName) {
+                if (orgNameMapping[orgName]) {
+                  return orgNameMapping[orgName];
+                }
+              
+                return orgName
+                  .split(" ")
+                  .map(word => word.charAt(0))
+                  .join("")
+                  .toUpperCase();
+              }
+               
+
+              const invoiceMapping={
+                'JNPA':10542336,
+                'VPA':477842,
+                'VoCPA':500000,
+                'PPA':0,
+                'NMPA':1260000,
+                'KPL':750000,
+                'ChPA':1045945,
+                'HQ':92562
+              };
+
+
+              var response=await fetch('http://localhost:3000/dashboard/manningcost',{
+                  method:'GET',
+                  headers:{
+                    'Authorization':'Bearer '+sessionStorage.getItem('token'),
+                    'Content-Type':'application/json'
+                  }
+              }).then(response=>response.json());
+              
+              var apiData=response.result;
+              
+              var data=[];
+
+              var sum=0;
+              var invoiceSum=0;
+
+              apiData.map(item=>{
+                const entity={};
+                entity['organisation']=getOrganizationShortForm(item.organisation),
+                entity['actualCost']=item.manningCost,
+                entity['invoiceRaised']=invoiceMapping[getOrganizationShortForm(item.organisation)],
+                entity['other']=0
+                sum+=parseFloat(item.manningCost);
+                data.push(entity);
+              });
+              // console.log(sum);
+              // console.log('formatted data: ',data);
+
+
             
-           
-              var data = [
-                { organisation: "JNPA", actualCost: 0, invoiceRaised: 10542336, other: 0 },
-                { organisation: "VPA", actualCost: 226750, invoiceRaised: 477842, other: 0 },
-                { organisation: "VoCPA", actualCost: 267000, invoiceRaised: 500000, other: 0 },
-                { organisation: "PPA", actualCost: 75000, invoiceRaised: 0, other: 0 },
-                { organisation: "NMPA", actualCost: 1029734, invoiceRaised: 1260000, other: 0 },
-                { organisation: "KPL", actualCost: 306042, invoiceRaised: 750000, other: 0 },
-                { organisation: "ChPA", actualCost: 267500, invoiceRaised: 1045945, other: 0 },
-                { organisation: "HQ", actualCost: 0, invoiceRaised: 92562, other: 0 }
-              ];
+              invoiceSum = Object.values(invoiceMapping).reduce((t, n) => t + n, 0);
+
+
+              
+              document.getElementById('invoice-raised').innerHTML='₹ '+invoiceSum.toLocaleString();
+
+              document.getElementById('total-manning-cost').innerHTML='₹ '+parseFloat(sum).toLocaleString();
+
+              // var data = [
+              //   { organisation: "JNPA", actualCost: 0, invoiceRaised: 10542336, other: 0 },
+              //   { organisation: "VPA", actualCost: 226750, invoiceRaised: 477842, other: 0 },
+              //   { organisation: "VoCPA", actualCost: 267000, invoiceRaised: 500000, other: 0 },
+              //   { organisation: "PPA", actualCost: 75000, invoiceRaised: 0, other: 0 },
+              //   { organisation: "NMPA", actualCost: 1029734, invoiceRaised: 1260000, other: 0 },
+              //   { organisation: "KPL", actualCost: 306042, invoiceRaised: 750000, other: 0 },
+              //   { organisation: "ChPA", actualCost: 267500, invoiceRaised: 1045945, other: 0 },
+              //   { organisation: "HQ", actualCost: 0, invoiceRaised: 92562, other: 0 }
+              // ];
             
               
               var yAxis = chart.yAxes.push(
@@ -1256,8 +1403,53 @@ series.appear();
               
               chart.appear(1000, 100);
             }); 
+
             </script>
-            
+          <script>
+            document.addEventListener('DOMContentLoaded', async () => {
+              if (window.api) {
+                window.getStaffsCountByHighestQualification = window.api.getStaffsCountByHighestQualification;
+                // console.log(window.getStaffsCountByHighestQualification);
+              } else {
+                console.error("api not found");
+              }
+
+
+              var response = await fetch('http://localhost:3000/dashboard/hike/hl', {
+               method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                }
+              }).then(response => response.json());
+
+              const result=response.result;
+
+              document.getElementById('hph-name').textContent=result[0].staff_name;
+              document.getElementById('hph-org').textContent=result[0].organisation;
+              document.getElementById('hph-hike').textContent=result[0].hike+"%";
+
+              document.getElementById('lph-name').textContent=result[1].staff_name;
+              document.getElementById('lph-org').textContent=result[1].organisation;
+              document.getElementById('lph-hike').textContent=result[1].hike+"%";
+
+
+
+              var response=await fetch('http://localhost:3000/dashboard/manpower/count',{
+                method:'GET',
+                headers:{
+                  'Content-Type':'application/json',
+                  'Authorization':'Bearer '+sessionStorage.getItem('token')
+                }
+              }).then(response=>response.json());
+
+              // console.log(response);
+
+              document.getElementById('manpower-deployed').innerHTML=response.count;
+            });
+          </script>
+          
+          
             
 </body>
 
