@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
     }
 
     document.getElementById('user-name-display').textContent=user.name;
-    document.getElementById('more-details').textContent=user.name;
+    // document.getElementById('more-details').textContent=user.name;
 
 
     await fetchAllUsers();

@@ -198,11 +198,28 @@ function addRow(data){
 async function fetchAllData() {
     try {
        const data=await api.getAllContractLogs();
-     
         
+       const designations=new Set();
+       const ids=new Set();
+    
        data.contractDetails.forEach(contractLog => {
             addRow(contractLog);
+
+            designations.add(contractLog.currentDesignation);
+            ids.add(contractLog.staffID);
+       
         });
+
+        designations.forEach(designation => {
+            if(!designation) return;
+            $('#designationFilter').append(`<option value="${designation}">${designation}</option>`);
+        });
+
+        ids.forEach(id => {
+            if(!id) return;
+            $('#staffIdFilter').append(`<option value="${id}">${id}</option>`);
+        });
+
     } catch (error) {
         console.error("Error fetching contract details:", error);
     }
@@ -222,8 +239,8 @@ document.addEventListener('DOMContentLoaded',async ()=>{
     }
 
 
-    document.getElementById('user-name-display').innerText=user.name;
-    document.getElementById('more-details').innerText=user.name;
+    document.getElementById('username').innerText=user.name;
+    // document.getElementById('more-details').innerText=user.name;
 
     await loadStaffOptions('staffId-select');
     await loadDesignationOptions('designationSelect');

@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
     const user=JSON.parse(sessionStorage.getItem('user'));
     const token = sessionStorage.getItem('token');
     document.getElementById('user-name-dsiplay').innerHTML=user.name;
-    document.getElementById('more-details').innerHTML=user.name;
+    // document.getElementById('more-details').innerHTML=user.name;
     
     await refreshTable();
     

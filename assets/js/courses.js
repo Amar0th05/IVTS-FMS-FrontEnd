@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
     }
 
     document.getElementById('user-name-display').innerText=user.name;
-    document.getElementById('more-details').innerText=user.name;
+    // document.getElementById('more-details').innerText=user.name;
     
     await getAllCourses();
     

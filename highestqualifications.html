@@ -177,7 +177,7 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
                                     <span id="user-name-dsiplay">UNKNOWN</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -221,10 +221,11 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                                    <!-- <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span id="more-details">UNKNOWN<i class="fa fa-caret-down"></i></span>
-                                    </div>
+                                        <span id="more-details">John Doe<i class="fa fa-caret-down"></i></span>
+                                    </div> -->
+                                    <img src="assets/images/ntcpwc-logo.jpg" alt="ntcpwc-logo">
                                 </div>
                                 <div class="main-menu-content">
                                     <ul>
@@ -298,6 +299,20 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="stages.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-stats-up"></i><b>BC</b></span>
+                                        <span class="pcoded-mtext">Procurement Stages</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="equipmentCategory.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-layout-list-thumb"></i><b>BC</b></span>
+                                        <span class="pcoded-mtext">Equipment Category</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <!-- <li>
                                     <a href="roles.html" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-tag"></i><b>BC</b></span>
@@ -314,7 +329,7 @@
                             <div class="page-block">
                                 <div class="row align-items-center">
                                     <div class="col-md-8">
-                                        <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25" alt="NTCPWC LOGO">
+                                        <!-- <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25" alt="NTCPWC LOGO"> -->
                                         <div class="page-header-title">
                                             <h5 class="m-b-10">Highest Qualifications</h5>
                                             <p class="m-b-0">Welcome to iVTS-FMS</p>
@@ -406,7 +421,11 @@
                                                                 <span class="fw-bold">Add Qualification</span>
                                                             </button>
                                                         </div>
-
+                                                        <div class="row">
+                                                            <div id="exportButtons" class="mb-3">
+                                                            
+                                                            </div>
+                                                        </div>
                                                         <div class="d-flex justify-content-center align-items-center">
                                                             <div class="table-responsive">
                                                                 <table id="myTable"
@@ -487,117 +506,123 @@
 <![endif]-->
     <!-- Warning Section Ends -->
 
-    <!-- Required Jquery -->
-    <script type="text/javascript" src="assets/js/jquery/jquery.min.js "></script>
-    <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js "></script>
-    <!-- waves js -->
-    <script src="assets/pages/waves/js/waves.min.js"></script>
-    <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+  <!-- Required jQuery -->
+<script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- slimscroll js -->
-    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
+<!-- Waves JS -->
+<script src="assets/pages/waves/js/waves.min.js"></script>
 
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- jQuery Slimscroll JS -->
+<script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<!-- Slimscroll JS -->
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <!-- jQuery and DataTables JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <!-- menu js -->
-    <script src="assets/js/pcoded.min.js"></script>
-    <script src="assets/js/vertical/vertical-layout.min.js "></script>
+<!-- DataTables Buttons Extension JS -->
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Menu JS -->
+<script src="assets/js/pcoded.min.js"></script>
+<script src="assets/js/vertical/vertical-layout.min.js"></script>
 
-    <script type="module" src="./assets/js/axiosInstance.js"></script>
-
-    <script type="text/javascript" src="assets/js/script.js "></script>
-    <script src="/assets/js/highestqualification.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable({
-                "paging": true,
-                "pageLength": 25,
-                "lengthMenu": [5, 10, 25, 50,100],
-                dom: '<"top"lB>frtip',
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Export to Excel',
-                        title: 'Highest Qualifications',
-                        exportOptions: {
-                             columns: [0, 1] 
-                        }
-                    },
-                    {
-                        extend: 'csvHtml5',
-                        text: 'Export to CSV',
-                        title: 'Highest Qualifications',
-                        exportOptions: {
-                             columns: [0, 1] 
-                        }
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'Export to PDF',
-                        title: 'Highest Qualifications',
-                        exportOptions: {
-                             columns: [0, 1] 
-                        }
-                    }
-                ]
-            });
-        });
-    
-        
-    </script>
-
-
-
-
- <!--  DataTables Buttons Extension JS -->
- <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-
- <!-- JSZip for Excel export -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
-
- <!-- pdfMake for PDF export -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-
- <!-- Buttons for Excel, CSV, and PDF -->
- <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
- <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-
- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-
+<!-- Axios for API calls -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="module" src="./assets/js/axiosInstance.js"></script>
 
-    <script type="module" src="./assets/js/axiosInstance.js"></script>
-    
-    <script src="assets/js/popup.js"></script>
+<!-- Custom JS files -->
+<script src="assets/js/script.js"></script>
+<script src="/assets/js/highestqualification.js"></script>
+<script src="assets/js/popup.js"></script>
+<script src="./assets/js/api.js"></script>
+<script src="./assets/js/apiRequests.js"></script>
 
-    <script  src="./assets/js/api.js"></script>
-    <script src="./assets/js/apiRequests.js"></script>
-    <script>
-        function toggleAccordion(button) {
-          const content = button.parentElement.nextElementSibling;
-          if (content.style.display === "none" || content.style.display === "") {
-            content.style.display = "block";
-          } else {
-            content.style.display = "none";
-          }
+<script>
+    $(document).ready(function () {
+        // Initialize DataTable
+        var table = $('#myTable').DataTable({
+            "paging": true,
+            "pageLength": 25,
+            "lengthMenu": [5, 10, 25, 50, 100],
+            dom: '<"top"l>frtip',
+            buttons: [
+        {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            exportOptions: {
+                columns: [0,1,2],
+                format: {
+                    body: function (data, row, column, node) {
+                        
+                        if ($(node).find('.toggle-btn').length) {
+                            return $(node).find('.toggle-btn').hasClass('active') ? 'True' : 'False';
+                        }
+                        return data;
+                    }
+                }
+            }
+        },
+        {
+            extend: 'csvHtml5',
+            text: 'CSV',
+            exportOptions: {
+                columns: [0,1,2],
+                format: {
+                    body: function (data, row, column, node) {
+                        if ($(node).find('.toggle-btn').length) {
+                            return $(node).find('.toggle-btn').hasClass('active') ? 'True' : 'False';
+                        }
+                        return data;
+                    }
+                }
+            }
+        },
+        {
+            extend: 'pdfHtml5',
+            text: 'PDF',
+            exportOptions: {
+                columns: [0,1,2],
+                format: {
+                    body: function (data, row, column, node) {
+                        if ($(node).find('.toggle-btn').length) {
+                            return $(node).find('.toggle-btn').hasClass('active') ? 'True' : 'False';
+                        }
+                        return data;
+                    }
+                }
+            }
         }
-    </script>
+    ]
+        });
+
+        // Append buttons to the specified container
+        table.buttons().container().appendTo('#exportButtons');
+    });
+
+    function toggleAccordion(button) {
+        const content = button.parentElement.nextElementSibling;
+        content.style.display = (content.style.display === "none" || content.style.display === "") ? "block" : "none";
+    }
+</script>
+
 
 </body>
 

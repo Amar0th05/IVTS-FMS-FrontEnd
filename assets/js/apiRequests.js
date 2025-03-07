@@ -80,6 +80,28 @@ const api = {
 
     createOrganisation: (organisationName) => postData(API_ROUTES.organisationsBase+'/add', { name: organisationName }),
 
+    getAllEquipmentList:()=>fetchData(API_ROUTES.getAllEquipmentList,"equipmentList"),
+
+    getAllStages:()=>fetchData(API_ROUTES.getAllStages,"stages"),
+
+    getStage:(id)=>fetchData(API_ROUTES.stagesBase+`/${id}`,"stage"),
+    
+    updateStage:(id,data)=>putData(API_ROUTES.stagesBase+`/${id}`,{stage:data}),
+
+    createStage:(data)=>postData(API_ROUTES.stagesBase,{stage:data}),
+
+    getAllEquipmentDeliveries:()=>fetchData(API_ROUTES.getAllEquipmentDeliveries,"deliveries"), 
+    updateQuantityDelivered:(id,data)=>putData(API_ROUTES.equipmentDeliveyBase+`/${id}`,data),
+
+
+    getAllActiveEquipmentCategory:()=>fetchData(API_ROUTES.getAllActiveEquipmentCategory,"categories"),
+
+    getAllEquipmentCategories:()=>fetchData(API_ROUTES.getAllEquipmentCategory,"categories"),
+
+    updateCategory:(id,data)=>putData(API_ROUTES.equipmentCategoryBase+`/${id}`,{category_name:data}),
+    createcategory:(data)=>postData(API_ROUTES.createEquipmentCategory,{category_name:data}),
+    getCategory:(id)=>fetchData(API_ROUTES.equipmentCategoryBase+`/${id}`,"category"),
+
 };
 
 const fetchData = (url, key) => axiosInstance.get(url).then(res => key ? res.data[key] : res.data);

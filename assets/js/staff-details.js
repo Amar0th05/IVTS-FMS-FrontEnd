@@ -213,8 +213,8 @@ document.addEventListener('DOMContentLoaded',async ()=>{
         window.location.href = 'user-details.html';
     }
 
-    document.getElementById('user-name-display').innerText=user.name;
-    document.getElementById('more-details').innerText=user.name;
+    document.querySelector('#username').textContent = user.name;
+    
 
     await loadCourseOptions('courseSelect');
     await loadOrganisationOptions("locationSelect");
@@ -242,19 +242,37 @@ async function toggleStatus(element, id) {
 
 
 async function fetchAllData() {
-   try{
-    // const response = await axiosInstance.get(API_ROUTES.getAllStaffs);
+    try {
+        const staffDetails = await api.getAllStaffs();
+        const designations = new Set();
+        const locations = new Set();
 
-    const staffDetails=await api.getAllStaffs();
+        staffDetails.forEach(staffDetail => {
+            addRow(staffDetail);
 
-    staffDetails.map(staffDetail => {
-        addRow(staffDetail);
-    });
-   } catch(error){
-    console.error("Error fetching staff details:", error);
-   }
-    
+            designations.add(staffDetail.currentDesignation);
+            locations.add(staffDetail.locationOfWork);
+        });
+
+        console.log(designations);
+            designations.forEach(designation => {
+            if(!designation) return;
+            $('#designationFilter').append(`<option value="${designation}">${designation}</option>`);
+        });
+        
+
+
+        
+        locations.forEach(location => {
+            if(!location) return;
+            $('#locationFilter').append(`<option value="${location}">${location}</option>`);
+        });
+
+    } catch (error) {
+        console.error("Error fetching staff details:", error);
+    }
 }
+
 
 function limitLength(str, length) {
     if (str.length > length) {

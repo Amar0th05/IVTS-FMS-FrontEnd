@@ -211,8 +211,8 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
+                                    <span id="username">John Doe</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -255,10 +255,11 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                                    <!-- <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span id="more-details">John Doe<i class="fa fa-caret-down"></i></span>
-                                    </div>
+                                    </div> -->
+                                    <img src="assets/images/ntcpwc-logo.jpg" alt="ntcpwc-logo">
                                 </div>
                                 <div class="main-menu-content">
                                     <ul>
@@ -279,40 +280,86 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="pcoded-navigation-label">Invoices</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li>
-                                    <a href="index.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
-                                        <span class="pcoded-mtext">Invoices</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">Man Power Management</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="active">
-                                    <a href="index.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext">Dashboard</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="staff-details.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-user"></i><b>BC</b></span>
-                                        <span class="pcoded-mtext">Staff Details</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="contract-logs.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-notepad"></i><b>BC</b></span>
-                                        <span class="pcoded-mtext">Contract Logs</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="accordion">
+                              <div class="accordion-header">
+                                <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Invoices<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
+                              </div>
+                              <div class="accordion-content" style="display: none;">
+                              
+                                  <ul class="pcoded-item pcoded-left-item">
+                                      <li>
+                                          <a href="invoices.html" class="waves-effect waves-dark">
+                                              <span class="pcoded-micon"><i class="ti-calendar"></i><b>D</b></span>
+                                              <span class="pcoded-mtext">Monthly Invoices</span>
+                                              <span class="pcoded-mcaret"></span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                        <a href="invoices.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-settings"></i><b>D</b></span>
+                                            <span class="pcoded-mtext">Equipment Invoices</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                      <a href="invoices.html" class="waves-effect waves-dark">
+                                          <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
+                                          <span class="pcoded-mtext">C&H Invoices</span>
+                                          <span class="pcoded-mcaret"></span>
+                                      </a>
+                                  </li>
+                                  </ul>
+                              </div>
+                              </div>
+                              <div class="accordion">
+                                <div class="accordion-header">
+                                  <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Equipments<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
+                                </div>
+                                <div class="accordion-content" style="display: none;">
+                                  
+                                  <ul class="pcoded-item pcoded-left-item">
+                                      <li>
+                                          <a href="equipmentlist.html" class="waves-effect waves-dark">
+                                              <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
+                                              <span class="pcoded-mtext">Equipment List</span>
+                                              <span class="pcoded-mcaret"></span>
+                                          </a>
+                                      </li>
+                                  </ul>
+                                  </div>
+                                  </div>
+                                  <div class="accordion">
+                                    <div class="accordion-header">
+                                      <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Man Power Management<i class="fa fa-chevron-up ml-1" id="accordion-icon"></i></div>
+                                    </div>
+                                    <div class="accordion-content" style="display: block;">
+                                      <ul class="pcoded-item pcoded-left-item">
+                                        <li class="active">
+                                            <a href="index.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                                <span class="pcoded-mtext">Dashboard</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="staff-details.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-user"></i><b>BC</b></span>
+                                                <span class="pcoded-mtext">Staff Details</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="contract-logs.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-notepad"></i><b>BC</b></span>
+                                                <span class="pcoded-mtext">Contract Logs</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                      </div>
+                                      </div>
+                            
                             
                     </nav>
                     <div class="pcoded-content">
@@ -321,7 +368,7 @@
                             <div class="page-block">
                                 <div class="row align-items-center">
                                     <div class="col-md-8">
-                                        <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25" alt="NTCPWC LOGO">
+                                        <!-- <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25" alt="NTCPWC LOGO"> -->
                                         <div class="page-header-title">
                                             <h5 class="m-b-10">Dashboard</h5>
                                             <p class="m-b-0">Welcome to iVTS-FMS</p>
@@ -347,47 +394,45 @@
                                     <!-- Page-body start -->
                                     <div class="page-body">
                                         <div class="row">
-                                                <div class="col-xl-8 col-md-12" >
-                                                    <div class="card text-start">
-                                                        <div class="card-header">
-                                                            <h5>Overview</h5>
-                                                            <div class="card-header-right">
-                                                                <ul class="list-unstyled card-option">
-                                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
-                                                                    <li><i class="fa fa-minus minimize-card"></i></li>
-                                                                    <li><i class="fa fa-refresh reload-card"></i></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-block">
-                                                            <div id="chartdiv">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
+                                               
                                                 <div class="col-xl-4 col-md-12">
                                                     <div class="card text-start">
                                                         <div class="card-header">
-                                                            <h5>Experience Overview</h5>
-                                                            <div class="card-header-right">
-                                                                <ul class="list-unstyled card-option">
-                                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
-                                                                    <li><i class="fa fa-minus minimize-card"></i></li>
-                                                                    <li><i class="fa fa-refresh reload-card"></i></li>
-                                                                </ul>
-                                                            </div>
+                                                            <h5>Man Power Overview</h5>
+                                                          
                                                         </div>
-                                                        <div class="card-block" style="height: 320px;">
-                                                            <p class="">
-                                                               
-                                                            </p>
+                                                        <div class="card-block">
+                                                          <div class="table-responsive custom-table">
+                                                            <table id="manPowerTable" class="table table-striped table-border-small rounded table-hover">
+                                                              <thead class="bg-primary text-white">
+                                                                <tr >
+                                                                  <th >Designation</th>
+                                                                  <th>Total Staff Count</th>
+                                                                </tr>
+                                                              </thead>
+                                                             <tbody>
+
+                                                             </tbody>
+                                                            </table>
+                                                          </div>
+                                                                  
                                                         </div>
                                                     </div>
                                                     
                                                 </div>
+                                                <div class="col-xl-8 col-md-12" >
+                                                  <div class="card text-start">
+                                                      <div class="card-header">
+                                                          <h5>Overview</h5>
+                                                          
+                                                      </div>
+                                                      <div class="card-block">
+                                                          <div id="chartdiv">
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  
+                                              </div>
                                                 
                                             </div>
                                             <div class="row">
@@ -395,14 +440,7 @@
                                                     <div class="card text-start">
                                                         <div class="card-header">
                                                             <h5>Highest Education Qualification</h5>
-                                                            <div class="card-header-right">
-                                                                <ul class="list-unstyled card-option">
-                                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
-                                                                    <li><i class="fa fa-minus minimize-card"></i></li>
-                                                                    <li><i class="fa fa-refresh reload-card"></i></li>
-                                                                </ul>
-                                                            </div>
+                                                           
                                                         </div>
                                                         <div class="card-block" style="height: 300px;">
                                                             <div id="educationChart" style="width: 100%; height: 100%;"></div>
@@ -415,14 +453,7 @@
                                                     <div class="card text-start">
                                                         <div class="card-header">
                                                             <h5>Certification Courses</h5>
-                                                            <div class="card-header-right">
-                                                                <ul class="list-unstyled card-option">
-                                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
-                                                                    <li><i class="fa fa-minus minimize-card"></i></li>
-                                                                    <li><i class="fa fa-refresh reload-card"></i></li>
-                                                                </ul>
-                                                            </div>
+                                                           
                                                         </div>
                                                         <div class="card-block" style="height: 300px;">
                                                             <div id="certificationChart" style="width: 100%; height: 100%;"></div>
@@ -438,14 +469,7 @@
                                                 <div class="card text-start flex-grow-1">
                                                   <div class="card-header">
                                                     <h5>Pay Hike Overview</h5>
-                                                    <div class="card-header-right">
-                                                      <ul class="list-unstyled card-option">
-                                                          <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                                          <li><i class="fa fa-window-maximize full-card"></i></li>
-                                                          <li><i class="fa fa-minus minimize-card"></i></li>
-                                                          <li><i class="fa fa-refresh reload-card"></i></li>
-                                                      </ul>
-                                                  </div>
+                                                    
                                                   </div>
                                                   <div class="card-block d-flex align-items-center justify-content-center">
                                                     <div id="payHikeChart"></div> 
@@ -459,8 +483,8 @@
                                                     <div class="card text-start shadow-sm border-0 rounded-3 hover-effect">
                                                       <div class="card-body text-center">
                                                         <h5 class="text-dark fw-bold">Highest Pay Hike</h5>
-                                                        <p class="mb-1" id="hph-name">BALAM BOMMA GIRIDHARAN</p>
-                                                        <p class="mb-1" id="hph-org">VPA</p>
+                                                        <p class="mb-1" id="hph-name">NAME</p>
+                                                        <p class="mb-1" id="hph-org">ORGANISATION</p>
                                                         <p class="fw-bold text-primary" id="hph-hike" style="font-size: 30px;">60%</p>
                                                       </div>
                                                     </div>
@@ -473,7 +497,7 @@
                                                       <div class="card-body text-center">
                                                         <h5 class="text-dark fw-bold">Lowest Pay Hike</h5>
                                                         <p class="mb-1" id="lph-name">NAME</p>
-                                                        <p class="mb-1" id="lph-org">Department</p>
+                                                        <p class="mb-1" id="lph-org">ORGANISATION</p>
                                                         <p class="fw-bold text-danger" id="lph-hike" style="font-size: 30px;">2%</p>
                                                       </div>
                                                     </div>
@@ -494,9 +518,9 @@
                                                       <i class="bi bi-people-fill"></i>
                                                     </div>
                                                     
-                                                    <h5 class="card-title mb-0 fw-bold" id="manpower-deployed">37</h5>
+                                                    <h4 class="card-title mb-0 text-primary fw-bold" id="manpower-deployed">37</h>
                                                     <!-- Label -->
-                                                    <small class="text-muted">Total Manpower Deployed</small>
+                                                    <h6 class="text-dark fw-bold">Total Manpower Deployed</>
                                                   </div>
                                                 </div>
                                               </div>
@@ -510,8 +534,8 @@
                                                       <i class="bi bi-currency-rupee"></i>
                                                     </div>
                                                    
-                                                    <h5 class="card-title mb-0 fw-bold" id="total-manning-cost">₹ 0</h5>
-                                                    <small class="text-muted">Total Manning Cost / month</small>
+                                                    <h4 class="card-title mb-0 text-primary fw-bold" id="total-manning-cost">₹ 0</h4>
+                                                    <h6 class="text-dark fw-bold">Total Manning Cost / month</>
                                                   </div>
                                                 </div>
                                               </div>
@@ -526,9 +550,9 @@
                                                       <i class="bi bi-currency-rupee"></i>
                                                     </div>
                                                     
-                                                    <h5 class="card-title mb-0 fw-bold" id="invoice-raised">₹ 0</h5>
+                                                    <h4 class="card-title text-primary mb-0 fw-bold" id="invoice-raised">₹ 0</h4>
                                                     <!-- Label -->
-                                                    <small class="text-muted">Invoice Raised / month</small>
+                                                    <h6 class="text-dark fw-bolder">Invoice Raised / month</h6>
                                                   </div>
                                                 </div>
                                               </div>
@@ -539,14 +563,14 @@
                                                   <div class="card text-start">
                                                     <div class="card-header">
                                                       <h5>Manning Cost Vs Invoice Cost</h5>
-                                                      <div class="card-header-right">
+                                                      <!-- <div class="card-header-right">
                                                         <ul class="list-unstyled card-option">
                                                           <li><i class="fa fa-wrench open-card-option"></i></li>
                                                           <li><i class="fa fa-window-maximize full-card"></i></li>
                                                           <li><i class="fa fa-minus minimize-card"></i></li>
                                                           <li><i class="fa fa-refresh reload-card"></i></li>
                                                         </ul>
-                                                      </div>
+                                                      </div> -->
                                                     </div>
                                                     <div class="card-block">
                                                       <div id="payHikeBreakdownChart" style="width: 100%; min-height: 650px;"></div>
@@ -648,209 +672,221 @@
             window.location.href="user-details.html";
         }
 
+        $('#username').text(user.name);
+
         document.getElementById('logout-button').addEventListener('click',logout);
         function logout(){
             sessionStorage.removeItem('token');
         }
 
+
+        function toggleAccordion(button) {
+        const content = button.parentElement.nextElementSibling;
+        content.style.display = (content.style.display === "none" || content.style.display === "") ? "block" : "none";
+
+        const icon = button.querySelector("i");
+        icon.classList.toggle("fa-chevron-down");
+        icon.classList.toggle("fa-chevron-up");
+    }
     </script>
 
 
     <script>
       am5.ready(async function() {
  
-  var root = am5.Root.new("chartdiv");
-  root.setThemes([am5themes_Animated.new(root)]);
+ var root = am5.Root.new("chartdiv");
+ root.setThemes([am5themes_Animated.new(root)]);
 
-  var chart = root.container.children.push(
-    am5xy.XYChart.new(root, {
-      panX: true,
-      panY: true,
-      wheelX: "panX",
-      wheelY: "zoomX",
-      paddingBottom: 100,
-    })
-  );
-
-
-  let backendData;
-  try {
-    const response = await fetch('http://localhost:3000/dashboard/staffs/organisation', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-      }
-    });
- 
-    backendData = await response.json();
-    // console.log('API response:', backendData.result);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return; 
-  }
-
-
-  const orgNameMapping = {
-    "Head Quarters": "HQ",
-    "Chennai Port Authority": "ChPA",
-    "Jawaharlal Nehru Port Authority": "JNPA",
-    "Kamarajar Port Limited": "KPL",
-    "New Mangalore Port Authority": "NMPA",
-    "Paradip Port Authority": "PPA",
-    "VOC Port Authority": "VoCPA",
-    "Visakhapatnam Port Authority": "VPA",
-    "Cochin Port Authority":"CPA",
-    "Syama Prasad Mookerjee Port Authority":"SPMPA",
-    "Deendayal Port Authority":"DPA",
-    "Mumbai Port Authority":"MbPA",
-    "Marmugao Port Authority":"MPA",
-  };
-
-
-  function getOrganizationShortForm(orgName) {
-    if (orgNameMapping[orgName]) {
-      return orgNameMapping[orgName];
-    }
-  
-    return orgName
-      .split(" ")
-      .map(word => word.charAt(0))
-      .join("")
-      .toUpperCase();
-  }
-
-
-  const designationSet = new Set();
-  backendData.result.forEach(item => {
-    Object.keys(item).forEach(key => {
-      if (key !== "entity") {
-        designationSet.add(key);
-      }
-    });
-  });
-  const allDesignations = Array.from(designationSet);
-  
-  function toCamelCase(str) {
-    return str
-      .split(" ")
-      .map((word, i) =>
-        i === 0
-          ? word.toLowerCase()
-          : word.charAt(0).toUpperCase() + word.slice(1)
-      )
-      .join("");
-  }
-
-  
-  const chartData = backendData.result.map(item => {
-    let newItem = { entity: getOrganizationShortForm(item.entity) };
-    allDesignations.forEach(designation => {
-      const key = toCamelCase(designation);
-      newItem[key] = item.hasOwnProperty(designation) ? item[designation] : 0;
-    });
-    return newItem;
-  });
-
-  // console.log("Transformed chartData:", chartData);
-
-
-  var xAxis = chart.xAxes.push(
-    am5xy.CategoryAxis.new(root, {
-      categoryField: "entity",
-      renderer: am5xy.AxisRendererX.new(root, { minGridDistance: 0 })
-    })
-  );
-  xAxis.get("renderer").labels.template.setAll({ fontSize: "10px" });
-  xAxis.data.setAll(chartData);
-
-  var yAxis = chart.yAxes.push(
-    am5xy.ValueAxis.new(root, {
-      renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 })
-    })
-  );
-  yAxis.get("renderer").labels.template.setAll({ fontSize: "10px" });
+ var chart = root.container.children.push(
+   am5xy.XYChart.new(root, {
+     panX: true,
+     panY: true,
+     wheelX: "panX",
+     wheelY: "zoomX",
+     paddingBottom: 100
+   })
+ );
 
  
-  const validDesignations = allDesignations.filter(designation => {
-    const key = toCamelCase(designation);
-    return chartData.some(item => item[key] > 0);
-  });
-  // console.log("Valid (non-zero) designations:", validDesignations);
+ chart.set("tooltip", am5.Tooltip.new(root, {}));
 
+ let backendData;
+ try {
+   const response = await fetch('http://localhost:3000/dashboard/staffs/organisation', {
+     method: 'GET',
+     headers: {
+       'Content-Type': 'application/json',
+       'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+     }
+   });
 
-  function createSeries(field, name, color) {
-    var series = chart.series.push(
-      am5xy.ColumnSeries.new(root, {
-        name: name,
-        xAxis: xAxis,
-        yAxis: yAxis,
-        valueYField: field,
-        categoryXField: "entity",
-        stacked: true,
-        tooltip: am5.Tooltip.new(root, {
-          labelText: "[bold]{name}[/]\n{categoryX}: {valueY}"
-        })
-      })
-    );
+   backendData = await response.json();
+ } catch (error) {
+   console.error("Error fetching data:", error);
+   return; 
+ }
 
-    if (color) {
-      series.columns.template.set("fill", am5.color(color));
-    }
+ const orgNameMapping = {
+   "Head Quarters": "HQ",
+   "Chennai Port Authority": "ChPA",
+   "Jawaharlal Nehru Port Authority": "JNPA",
+   "Kamarajar Port Limited": "KPL",
+   "New Mangalore Port Authority": "NMPA",
+   "Paradip Port Authority": "PPA",
+   "VOC Port Authority": "VoCPA",
+   "Visakhapatnam Port Authority": "VPA",
+   "Cochin Port Authority":"CPA",
+   "Syama Prasad Mookerjee Port Authority":"SPMPA",
+   "Deendayal Port Authority":"DPA",
+   "Mumbai Port Authority":"MbPA",
+   "Marmugao Port Authority":"MPA",
+ };
 
-    series.columns.template.setAll({
-      width: am5.percent(45),
-      minWidth: 45,
-      strokeOpacity: 0
-    });
-
-    
-    series.bullets.push(function() {
-      let label = am5.Label.new(root, {
-        text: "{valueY}",
-        centerY: am5.p50,
-        populateText: true,
-        fontSize: "12px"
-      });
-  
-      label.adapters.add("text", function(text, target) {
-        const dataItem = target.dataItem;
-        if (dataItem && dataItem.get("valueY") === 0) {
-          return "";
-        }
-        return text;
-      });
-      return am5.Bullet.new(root, {
-        locationY: 0.5,
-        sprite: label
-      });
-    });
-
-    series.data.setAll(chartData);
-    series.appear();
-    return series;
-  }
-
+ function getOrganizationShortForm(orgName) {
+   if (orgNameMapping[orgName]) {
+     return orgNameMapping[orgName];
+   }
  
-  validDesignations.forEach(designation => {
-    const key = toCamelCase(designation);
-    createSeries(key, designation, null); 
-  });
+   return orgName
+     .split(" ")
+     .map(word => word.charAt(0))
+     .join("")
+     .toUpperCase();
+ }
 
-  
-  var legend = chart.children.push(am5.Legend.new(root, {
-    centerX: am5.p50,
-    x: am5.p50,
-    y: am5.p100,
-    marginTop: 20,
-    layout: am5.GridLayout.new(root, { maxColumns: 4 })
-  }));
-  legend.labels.template.setAll({ fontSize: "10px" });
-  legend.data.setAll(chart.series.values);
+ const designationSet = new Set();
+ backendData.result.forEach(item => {
+   Object.keys(item).forEach(key => {
+     if (key !== "entity") {
+       designationSet.add(key);
+     }
+   });
+ });
+ const allDesignations = Array.from(designationSet);
+ 
+ function toCamelCase(str) {
+   return str
+     .split(" ")
+     .map((word, i) =>
+       i === 0
+         ? word.toLowerCase()
+         : word.charAt(0).toUpperCase() + word.slice(1)
+     )
+     .join("");
+ }
 
-  chart.appear(1000, 100);
+ const chartData = backendData.result.map(item => {
+   let newItem = { entity: getOrganizationShortForm(item.entity) };
+   allDesignations.forEach(designation => {
+     const key = toCamelCase(designation);
+     newItem[key] = item.hasOwnProperty(designation) ? item[designation] : 0;
+   });
+   return newItem;
+ });
+
+ var xAxis = chart.xAxes.push(
+   am5xy.CategoryAxis.new(root, {
+     categoryField: "entity",
+     renderer: am5xy.AxisRendererX.new(root, { minGridDistance: 0 })
+   })
+ );
+ xAxis.get("renderer").labels.template.setAll({ fontSize: "10px" });
+ xAxis.data.setAll(chartData);
+
+ var yAxis = chart.yAxes.push(
+   am5xy.ValueAxis.new(root, {
+     renderer: am5xy.AxisRendererY.new(root, { strokeOpacity: 0.1 })
+   })
+ );
+ yAxis.get("renderer").labels.template.setAll({ fontSize: "10px" });
+
+ const validDesignations = allDesignations.filter(designation => {
+   const key = toCamelCase(designation);
+   return chartData.some(item => item[key] > 0);
+ });
+
+ function createSeries(field, name, color) {
+   var series = chart.series.push(
+     am5xy.ColumnSeries.new(root, {
+       name: name,
+       xAxis: xAxis,
+       yAxis: yAxis,
+       valueYField: field,
+       categoryXField: "entity",
+       stacked: true
+     })
+   );
+
+  series.columns.template.setAll({
+  tooltipText: "[bold]{name}[/]\n{categoryX}: {valueY}",
+  interactive: true, 
+  cursorOverStyle: "pointer"
 });
- 
+
+
+   series.setAll({
+     interactive: true 
+   });
+
+  
+   series.events.on("pointerover", function(ev) {
+     console.log("Hovered on:", ev.target.dataItem?.dataContext);
+   });
+
+   if (color) {
+     series.columns.template.set("fill", am5.color(color));
+   }
+
+   series.columns.template.setAll({
+     width: am5.percent(45),
+     minWidth: 45,
+     strokeOpacity: 0
+   });
+
+   series.bullets.push(function() {
+     let label = am5.Label.new(root, {
+       text: "{valueY}",
+       centerY: am5.p50,
+       populateText: true,
+       fontSize: "12px"
+     });
+
+     label.adapters.add("text", function(text, target) {
+       const dataItem = target.dataItem;
+       if (dataItem && dataItem.get("valueY") === 0) {
+         return "";
+       }
+       return text;
+     });
+     return am5.Bullet.new(root, {
+       locationY: 0.5,
+       sprite: label
+     });
+   });
+
+   series.data.setAll(chartData);
+   series.appear();
+   return series;
+ }
+
+ validDesignations.forEach(designation => {
+   const key = toCamelCase(designation);
+   createSeries(key, designation, null); 
+ });
+
+ var legend = chart.children.push(am5.Legend.new(root, {
+   centerX: am5.p50,
+   x: am5.p50,
+   y: am5.p100,
+   marginTop: 20,
+   layout: am5.GridLayout.new(root, { maxColumns: 4 })
+ }));
+ legend.labels.template.setAll({ fontSize: "10px" });
+ legend.data.setAll(chart.series.values);
+
+ chart.appear(1000, 100);
+});
+
 
 am5.ready(async function() {
 
@@ -960,7 +996,11 @@ series.bullets.push(function () {
     })
   });
 });
-
+series.columns.template.setAll({
+  tooltipText: "[bold]{name}[/]\n{categoryX}: {valueY}",
+  interactive: true, 
+  cursorOverStyle: "pointer"
+});
 series.data.setAll(data);
 
 
@@ -1061,6 +1101,13 @@ series.columns.template.setAll({
   strokeOpacity:0,
   cornerRadiusTL: 5,
   cornerRadiusTR: 5
+});
+
+
+series.columns.template.setAll({
+  tooltipText: "[bold]{name}[/]\n{categoryX}: {valueY}",
+  interactive: true, 
+  cursorOverStyle: "pointer"
 });
 
 series.bullets.push(function () {
@@ -1422,6 +1469,7 @@ series.appear();
                 console.error("api not found");
               }
 
+              
 
               var response = await fetch('http://localhost:3000/dashboard/hike/hl', {
                method: 'GET',
@@ -1432,7 +1480,7 @@ series.appear();
               }).then(response => response.json());
 
               const result=response.result;
-
+              
               document.getElementById('hph-name').textContent=result[0].staff_name;
               document.getElementById('hph-org').textContent=result[0].organisation;
               document.getElementById('hph-hike').textContent=result[0].hike+"%";
@@ -1452,8 +1500,38 @@ series.appear();
               }).then(response=>response.json());
 
               // console.log(response);
-
               document.getElementById('manpower-deployed').innerHTML=response.count;
+
+
+              var response=await fetch('http://localhost:3000/dashboard/staffs/designation',{
+                method:'GET',
+                headers:{
+                  'Content-Type':'application/json',
+                  'Authorization':'Bearer '+sessionStorage.getItem('token')
+                }
+              }).then(response=>response.json());
+
+              const designationStaffsMap=response.result;
+              
+              if(!designationStaffsMap){
+                  document.querySelector('#manPowerTable').innerHTML='<p class="text-danger">No Data Found</p>';
+                  
+              }else{
+                  designationStaffsMap.forEach(obj=>{
+                      $('#manPowerTable').append(`
+                          <tr>
+                              <td>${obj.designation}</td>
+                              <td>${obj.count}</td>
+                          </tr>
+                      `);
+
+                  });
+              }
+              
+
+              // console.log(response.result);
+
+              
             });
           </script>
           

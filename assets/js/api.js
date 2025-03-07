@@ -39,7 +39,32 @@ const API_ROUTES = {
     getAllUsers:'/user/all',
     courses:'/courses/active',
     getAllCourses:'/courses/all',
-    coursesBase:`/courses`
+    coursesBase:`/courses`,
+
+    getAllEquipmentList:'/el/all',
+
+    equipmentListBase:'/el',
+
+    stagesBase:`/stages`,
+    getAllStages:`/stages/all`,
+    activeStages:`/stages/active`,
+    
+
+
+    equipmentDeliveyBase:`/equipmentsDelivery`,
+
+    getAllEquipmentDeliveries:`/equipmentsDelivery/`,
+
+
+    equipmentCategoryBase:`/equipmentCategories`,
+
+    getAllEquipmentCategory:`/equipmentCategories/all`, 
+
+    getAllActiveEquipmentCategory:`/equipmentCategories/all/active`,
+
+    createEquipmentCategory:`/equipmentCategories/create`,
+    
+
 };
 
 

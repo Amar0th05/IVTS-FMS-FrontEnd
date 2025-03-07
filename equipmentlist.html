@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Contract Logs</title>
+    <title>Equipment List</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -255,7 +255,7 @@
                                         <li class="more-details">
                                             <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
                                             <a href="#!"><i class="ti-settings"></i>Settings</a>
-                                            <a href="auth-normal-sign-in.html"><i
+                                            <a href="auth-normal-sign-in.html" id="logout"><i
                                                     class="ti-layout-sidebar-left"></i>Logout</a>
                                         </li>
                                     </ul>
@@ -303,12 +303,12 @@
                                 </div>
                                 <div class="accordion">
                                   <div class="accordion-header">
-                                    <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Equipments<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
+                                    <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Equipments<i class="fa fa-chevron-up ml-1" id="accordion-icon"></i></div>
                                   </div>
-                                  <div class="accordion-content" style="display: none;">
+                                  <div class="accordion-content" style="display: block;">
                                     
                                     <ul class="pcoded-item pcoded-left-item">
-                                        <li>
+                                        <li class="active">
                                             <a href="equipmentlist.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
                                                 <span class="pcoded-mtext">Equipment List</span>
@@ -320,9 +320,9 @@
                                     </div>
                                     <div class="accordion">
                                       <div class="accordion-header">
-                                        <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Man Power Management<i class="fa fa-chevron-up ml-1" id="accordion-icon"></i></div>
+                                        <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Man Power Management<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
                                       </div>
-                                      <div class="accordion-content" style="display: block;">
+                                      <div class="accordion-content" style="display: none;">
                                         <ul class="pcoded-item pcoded-left-item">
                                           <li>
                                               <a href="index.html" class="waves-effect waves-dark">
@@ -338,7 +338,7 @@
                                                   <span class="pcoded-mcaret"></span>
                                               </a>
                                           </li>
-                                          <li class="active">
+                                          <li>
                                               <a href="contract-logs.html" class="waves-effect waves-dark">
                                                   <span class="pcoded-micon"><i class="ti-notepad"></i><b>BC</b></span>
                                                   <span class="pcoded-mtext">Contract Logs</span>
@@ -362,7 +362,7 @@
                                         <!-- <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25"
                                             alt="NTCPWC LOGO"> -->
                                         <div class="page-header-title">
-                                            <h5 class="m-b-10">Contract Logs</h5>
+                                            <h5 class="m-b-10">Equipment List</h5>
                                             <p class="m-b-0">Welcome to iVTS-FMS</p>
                                         </div>
                                     </div>
@@ -371,7 +371,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="index.html"> <i class="ti-home"></i> </a>
                                             </li>
-                                            <li class="breadcrumb-item"><a href="#!">Contract Logs</a>
+                                            <li class="breadcrumb-item"><a href="#!">Equipment List</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -387,7 +387,7 @@
                                             <div class="col-sm-12">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h5>Contract Logs</h5>
+                                                        <h5>Equipment List</h5>
                                                     </div>
 
                                                     <div class="card-block">
@@ -402,7 +402,7 @@
                                                                     <!-- Modal Header -->
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="addNewModalLabel">
-                                                                            Add New Contract Log</h5>
+                                                                            </h5>
                                                                         <button type="button" class="close"
                                                                             data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
@@ -411,91 +411,63 @@
 
                                                                     <!-- Modal Body -->
                                                                     <div class="modal-body">
-                                                                        <form id="addNewLogForm">
-                                                                            <div class="row">
-                                                                               <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="staffID">Staff ID</label>
-                                                                                    <select class="form-control form-control-sm" name="staffID" id="staffId-select">
-                                                                                        <option value="" disabled selected>Select Satff ID</option>
-                                                                                        
-                                                                                    </select>
-                                                                                </div>
-                                                                               </div>
-                                                                               <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label for="staffName">Staff Name</label>
-                                                                                    <input type="text" name="staffName"
-                                                                                        class="form-control form-control-sm"
-                                                                                        id="staffName"
-                                                                                        placeholder="Enter Staff Name" disabled>
-                                                                                </div>
-                                                                               </div>
-                                                                            </div>
+                                                                        <form id="dynamicForm">
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
-                                                                                        <label
-                                                                                            for="contractStartDate">Contract
-                                                                                            Start Date</label>
-                                                                                        <input type="date"
-                                                                                            class="form-control form-control-sm"
-                                                                                            id="contractStartDate" name="contractStartDate">
+                                                                                        <label for="portName">Port Name</label>
+                                                                                        <select id="portName" class="form-control form-control-sm">
+                                                                                          
+                                                                                        </select>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <div class="form-group">
-                                                                                        <label
-                                                                                            for="contractEndDate">Contract
-                                                                                            End Date</label>
-                                                                                        <input type="date"
-                                                                                            class="form-control form-control-sm"
-                                                                                            id="contractEndDate" name="contractEndDate">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
-                                                                                        <label for="basicPay">Basic Pay</label>
-                                                                                        <input type="number"
-                                                                                            class="form-control form-control-sm"
-                                                                                            id="basicPay"
-                                                                                            placeholder="Enter Basic Pay" name="basicPay">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
-                                                                                        <label for="allowance">Allowance</label>
-                                                                                        <input type="number"
-                                                                                            class="form-control form-control-sm"
-                                                                                            id="allowance"
-                                                                                            placeholder="Enter Allowance" name="allowance">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-12">
-                                                                                    <div class="form-group">
-                                                                                        <label for="grossPay">Gross Pay</label>
-                                                                                        <input type="number"
-                                                                                            class="form-control form-control-sm"
-                                                                                            id="grossPay"
-                                                                                            placeholder="0.0" name="grossPay" aria-disabled="true" disabled>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-12">
-                                                                                    <div class="form-group">
-                                                                                        <label for="designation">Current Designation</label>
-                                                                                        <select class="form-control form-control-sm" id="designationSelect" name="designationSelect">
-                                                                                            <option value="" disabled selected>Select Designation</option>
+                                                                                        <label for="equipmentCategory">Equipment Category</label>
+                                                                                        <select id="equipmentCategory" class="form-control form-control-sm">
+                                                                                            <option value="" disabled selected>Select Category</option>
+                                                                                            <option value="Category X">Category X</option>
+                                                                                            <option value="Category Y">Category Y</option>
+                                                                                            <option value="Category Z">Category Z</option>
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                        
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="assetsCount">Assets Count</label>
+                                                                                        <input type="number" id="assetsCount" class="form-control form-control-sm" min="0" placeholder="Enter number of assets">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div id="assetsFields" class="row"></div> 
+                                                                        
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="sparesCount">Spares Count</label>
+                                                                                        <input type="number" id="sparesCount" class="form-control form-control-sm" min="0" placeholder="Enter number of spares">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        
+                                                                            <div id="sparesFields" class="row"></div>
+                                                                        
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Total</label>
+                                                                                        <input type="text" id="totalCount" class="form-control form-control-sm" value="0" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        
                                                                         </form>
+                                                                        
+                                                                        
                                                                     </div>
 
                                                                     <!-- Modal Footer -->
@@ -520,78 +492,83 @@
             <!-- Modal Header -->
             <div class="modal-header">
                 <h5 class="modal-title" id="updateModalLabel">
-                    Update Contract Log</h5>
+                    Stage Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
             <!-- Modal Body -->
-            <div class="modal-body">
-                <form id="updateLogForm">
-                    <div class="row">
-                        <div class="col-md-6">
-                         <div class="form-group">
-                             <label for="update-staffID">Staff ID</label>
-                             <select class="form-control form-control-sm" name="staffID" id="update-staffId">
-                                 
-                                
-                             </select>
-                         </div>
-                        </div>
-                        <div class="col-md-6">
-                         <div class="form-group">
-                             <label for="update-staffName">Staff Name</label>
-                             <input type="text"
-                                 class="form-control form-control-sm"
-                                 id="update-staffName" name="staffName"
-                                 placeholder="Enter Staff Name" disabled>
-                         </div>
-                        </div>
-                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="update-basicPay">Basic Pay</label>
-                                <input type="number" name="basicPay" class="form-control form-control-sm" id="update-basicPay"
-                                    placeholder="Enter Basic Pay">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="update-allowance">Allowance</label>
-                                <input type="number" name="allowance" class="form-control form-control-sm" id="update-allowance"
-                                    placeholder="Enter Allowance">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="update-grossPay">Gross Pay</label>
-                                <input type="number"  name="grossPay" class="form-control form-control-sm" id="update-grossPay"
-                                    placeholder="0.0" aria-disabled="true" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="update-designation">Current Designation</label>
-                                <select class="form-control form-control-sm" name="designation" id="update-designation">
-                                    <option value="" disabled selected>Select Designation</option>
-                                    
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+            <div class="modal-body equipment-list-table" >
+                <form id="procurementForm" class="form-control">
+                    <table class="table" id="procurentTable">
+                        <tbody >
+                            <tr>
+                                <td>Vendor Finalized/Tender Finalized Date</td>
+                                <td><input type="date" name="vendorFinalised" id="vendorFinalised" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Vendor Received Quotation Date</td>
+                                <td><input type="date"  name="vendorReceivedQuotation" id="vendorReceivedQuotation" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Intend Raised Date</td>
+                                <td><input type="date" name="intendRaised" id="intendRaised" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Admin Approved Date</td>
+                                <td><input type="date" name="adminApproved" id="adminApproved" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>PO Released Date</td>
+                                <td><input type="date" name="poReleased" id="poReleased" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Equipment Delivered to NTCPWC Date</td>
+                                <td><input type="date" name="equipmentDeliveredAtNtcpwc" id="equipmentDeliveredAtNtcpwc" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Payment Settled to Vendor by NTCPWC Date</td>
+                                <td><input type="date" name="paymentSettledToVendorByNtcpwc" id="paymentSettledToVendorByNtcpwc" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Invoice Submitted by NTCPWC</td>
+                                <td><input type="date" name="invoiceSubmittedByNtcpwc" id="invoiceSubmittedByNtcpwc" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Amount Paid (Excl. GST)</td>
+                                <td><input type="number" name="amountPaid" id="amountPaid" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>GST</td>
+                                <td><input type="number" name="gst" id="gst" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Total Amount Paid</td>
+                                <td><input type="number" name="totalAmountPaid" id="totalAmountPaid" class="form-control" readonly></td>
+                            </tr>
+                            <tr>
+                                <td>Amount Received</td>
+                                <td><input type="number" name="amountReceived" id="amountReceived" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Date at Which Supplied at Port</td>
+                                <td><input type="date" name="suppliedAtPort" id="suppliedAtPort" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td>Installed at Port Date</td>
+                                <td><input type="date" name="installedAtPort" id="installedAtPort" class="form-control"></td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
                 </form>
             </div>
 
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
-                <button type="button" class="btn btn-success btn-sm" id="update_log_btn">Update</button>
+                <button type="button" class="btn btn-success btn-sm" id="submit_procurement_btn">Submit</button>
             </div>
         </div>
     </div>
@@ -604,26 +581,35 @@
                                                                 class="btn btn-primary d-flex align-items-center gap-2 px-sm-4 py-sm-2 rounded-pill shadow"
                                                                 data-toggle="modal" data-target="#addNewModal">
                                                                 <i class="ti-plus text-white fs-5"></i>
-                                                                <span class="fw-bold">Add New</span>
+                                                                <span class="fw-bold">Add Equipment</span>
                                                             </button>
                                                             
                                                         </div>
-                                                       
+                                                        
                                                         <div class="mb-3 p-3 filter">
                                                             <div class="row g-3">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="d-flex flex-column">
-                                                                        <label for="designationFilter" class="text-muted small mb-1">Designation</label>
-                                                                        <select id="designationFilter" class="form-select form-select-sm border-secondary">
+                                                                        <label for="equipmentCategoryFilter" class="text-muted small mb-1">Equipment Category</label>
+                                                                        <select id="equipmentCategoryFilter" class="form-select form-select-sm border-secondary">
                                                                             <option value="">All</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                         
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <div class="d-flex flex-column">
-                                                                        <label for="staffIdFilter" class="text-muted small mb-1">Staff ID</label>
-                                                                        <select id="staffIdFilter" class="form-select form-select-sm border-secondary">
+                                                                        <label for="currentStageFilter" class="text-muted small mb-1">Current Stage</label>
+                                                                        <select id="currentStageFilter" class="form-select form-select-sm border-secondary">
+                                                                            <option value="">All</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                                <div class="col-md-4">
+                                                                    <div class="d-flex flex-column">
+                                                                        <label for="portFilter" class="text-muted small mb-1">Port</label>
+                                                                        <select id="portFilter" class="form-select form-select-sm border-secondary">
                                                                             <option value="">All</option>
                                                                         </select>
                                                                     </div>
@@ -636,9 +622,6 @@
                                                             
                                                             </div>
                                                         </div>
-                                                        
-                                                        
-                                                        <!-- <div id="colvisContainer"></div> -->
                                                         <div class="d-flex justify-content-center align-items-center">
                                                             
                                                             <div class="table-responsive">
@@ -646,15 +629,16 @@
                                                                     class="table table-striped table-border-small rounded table-hover">
                                                                     <thead class="bg-primary text-white">
                                                                         <tr>
-                                                                            <th>Staff ID</th>
-                                                                            <th>Contract Start Date</th>
-                                                                            <th>Contract End Date</th>
-                                                                            <th>Basic Pay</th>
-                                                                            <th>Allowance</th>
-                                                                            <th>Gross Pay</th>
-                                                                            <th>Current Designation</th>
-                                                                            <!-- <th>Actions</th> -->
-                                                                            <th>Update</th>
+                                                                            <th>S.NO.</th>
+                                                                            <th>Port</th>
+                                                                            <th>Equipment Category</th>
+                                                                            <th>Equipment</th>
+                                                                            <th>Total Quantity</th>
+                                                                            <th>Quantity Delivered</th>
+                                                                            <th>Quantity Pending For Delivery</th>
+                                                                            <th>Current Stage</th>
+                                                                            <th>Reason</th>
+                                                                            <th>Stage Details</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -729,7 +713,7 @@
 <script type="module" src="./assets/js/axiosInstance.js"></script>
 <script src="./assets/js/apiRequests.js"></script>
 <script src="./assets/js/api.js"></script>
-<script src="assets/js/contract-logs.js"></script>
+<script src="assets/js/equipmentlist.js"></script>
 <script src="assets/js/popup.js"></script>
 <script src="assets/js/script.js"></script>
 
@@ -738,58 +722,62 @@
 $(document).ready(async function () {
     var table = $('#myTable').DataTable({
         "paging": true,
-        "pageLength": 25,
+        "pageLength": 50,
         "lengthMenu": [5, 10, 25, 50, 100],
         dom: '<"top"l>frtip',
-        buttons: ['excel', 'csv', 'pdf']
+        buttons: ['excel', 'csv', {
+            extend: 'pdf',
+            text: 'PDF',
+            orientation: 'landscape', 
+            exportOptions: {
+                columns: ':visible',
+                search: 'applied',
+                order: 'applied',
+                page: 'all',
+            }
+        },{
+            extend: 'colvis',
+            hidestart:[ 8],
+            // columns: [8],
+           
+            text: 'Column Visibility',
+        }],
+        
+        "columnDefs": [
+        { "targets": [8], "visible": false } 
+        ]
     });
 
-    // new $.fn.dataTable.Buttons(table, {
-    //     buttons: [
-    //         { extend: 'excelHtml5', title: 'Contract logs', exportOptions: { columns: [0, 1, 2, 3, 4, 6] } },
-    //         { extend: 'csvHtml5', title: 'Contract logs', exportOptions: { columns: [0, 1, 2, 3, 4, 6] } },
-    //         { extend: 'pdfHtml5', title: 'Contract logs', exportOptions: { columns: [0, 1, 2, 3, 4, 6] } },
-    //         { extend: 'colvis', text: 'Column Visibility', postfixButtons: ['colvisRestore'], className: 'btn btn-primary' }
-    //     ]
-    // });
 
-    // table.buttons(0, null).container().appendTo($('#exportButtons'));
     
     table.buttons().container().appendTo($('#exportButtons'));
 
-    // $('#exportExcel').on('click', function () { table.button('.buttons-excel').trigger(); });
-    // $('#exportCSV').on('click', function () { table.button('.buttons-csv').trigger(); });
-    // $('#exportPDF').on('click', function () { table.button('.buttons-pdf').trigger(); });
-    // $('#colvis').on('click', function () { table.button('.buttons-colvis').trigger(); });
 
-
-    $('#designationFilter').on('change', function () {
-        const selectedDesignation = $(this).val();
-        table.column(6).search(selectedDesignation ? '^' + selectedDesignation + '$' : '', true, false).draw();
+    $('#currentStageFilter').on('change', function () {
+        const selectedStage = $(this).val();
+        table.column(7).search(selectedStage ? '^' + selectedStage + '$' : '', true, false).draw();
     });
 
 
-    $('#staffIdFilter').on('change', function () {
-        const selectedStaffId = $(this).val();
-        table.column(0).search(selectedStaffId ? '^' + selectedStaffId + '$' : '', true, false).draw();
+    $('#portFilter').on('change', function () {
+        const selectedPort = $(this).val();
+        table.column(1).search(selectedPort ? '^' + selectedPort + '$' : '', true, false).draw();
     });
+    $('#equipmentCategoryFilter').on('change', function () {
+        const selectedCategory = $(this).val();
+        table.column(2).search(selectedCategory ? '^' + selectedCategory + '$' : '', true, false).draw();
+    });
+
 
 
 
 });
 
 
-document.getElementById('basicPay').addEventListener('input', updateGrossPay);
-document.getElementById('allowance').addEventListener('input', updateGrossPay);
-function updateGrossPay() {
-    let basicPay = parseFloat(document.getElementById('basicPay').value) || 0.0;
-    let allowance = parseFloat(document.getElementById('allowance').value) || 0.0;
-    document.getElementById('grossPay').value = (basicPay + allowance).toFixed(2);
-}
+
 
 
 function toggleAccordion(button) {
-    
         const content = button.parentElement.nextElementSibling;
         content.style.display = (content.style.display === "none" || content.style.display === "") ? "block" : "none";
 
@@ -798,8 +786,104 @@ function toggleAccordion(button) {
         icon.classList.toggle("fa-chevron-up");
 }
 
-</script>
 
+$('#logout-button').on('click', function () {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    window.location.href = 'login.html';
+});
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const assetsCountInput = document.getElementById('assetsCount');
+      const sparesCountInput = document.getElementById('sparesCount');
+      const assetsFieldsContainer = document.getElementById('assetsFields');
+      const sparesFieldsContainer = document.getElementById('sparesFields');
+      const totalCountDisplay = document.getElementById('totalCount');
+    
+      const createFields = (container, count, label) => {
+    container.innerHTML = '';
+
+    const tableWrapper = document.createElement('div');
+    tableWrapper.style.padding = '10px';
+    tableWrapper.style.border = '1px solid #ddd';
+    tableWrapper.style.borderRadius = '5px';
+    tableWrapper.style.margin = '10px auto'; 
+    tableWrapper.style.maxWidth = '100%'; 
+    // tableWrapper.style.backgroundColor = '#f9f9f9';
+
+    const table = document.createElement('table');
+    table.className = 'table table-bordered';
+    table.style.tableLayout = 'fixed';
+    table.style.width = '100%';
+    table.style.margin = '0 auto';
+
+    // Table header
+    const thead = document.createElement('thead');
+    thead.innerHTML = `
+        <tr style="text-align: center;">
+            <th style="width: 50%; padding: 8px;">${label}</th>
+            <th style="width: 50%; padding: 8px;">Serial No.</th>
+        </tr>
+    `;
+    thead.className='bg-primary text-white'
+    table.appendChild(thead);
+
+    
+    const tbody = document.createElement('tbody');
+    for (let i = 1; i <= count; i++) {
+        const row = document.createElement('tr');
+
+        const td1 = document.createElement('td');
+        td1.style.textAlign = 'center';
+        td1.style.padding = '5px';
+        td1.innerText = `${label} ${i}`;
+        row.appendChild(td1);
+
+        const td2 = document.createElement('td');
+        td2.style.textAlign = 'center';
+        td2.style.padding = '5px';
+
+        const input = document.createElement('input');
+        input.type = "text";
+        input.style.width = '100%';
+        input.style.height = '30px';
+        input.style.textAlign = 'center';
+        input.style.border = '1px solid #ccc';
+        input.placeholder = `Enter ${label} Serial No.`;
+        input.className = 'form-control';
+
+        td2.appendChild(input);
+        row.appendChild(td2);
+
+        tbody.appendChild(row);
+    }
+
+    table.appendChild(tbody);
+    tableWrapper.appendChild(table);
+    container.appendChild(tableWrapper);
+};
+
+
+     
+    
+      assetsCountInput.addEventListener('input', () => {
+        createFields(assetsFieldsContainer, parseInt(assetsCountInput.value) || 0, 'Asset');
+        updateTotal();
+      });
+    
+      sparesCountInput.addEventListener('input', () => {
+        createFields(sparesFieldsContainer, parseInt(sparesCountInput.value) || 0, 'Spare');
+        updateTotal();
+      });
+    
+      const updateTotal = () => {
+        const assetsCount = parseInt(assetsCountInput.value) || 0;
+        const sparesCount = parseInt(sparesCountInput.value) || 0;
+        totalCountDisplay.value = assetsCount + sparesCount;
+      };
+    });
+    </script>
     
 </body>
 
