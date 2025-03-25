@@ -1,4 +1,23 @@
-const BASE_URL = 'http://localhost:3000';
+
+function getBaseUrl() {
+    const { hostname } = location;
+    const environments = {
+      dev: { host: "localhost", baseUrl: "http://localhost:3000" },
+      prod: { host: "ntcpwcit.in", baseUrl: "https://ntcpwcit.in/ivts-fms/api" } 
+    };
+  
+    for (let env in environments) {
+      if (environments[env].host == hostname) {
+        return environments[env].baseUrl;
+      }
+    }
+  
+    return "http://localhost:3000"; 
+  }
+  
+
+
+const BASE_URL = getBaseUrl();
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,
@@ -10,7 +29,7 @@ axiosInstance.interceptors.request.use(
     (config) => {
         const token = sessionStorage.getItem('token');
 
-        if (!config.url.includes('login') && !config.url.includes('register')) {
+        if (!config.url.includes('auth')&&!config.url.includes('password')) {
             if (isTokenExpired()) {
                 handleSessionExpiry();
                 return Promise.reject(new Error('Session expired. Please login again.'));
@@ -28,11 +47,18 @@ axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response?.status === 401) {
+            const errorMessage = error.response?.data?.message || '';
+
+            if (errorMessage.toLowerCase().includes('invalid') || errorMessage.toLowerCase().includes('wrong')||errorMessage.toLowerCase().includes('active')) {
+                return Promise.reject(error);
+            }
+
             handleSessionExpiry();
         }
         return Promise.reject(error);
     }
 );
+
 
 function handleSessionExpiry() {
     if (!isLoggingOut) {
@@ -61,7 +87,7 @@ function isTokenExpired() {
 }
 
 
-if (!window.location.pathname.includes('login.html') && !window.location.pathname.includes('signup.html')) {
+if (!window.location.pathname.includes('login.html') && !window.location.pathname.includes('signup.html')&&!window.location.pathname.includes('forgot-password.html')&&!window.location.pathname.includes('reset-password.html')) {
     setInterval(() => {
         if (isTokenExpired()) {
             handleSessionExpiry();

@@ -102,6 +102,21 @@ const api = {
     createcategory:(data)=>postData(API_ROUTES.createEquipmentCategory,{category_name:data}),
     getCategory:(id)=>fetchData(API_ROUTES.equipmentCategoryBase+`/${id}`,"category"),
 
+    createEquipment:(data)=>postData(API_ROUTES.createEquipment,data),
+
+    getAllOMInvoices:()=>fetchData(API_ROUTES.getAllOMInvoices,"invoices"),
+
+    getMailSentStatus:()=>fetchData(API_ROUTES.getMailSentStatus,"statuses"),
+    toggleMailSentStatus:(id,status)=>putData(API_ROUTES.toggleMailSentStatus+`/${id}`,{status}),
+    getAllOrganisationsInvoiceStatus:()=>fetchData('/organisations/all/hq',"organisations"),
+    getAllActiveOrganisationsExceptHQ:()=>fetchData('/organisations/all/hq',"organisations"),
+
+    groupEquipmentInvoiceByProjectNumber:()=>fetchData(API_ROUTES.groupEquipmentInvoiceByProjectNumber,"invoices"),
+    getInvoicesByProjectNumber:(id)=>fetchData(API_ROUTES.getInvoicesByProjectNumber+`/${id}`,"invoices"),
+    createEquipmentInvoice:(data)=>postData(API_ROUTES.equipmentInvoiceBase+'/',data),
+    updateEquipmentInvoice:(data)=>putData(API_ROUTES.equipmentInvoiceBase,{data}),
+
+    downloadStaffData:()=>fetchData('/staff/download/all',"staffDetails"),
 };
 
 const fetchData = (url, key) => axiosInstance.get(url).then(res => key ? res.data[key] : res.data);

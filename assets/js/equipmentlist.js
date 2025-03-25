@@ -251,6 +251,7 @@ function loadStageDetails(obj) {
                     console.error("Error updating procurement:", error);
                 });
         } else {
+           
             axiosInstance.post("/procurements", data)
                 .then(async response => {
                     await refreshTable();
@@ -338,3 +339,48 @@ async function loadEquipmentCategoryOptions(id) {
         console.error("Error loading categories:", error);
     }
 }
+
+
+document.querySelector("#add_equipment_btn").addEventListener('click', async () => {
+    try{
+        const port=$('#portName').val();
+        const equipment_category=$('#equipmentCategory').val();    
+        const assetsCount=$('#assetsCount').val();
+        const sparesCount=$('#sparesCount').val();    
+        const total_quantity=$('#totalCount').val();
+        const equipment=$('#equipmentName').val();
+        const { assets, spares } = getSerialNumbers();
+       
+        
+        const data={
+            port,
+            equipment_category,
+            total_quantity,
+            equipment,
+            assets,
+            spares,
+        }
+
+        console.log(data);
+
+        if(!equipment){
+            showErrorPopupFadeInDown('Please enter equipment name');
+            return;
+        }
+       
+        await api.createEquipment({port,equipment_category,total_quantity,equipment,assets,spares});
+       
+        await refreshTable();
+
+        showPopupFadeInDown('success');
+        
+        document.getElementById('dynamicForm').reset();
+
+    }catch(err){
+
+        console.log(err);
+
+        showErrorPopupFadeInDown(err.message||'error inserting data');
+    }
+});
+

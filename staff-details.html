@@ -38,8 +38,14 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/custom.css">
 
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> -->
+    <style>
+        #policyTable{
+            border-radius: 5px;
+        }
+    </style>
 
 </head>
 
@@ -144,7 +150,7 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="header-notification">
+                            <!-- <li class="header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <i class="ti-bell"></i>
                                     <span class="badge bg-c-red"></span>
@@ -191,7 +197,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
@@ -207,16 +213,6 @@
                                     <li class="waves-effect waves-light">
                                         <a href="user-profile.html">
                                             <i class="ti-user"></i> Profile
-                                        </a>
-                                    </li>
-                                    <li class="waves-effect waves-light">
-                                        <a href="email-inbox.html">
-                                            <i class="ti-email"></i> My Messages
-                                        </a>
-                                    </li>
-                                    <li class="waves-effect waves-light">
-                                        <a href="auth-lock-screen.html">
-                                            <i class="ti-lock"></i> Lock Screen
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
@@ -272,14 +268,14 @@
                                 
                                     <ul class="pcoded-item pcoded-left-item">
                                         <li>
-                                            <a href="invoices.html" class="waves-effect waves-dark">
+                                            <a href="o&mInvoices.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-calendar"></i><b>D</b></span>
-                                                <span class="pcoded-mtext">Monthly Invoices</span>
+                                                <span class="pcoded-mtext">O&M Invoices</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li>
-                                          <a href="invoices.html" class="waves-effect waves-dark">
+                                          <a href="equipment-invoices.html" class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-settings"></i><b>D</b></span>
                                               <span class="pcoded-mtext">Equipment Invoices</span>
                                               <span class="pcoded-mcaret"></span>
@@ -302,6 +298,13 @@
                                   <div class="accordion-content" style="display: none;">
                                     
                                     <ul class="pcoded-item pcoded-left-item">
+                                        <li>
+                                            <a href="procurementStagesDashboard.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                                <span class="pcoded-mtext">Procurements Dashboard</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="equipmentlist.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
@@ -397,17 +400,17 @@
                                                        
  <!-----------------------------------------------ADD-NEW-MODAl-START--------------------------------------------------------------------->
                                                       
-                                                        <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModalLabel"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog modal-lg" role="document">
-                                                                <div class="modal-content">
+                                                        <div>
+                                                            
+                                                            <div class="d-none" id="tab">
+                                                                <div class="nav nav-tabs md-tabs" id="myTab" role="tablist">
+                                                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1" type="button">Basic Details</button>
+                                                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2" type="button">Insurance Details</button>
+                                                                </div>
+                                                               <div class="tab-content mt-3">
+                                                                <div class="tab-pane fade show active " id="tab1">
                                                                     <!-- Modal Header -->
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="addNewModalLabel">Add New Staff</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
+                                                                    
                                                         
                                                                     <!-- Modal Body -->
                                                                     <div class="modal-body">
@@ -417,7 +420,7 @@
                                                                                 <div class="col-md-6">
                                                                                     <!-- Staff ID -->
                                                                                     <div class="form-group">
-                                                                                        <label for="staffID">Staff ID</label>
+                                                                                        <label for="staffID">Staff ID<span class="text-danger">*</span></label>
                                                                                         <input type="text" name="staffID" maxlength="20" class="form-control form-control-sm" id="staffId"
                                                                                             placeholder="Enter Staff ID" required>
                                                                                     </div>
@@ -478,10 +481,11 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            <hr>
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
                                                                                     <div class="form-group">
-                                                                                        <label for="locationOfWork">Location of Work</label>
+                                                                                        <label for="locationOfWork">Location of Work<span class="text-danger">*</span></label>
                                                                                         <select class="form-control form-control-sm" id="locationSelect" name="locationOfWork">
                                                                                             <option value="" disabled selected>Select Location</option>
                                                                                            
@@ -543,208 +547,273 @@
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>                                                       
-                                                                            <!-- Current Designation
-                                                                                                                                <div class="form-group">
-                                                                                                                                    <label for="designation">Current Designation</label>
-                                                                                                                                    <select class="form-control form-control-sm" id="designation">
-                                                                                                                                        <option value="" disabled selected>Select Designation</option>
-                                                                                                                                        <option value="Designation 1">Designation 1</option>
-                                                                                                                                        <option value="Designation 2">Designation 2</option>
-                                                                                                                                        <option value="Designation 3">Designation 3</option>
-                                                                                                                                        <option value="Designation 4">Designation 4</option>
-                                                                                                                                        <option value="Designation 5">Designation 5</option>
-                                                                                                                                    </select>
-                                                                                                                                </div> -->
+                                                                            </div>                                                        
                                                                         </form>
                                                                     </div>
                                                         
                                                                     <!-- Modal Footer -->
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
-                                                                        <button type="submit" class="btn btn-success btn-sm" id="add_staff_btn" data-dismiss="modal">Submit</button>
-                                                                    </div>
+                                                                    
                                                                 </div>
+                                                                <div class="tab-pane fade" id="tab2">
+                                                                    <div class="modal-body">
+                                                                        <form id="new-insurance-form">
+                                                                            <div class="row">
+                                                                                <!-- Left Column -->
+                                                                                <div class="col-md-6">
+                                                                                    <!-- Staff ID -->
+                                                                                    <div class="form-group">
+                                                                                        <label for="insuranceProvider">Insurance Provider<span class="text-danger">*</span></label>
+                                                                                        <input type="text" name="insuranceProvider" maxlength="20" class="form-control form-control-sm" id="insuranceProvider"
+                                                                                            placeholder="Enter Insurance Provider" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <!-- Staff Name -->
+                                                                                    <div class="form-group">
+                                                                                        <label for="policyNumber">Policy Number<span class="text-danger">*</span></label>
+                                                                                        <input type="text" name="policyNumber" maxlength="25" class="form-control form-control-sm" id="policyNumber"
+                                                                                            placeholder="Enter Policy Number">
+                                                                                    </div>
+                                                        
+                                                                                </div>
+                                                        
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="policyStartDate">Policy Start Date<span class="text-danger">*</span></label>
+                                                                                        <input type="date" name="policyStartDate" maxlength="20" class="form-control form-control-sm" id="policyStartDate"
+                                                                                            placeholder="Enter Policy start Date" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="policyEndDate">Policy Expiry Date</label>
+                                                                                        <input type="date" name="policyExpiryDate" maxlength="20" class="form-control form-control-sm" id="policyExpiryDate"
+                                                                                            placeholder="Enter Policy Expiry Date" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>  
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="exitButton">Exit</button>
+                                                                    <button type="submit" class="btn btn-success" id="add_staff_btn" data-dismiss="modal">Submit</button>
+                                                                </div>  
+                                                               </div>
                                                             </div>
                                                         </div>
 
 <!---------------------------------------------------------------------------------------------ADD-NEW-MODAL-END---------------------------------------------------->
  <!-----------------------------------------------UPDATE-MODAl-START--------------------------------------------------------------------->
                                                       
- <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
- aria-hidden="true">
- <div class="modal-dialog modal-lg" role="document">
-     <div class="modal-content">
-         <!-- Modal Header -->
-         <div class="modal-header">
-             <h5 class="modal-title" id="updateModalLabel">Update Staff Details</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-             </button>
-         </div>
+ <div>
+ <div class="d-none" id="tabWrapper">
+        <div class="nav nav-tabs md-tabs" id="myTab1" role="tablist">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab3" type="button">Basic Details</button>
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab4" type="button">Insurance Details</button>
+        </div>
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active " id="tab3">
+             <!-- Modal Body -->
+             <div class="modal-body">
+                 <form id="update-staff-form">
+                     <div class="row">
+                         <!-- Left Column -->
+                         <div class="col-md-6">
+                             <!-- Staff ID -->
+                             <div class="form-group">
+                                 <label for="update-staffId">Staff ID</label>
+                                 <input type="text" name="staffID" class="form-control form-control-sm" id="update-staffId" maxlength="20"
+                                     placeholder="Enter Staff ID">
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+                             <!-- Staff Name -->
+                             <div class="form-group">
+                                 <label for="update-staffName">Staff Name</label>
+                                 <input type="text" maxlength="25" class="form-control form-control-sm" name="staffName" id="update-staffName"
+                                     placeholder="Enter Staff Name">
+                             </div>
+    
+                         </div>
+    
+                     </div>
+                     <div class="row">
+                         <div class="col-md-6">
+                             <div class="form-group">
+                                 <label for="update-dateOfBirth">Date of Birth</label>
+                                 <input type="date" name="dateOfBirth" class="form-control form-control-sm" id="update-dateOfBirth">
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+                             <!-- Aadhaar Number -->
+                             <div class="form-group">
+                                 <label for="update-aadharNumber" id="aadharLabel">Aadhaar Number</label>
+                                 <input type="number" name="aadharNumber" class="form-control form-control-sm" id="update-aadharNumber"
+                                     placeholder="Aadhaar Number" maxlength="12">
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-md-6">
+                             <!-- Contact Number -->
+                             <div class="form-group">
+                                 <label for="update-contactNumber">Contact Number</label>
+                                 <input type="tel" class="form-control form-control-sm" maxlength="10" name="contactNumber" id="update-contactNumber"
+                                     placeholder="Enter Contact Number">
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+                             <!-- Email ID -->
+                             <div class="form-group">
+                                 <label for="update-mail">Email ID</label>
+                                 <input type="email" name="mail" class="form-control form-control-sm" id="update-mail"
+                                     placeholder="Enter Email ID">
+                             </div>
+    
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-md-12">
+                             <!-- Permanent Address -->
+                             <div class="form-group">
+                                 <label for="update-permanentAddress">Permanent Address</label>
+                                 <textarea class="form-control form-control-sm" id="update-permanentAddress" name="permanentAddress" rows="2" maxlength="255"
+                                     placeholder="Enter Permanent Address"></textarea>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="update-location">Location of Work</label>
+                                <select class="form-control form-control-sm" id="update-location" name="locationOfWork">  </select> 
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row">
+                         <div class="col-md-6">
+                             <!-- Date of Joining -->
+                             <div class="form-group">
+                                 <label for="update-dateOfJoining">Date of Joining</label>
+                                 <input type="date" name="dateOfJoining" class="form-control form-control-sm" id="update-dateOfJoining">
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+                             <!-- Salary at Joining -->
+                             <div class="form-group">
+                                 <label for="update-salary">Salary at Joining</label>
+                                 <input type="number" name="salary" class="form-control form-control-sm" id="update-salary"
+                                     placeholder="Enter Salary">
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div class="row d-flex align-items-center">
+                         <div class="col-md-6">
+                             <div class="form-group">
+                                 <label for="update-qualifications">Qualifications</label>
+                                 <input type="text" name="qualifications" maxlength="100" class="form-control form-control-sm" id="update-qualifications"
+                                     placeholder="Enter qualifications">
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+                             <!-- Highest Qualification -->
+                             <div class="form-group">
+                                 <label for="update-highestQualification">Highest Qualification</label>
+                                 <select class="form-control form-control-sm" id="update-highestQualification" name="highestQualification">
+                                     
+                                 </select>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row d-flex align-items-center">
+                         <div class="col-md-6">
+                             <div class="form-group">
+                                 <label for="update-certifications">Certifications</label>
+                                 <input type="text" class="form-control form-control-sm" id="update-certifications"
+                                     placeholder="Enter Certifications" name="certifications">
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+    
+                             <!-- Courses -->
+                             <div class="form-group">
+                                 <label for="update-courses">Courses</label>
+                                 <select class="form-control form-control-sm" id="update-courseSelect" name="courses">
+                                     <option value="" disabled selected>Select Course</option>
+                                 </select>
+                             </div>
+                         </div>
+                     </div>                                                       
+                 </form>
+             </div>
+        </div>
+        <div class="tab-pane fade show" id="tab4">
+            <div class="mt-4">
+                <table id="policyTable" class="table">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Update Date</th>
+                            <th>New Policy Number</th>
+                            <th>New Provider</th>
+                            <th>New Policy Start Date</th>
+                            <th>New Expiry Date</th>
+                            <th>Updated By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2/1/2025</td>
+                            <td>INS-99999</td>
+                            <td>ABC Insurance</td>
+                            <td>2/1/2025</td>
+                            <td>2/1/2026</td>
+                            <td>HR Admin</td>
+                        </tr>
+                        <tr>
+                            <td>5/10/2024</td>
+                            <td>INS-88888</td>
+                            <td>XYZ Insurance</td>
+                            <td>5/10/2024</td>
+                            <td>5/10/2025</td>
+                            <td>HR Manager</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-end mt-2">
+                    <button class="btn btn-success btn-sm" id="addRowBtn">
+                        <i class="ti-plus"></i> Add Row
+                    </button>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+        </div>
+        </div>
+        
 
-         <!-- Modal Body -->
-         <div class="modal-body">
-             <form id="update-staff-form">
-                 <div class="row">
-                     <!-- Left Column -->
-                     <div class="col-md-6">
-                         <!-- Staff ID -->
-                         <div class="form-group">
-                             <label for="update-staffId">Staff ID</label>
-                             <input type="text" name="staffID" class="form-control form-control-sm" id="update-staffId" maxlength="20"
-                                 placeholder="Enter Staff ID">
-                         </div>
-                     </div>
-                     <div class="col-md-6">
-                         <!-- Staff Name -->
-                         <div class="form-group">
-                             <label for="update-staffName">Staff Name</label>
-                             <input type="text" maxlength="25" class="form-control form-control-sm" name="staffName" id="update-staffName"
-                                 placeholder="Enter Staff Name">
-                         </div>
-
-                     </div>
-
-                 </div>
-                 <div class="row">
-                     <div class="col-md-6">
-                         <div class="form-group">
-                             <label for="update-dateOfBirth">Date of Birth</label>
-                             <input type="date" name="dateOfBirth" class="form-control form-control-sm" id="update-dateOfBirth">
-                         </div>
-                     </div>
-                     <div class="col-md-6">
-                         <!-- Aadhaar Number -->
-                         <div class="form-group">
-                             <label for="update-aadharNumber" id="aadharLabel">Aadhaar Number</label>
-                             <input type="number" name="aadharNumber" class="form-control form-control-sm" id="update-aadharNumber"
-                                 placeholder="Aadhaar Number" maxlength="12">
-                         </div>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-md-6">
-                         <!-- Contact Number -->
-                         <div class="form-group">
-                             <label for="update-contactNumber">Contact Number</label>
-                             <input type="tel" class="form-control form-control-sm" maxlength="10" name="contactNumber" id="update-contactNumber"
-                                 placeholder="Enter Contact Number">
-                         </div>
-                     </div>
-                     <div class="col-md-6">
-                         <!-- Email ID -->
-                         <div class="form-group">
-                             <label for="update-mail">Email ID</label>
-                             <input type="email" name="mail" class="form-control form-control-sm" id="update-mail"
-                                 placeholder="Enter Email ID">
-                         </div>
-
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-md-12">
-                         <!-- Permanent Address -->
-                         <div class="form-group">
-                             <label for="update-permanentAddress">Permanent Address</label>
-                             <textarea class="form-control form-control-sm" id="update-permanentAddress" name="permanentAddress" rows="2" maxlength="255"
-                                 placeholder="Enter Permanent Address"></textarea>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-md-12">
-                         <div class="form-group">
-                             <label for="update-location">Location of Work</label>
-                             <select class="form-control form-control-sm" id="update-location" name="locationOfWork">
-                                
-                                
-                         </div>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-md-6">
-                         <!-- Date of Joining -->
-                         <div class="form-group">
-                             <label for="update-dateOfJoining">Date of Joining</label>
-                             <input type="date" name="dateOfJoining" class="form-control form-control-sm" id="update-dateOfJoining">
-                         </div>
-                     </div>
-                     <div class="col-md-6">
-                         <!-- Salary at Joining -->
-                         <div class="form-group">
-                             <label for="update-salary">Salary at Joining</label>
-                             <input type="number" name="salary" class="form-control form-control-sm" id="update-salary"
-                                 placeholder="Enter Salary">
-                         </div>
-                     </div>
-                 </div>
-                 <div class="row d-flex align-items-center">
-                     <div class="col-md-6">
-                         <div class="form-group">
-                             <label for="update-qualifications">Qualifications</label>
-                             <input type="text" name="qualifications" maxlength="100" class="form-control form-control-sm" id="update-qualifications"
-                                 placeholder="Enter qualifications">
-                         </div>
-                     </div>
-                     <div class="col-md-6">
-                         <!-- Highest Qualification -->
-                         <div class="form-group">
-                             <label for="update-highestQualification">Highest Qualification</label>
-                             <select class="form-control form-control-sm" id="update-highestQualification" name="highestQualification">
-                                 
-                             </select>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="row d-flex align-items-center">
-                     <div class="col-md-6">
-                         <div class="form-group">
-                             <label for="update-certifications">Certifications</label>
-                             <input type="text" class="form-control form-control-sm" id="update-certifications"
-                                 placeholder="Enter Certifications" name="certifications">
-                         </div>
-                     </div>
-                     <div class="col-md-6">
-
-                         <!-- Courses -->
-                         <div class="form-group">
-                             <label for="update-courses">Courses</label>
-                             <select class="form-control form-control-sm" id="update-courseSelect" name="courses">
-                                 <option value="" disabled selected>Select Course</option>
-                             </select>
-                         </div>
-                     </div>
-                 </div>                                                       
-                 <!-- Current Designation
-                                                                     <div class="form-group">
-                                                                         <label for="designation">Current Designation</label>
-                                                                         <select class="form-control form-control-sm" id="designation">
-                                                                             <option value="" disabled selected>Select Designation</option>
-                                                                             <option value="Designation 1">Designation 1</option>
-                                                                             <option value="Designation 2">Designation 2</option>
-                                                                             <option value="Designation 3">Designation 3</option>
-                                                                             <option value="Designation 4">Designation 4</option>
-                                                                             <option value="Designation 5">Designation 5</option>
-                                                                         </select>
-                                                                     </div> -->
-             </form>
-         </div>
 
          <!-- Modal Footer -->
          <div class="modal-footer">
-             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
+             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" id="exitButton2">Exit</button>
              <button type="button" id="update_staff_btn" class="btn btn-success btn-sm">Update</button>
          </div>
-     </div>
+     
  </div>
 </div>
 
 <!---------------------------------------------------------------------------------------------UPDATE-MODAL-END---------------------------------------------------->   
 
 
+                                                       <div id="tableCard">
                                                         <div class="d-flex justify-content-end mb-5">
-                                                            <button
+                                                            <button id="addNew"
                                                                 class="btn btn-primary d-flex align-items-center gap-2 px-sm-4 py-sm-2 rounded-pill shadow"
                                                                 data-toggle="modal" data-target="#addNewModal">
                                                                 <i class="ti-plus text-white fs-5"></i>
@@ -776,7 +845,9 @@
 
                                                         <div class="row">
                                                             <div id="exportButtons" class="mb-3">
-                                                            
+                                                                <button onclick="fetchDataAndGenerateExcel()" class="dt-button">
+                                                                    Download All Data
+                                                                </button>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex justify-content-center align-items-center">
@@ -785,7 +856,7 @@
                                                                 
                                                                 
                                                                 <table id="myTable"
-                                                                    class="table table-striped table-border-small rounded table-hover">
+                                                                    class="table table-striped rounded table-hover">
                                                                     <thead class="bg-primary text-white text-center">
                                                                         <tr>
                                                                             <th>Staff ID</th>
@@ -822,14 +893,17 @@
                                                                                         <i class="ti-trash text-white" style="font-size: larger;"></i>
                                                                                     </button>
                                                                                 </div>
-                                                                            </td>
+                                                                            </td> 
                                                                         </tr> -->
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
+                                                       </div>
+
+
                                                     </div>
-                                                    <!-- table staff details end -->
+                                                    <!-- table staff details end --> 
                                                 </div>
                                             </div>
                                         </div>
@@ -859,6 +933,7 @@
 <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- DataTables CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -872,6 +947,10 @@
 <!-- Buttons for Excel, CSV, and PDF -->
 <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+
+<!-- Excel export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
 
 <!-- JSZip for Excel export -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
@@ -946,7 +1025,127 @@
         icon.classList.toggle("fa-chevron-up");
     }
 </script>
+<script>
+    document.querySelector('#addNew').addEventListener('click', function () {
+        document.querySelector('#tab').classList.remove('d-none');
+        document.querySelector('#tableCard').style.display = 'none';
+        document.querySelector('#exitButton').addEventListener('click',function(){
+            document.querySelector('#tab').classList.add('d-none');
+            document.querySelector('#tableCard').style.display = 'block';
+        });
+    });
 
+</script>
+<script>
+ $(document).ready(function () {
+    let table = $('#policyTable').DataTable();
+
+    
+    $('#addRowBtn').click(async function () {
+        const empID = $('#update-staffId').val();
+
+        try {
+            const checkResponse = await axiosInstance.get(`/insurance/active/${empID}`);
+            if (checkResponse.data.hasActivePolicy) {
+                showErrorPopupFadeInDown('Employee already has an active policy.');
+                return;
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Error checking active policy.');
+            return;
+        }
+
+        let rowNode = table.row.add([
+            `<input type="date" class="form-control policyStartDate">`,
+            `<input type="text" class="form-control policyNumber" placeholder="Policy Number">`,
+            `<input type="text" class="form-control provider" placeholder="Provider">`,
+            `<input type="date" class="form-control policyStartDate">`,
+            `<input type="date" class="form-control policyExpiryDate" readonly>`,
+            `<input type="text" class="form-control updatedBy" placeholder="Updated By">`,
+            `<button class="btn btn-danger btn-sm deleteRow">Delete</button>`
+        ]).draw(false).node();
+
+        
+        autoSaveInsurance(rowNode);
+    });
+
+   
+    $('#policyTable tbody').on('change', '.policyStartDate', function () {
+        let row = $(this).closest('tr');
+        let startDate = new Date($(this).val());
+        if (!isNaN(startDate)) {
+            startDate.setFullYear(startDate.getFullYear() + 1);
+            row.find('.policyExpiryDate').val(startDate.toISOString().split('T')[0]);
+        }
+    });
+
+  
+    $('#policyTable tbody').on('change', 'input', function () {
+        let row = $(this).closest('tr');
+        autoSaveInsurance(row);
+    });
+
+   
+    async function autoSaveInsurance(row) {
+        let empID = $('#update-staffId').val();
+        let policyNumber = $(row).find('.policyNumber').val();
+        let provider = $(row).find('.provider').val();
+        let policyStartDate = $(row).find('.policyStartDate').val();
+        let policyExpiryDate = $(row).find('.policyExpiryDate').val();
+        let updatedBy = $(row).find('.updatedBy').val();
+
+        if (!policyNumber || !provider || !policyStartDate || !policyExpiryDate || !updatedBy) {
+            console.warn('Skipping auto-save: missing fields');
+            return;
+        }
+
+        let insuranceData = {
+            employeeId:empID,
+            policyNumber:policyNumber,
+             provider,
+            policyStartDate,
+            policyEndDate:policyExpiryDate,
+            updatedBy:updatedBy
+        };
+
+        try {
+        await axiosInstance.post('/insurance/', insuranceData);
+        showSucessPopupFadeInDownLong('Insurance record added successfully.');
+
+        
+        row.html(`
+            <td>${policyStartDate}</td>
+            <td>${policyNumber}</td>
+            <td>${provider}</td>
+            <td>${policyStartDate}</td>
+            <td>${policyExpiryDate}</td>
+            <td>${updatedBy}</td>
+        `);
+    } catch (error) {
+        showErrorPopupFadeInDown('Error saving insurance record.');
+        console.error('Error saving insurance record:', error);
+    }
+    }
+
+    
+    $('#policyTable tbody').on('click', '.deleteRow', function () {
+        table.row($(this).parents('tr')).remove().draw();
+    });
+});
+
+
+    </script>
+    <script>
+        document.getElementById('policyStartDate').addEventListener('change', function () {
+    let startDate = new Date(this.value);
+    if (!isNaN(startDate)) {
+        startDate.setFullYear(startDate.getFullYear() + 1); 
+        document.getElementById('policyExpiryDate').value = startDate.toISOString().split('T')[0]; 
+    }
+});
+
+    </script>
 </body>
 
 </html>

@@ -161,10 +161,10 @@ async function fetchAllUsers(){
 }
 
 //logout
-document.getElementById('logout-button').addEventListener('click', logout);
-function logout() {
-    sessionStorage.removeItem('token');
-}
+// document.getElementById('logout-button').addEventListener('click', logout);
+// function logout() {
+//     sessionStorage.removeItem('token');
+// }
 
 //toggle status
 async function toggleStatus(element, id) {

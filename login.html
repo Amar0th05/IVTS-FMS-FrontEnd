@@ -36,7 +36,24 @@
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   </head>
+  <style>
+    .password-wrapper {
+    position: relative;
+}
 
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
+
+.toggle-password:hover {
+    color: #333;
+}
+  </style>
   <body themebg-pattern="theme1">
   <!-- Pre-loader start -->
   <div class="theme-loader">
@@ -116,7 +133,7 @@
                                         <div class="row mb-4">
                                             <div class="col-md-12 p-2 d-flex justify-content-center align-items-center flex-column">
                                                 <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-50 d-block mx-auto border-1" alt="ntcpwc-logo">
-                                                <h3 class="text-center fw-bold mt-3">Sign In</h3>
+                                                <h3 class="text-center fw-bold mt-3">IVTMS Management Portal</h3>
                                             </div>
                                         </div>
                                         
@@ -126,9 +143,14 @@
                                             <label class="float-label">Your Email Address</label>
                                         </div>
                                         <div class="form-group form-primary">
-                                            <input type="password" name="password" id="password" class="form-control" autocomplete="off" required>
-                                            <span class="form-bar"></span>
-                                            <label class="float-label">Password</label>
+                                            <div class="password-wrapper">
+                                                <input type="password" name="password" id="password" class="form-control" autocomplete="off" required>
+                                                <span class="form-bar"></span>
+                                                <label class="float-label">Password</label>
+                                                <span class="toggle-password" onclick="togglePasswordVisibility()">
+                                                    <i class="fa fa-eye" id="eye-icon"></i>
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="row m-t-25 text-left">
                                             <div class="col-12">
@@ -150,11 +172,8 @@
                                             </div>
                                         </div>
                                         <hr/>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p class="text-inverse text-left m-b-0">Thank you.</p>
-                                                <p class="text-inverse text-left"><a href="index.html"><b>Back to Home</b></a></p>
-                                            </div>
+                                        <div class="row d-flex justify-content-end">
+                                           
                                             <div class="col-md-6">
                                                 <!-- <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png"> -->
                                                 <p class="text-right f-right text-inverse"><a href="signup.html">Don't have an account?</a></p>
@@ -239,6 +258,22 @@
 <script src="./assets/js/login.js"></script>
 <script  src="./assets/js/api.js"></script>
 <script src="./assets/js/apiRequests.js"></script>
+<script>
+    function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eye-icon');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash'); 
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye'); 
+    }
+}
+</script>
 
 </body>
 

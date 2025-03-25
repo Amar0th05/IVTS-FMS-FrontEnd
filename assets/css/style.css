@@ -1076,6 +1076,14 @@ a.bg-danger:hover {
 .card-header-img~.btn-group i {
 	margin-right: 0;
 }
+.table-border-small{
+	text-align:center !important;
+	padding: 10px !important;
+}
+.table-border-small td{
+	width:50% !important;
+}
+
 .table-border-small th{
 	border: 0 solid white;
 }

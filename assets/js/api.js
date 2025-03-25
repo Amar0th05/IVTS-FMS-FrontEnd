@@ -1,4 +1,4 @@
-const API_ROUTES = {
+const   API_ROUTES = {
    
     getAllStaffs: `/staff/all`,
     getLog:(id)=>`/cl/log/${id}`,
@@ -64,7 +64,17 @@ const API_ROUTES = {
 
     createEquipmentCategory:`/equipmentCategories/create`,
     
+    equipmentBase:`/equipments`,
+    createEquipment:`/equipments/create`,
 
+    omInvoicesBase:`/om`,
+    getAllOMInvoices:`/om/all`,
+    getMailSentStatus:`/om/status`,
+    toggleMailSentStatus:`/om/status`,
+
+    equipmentInvoiceBase:`/equipmentInvoice`,
+    groupEquipmentInvoiceByProjectNumber:`/equipmentInvoice/group`,
+    getInvoicesByProjectNumber:`/equipmentInvoice/project`,
 };
 
 

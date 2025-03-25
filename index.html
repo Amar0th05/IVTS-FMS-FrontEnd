@@ -35,10 +35,135 @@
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     
     
+  <style>
+      .modern-table {
+      color: black !important;
+      width: 90%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+      border: 1px solid #ddd;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 10px;
+    }
+    .modern-table thead {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+    }
+    .modern-table th, .modern-table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 2px solid #ddd;
+    }
+    .modern-table tbody tr {
+      background: white;
+      transition: transform 0.2s ease-in-out;
+    }
+    .modern-table tbody tr:hover {
+      transform: scale(1.02);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    .modern-table tr:hover{
+      transform: scale(1.02);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    }
+   .modern-table td{
+    width: 50%;
+   }
 
+   .chart-container {
+        width: 100%;
+        height: 250px;
+    }
+    
+    .legend-container {
+        width: 100%;
+        max-height: 100px; 
+        overflow-y: auto;
+        text-align: center;
+        padding: 10px;
+    }
+   
+
+  </style>
+    <style>
+    
+      .table-modern {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .table-modern th,
+      .table-modern td {
+        padding: 12px 15px;
+        text-align: center;
+      }
+      .table-modern th:first-child,
+      .table-modern td:first-child {
+        text-align: justify;
+        color:white;
+        background-color: #007bffc9;
+        font-weight: 600;
+        width: fit-content;
+      }
+      .table-modern thead th {
+        background-color: #007bffc9;
+        color: white;
+        font-weight: 600;
+      }
+      .table-modern tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+      }
+      .table-modern tbody tr:hover {
+        background-color: #e9ecef;
+      }
+     
+    </style>
+    <style>
+      .table-equipments {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        font-size: 14px !important;
+      }
+      .table-equipments tbody {
+        display: block;
+        max-height: 290px;
+        overflow-y: auto;
+      }
+      .table-equipments th,
+      .table-equipments td {
+        padding: 5px 10px;
+        text-align: center;
+      }
+     
+      .table-equipments thead th {
+        background-color: #007bffc9;
+        color: white;
+        font-weight: 600;
+      }
+      .table-equipments tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+      }
+      .table-equipments tbody tr:hover {
+        background-color: #e9ecef;
+      }
+      .table-equipments thead, 
+      .table-equipments tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+      
+    </style>
     <style>
          #chartdiv {
       width: 100%;
@@ -46,21 +171,25 @@
       max-width: 100%;
       margin: 0 auto;
     }
-
-    
+    #equipmentChart {
+      width: 100%;
+      height: 500px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
     .am5chart-Legend {
       margin-top: 20px; 
     }
     #payHikeChart {
       width: 100%;
-      height: 300px;
-      /* Adjust this as needed */
+      height: 350px;
+     
       min-height: 250px;
     }
   
     .card-block {
       padding: 10px;
-      /* Reduce padding */
+     
     }
     
   </style>
@@ -167,7 +296,7 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="header-notification">
+                            <!-- <li class="header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <i class="ti-bell"></i>
                                     <span class="badge bg-c-red"></span>
@@ -208,7 +337,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
@@ -224,16 +353,6 @@
                                     <li class="waves-effect waves-light">
                                         <a href="user-profile.html">
                                             <i class="ti-user"></i> Profile
-                                        </a>
-                                    </li>
-                                    <li class="waves-effect waves-light">
-                                        <a href="email-inbox.html">
-                                            <i class="ti-email"></i> My Messages
-                                        </a>
-                                    </li>
-                                    <li class="waves-effect waves-light">
-                                        <a href="auth-lock-screen.html">
-                                            <i class="ti-lock"></i> Lock Screen
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
@@ -288,14 +407,14 @@
                               
                                   <ul class="pcoded-item pcoded-left-item">
                                       <li>
-                                          <a href="invoices.html" class="waves-effect waves-dark">
+                                          <a href="o&mInvoices.html" class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-calendar"></i><b>D</b></span>
-                                              <span class="pcoded-mtext">Monthly Invoices</span>
+                                              <span class="pcoded-mtext">O&M Invoices</span>
                                               <span class="pcoded-mcaret"></span>
                                           </a>
                                       </li>
                                       <li>
-                                        <a href="invoices.html" class="waves-effect waves-dark">
+                                        <a href="equipment-invoices.html" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-settings"></i><b>D</b></span>
                                             <span class="pcoded-mtext">Equipment Invoices</span>
                                             <span class="pcoded-mcaret"></span>
@@ -318,6 +437,13 @@
                                 <div class="accordion-content" style="display: none;">
                                   
                                   <ul class="pcoded-item pcoded-left-item">
+                                      <li>
+                                        <a href="procurementStagesDashboard.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                            <span class="pcoded-mtext">Procurements Dashboard</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
                                       <li>
                                           <a href="equipmentlist.html" class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
@@ -437,38 +563,74 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xl-6 col-md-12">
-                                                    <div class="card text-start">
-                                                        <div class="card-header">
-                                                            <h5>Highest Education Qualification</h5>
-                                                           
-                                                        </div>
-                                                        <div class="card-block" style="height: 300px;">
-                                                            <div id="educationChart" style="width: 100%; height: 100%;"></div>
+                                                  <div class="card text-start">
+                                                      <div class="card-header">
+                                                          <h5>Certification Courses - VTS Operators</h5>
+                                                         
+                                                      </div>
+                                                      <div class="card-block" style="height: 300px;">
+                                                          <div id="operatorsCertificationChart" style="width: 100%; height: 100%;"></div>
 
-                                                        </div>
+                                                      </div>
+                                                  </div>
+                                                  
+                                                  
+                                              </div>
+                                              <div class="col-xl-6 col-md-12">
+                                                <div class="card text-start">
+                                                    <div class="card-header">
+                                                        <h5>Certification Courses - Other Designations</h5>
+                                                       
                                                     </div>
-                                                    
+                                                    <div class="card-block" style="height: 300px;">
+                                                        <div id="certificationChart" style="width: 100%; height: 100%;"></div>
+
+                                                    </div>
                                                 </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <div class="card text-start">
-                                                        <div class="card-header">
-                                                            <h5>Certification Courses</h5>
-                                                           
-                                                        </div>
-                                                        <div class="card-block" style="height: 300px;">
-                                                            <div id="certificationChart" style="width: 100%; height: 100%;"></div>
+                                                
+                                            
+                                            </div>
+                                            
+                                                
+                                            </div>
+                                            <div class="row">
+                                             
+                                          
+                                          
+                                            <div class="col-xl-6 col-md-12">
+                                              <div class="card text-start">
+                                                  <div class="card-header">
+                                                      <h5>Highest Education Qualification - VTS Operators</h5>
+                                                     
+                                                  </div>
+                                                  <div class="card-block" style="height: 300px;">
+                                                      <div id="operatorsEducationChart" style="width: 100%; height: 100%;"></div>
 
-                                                        </div>
-                                                    </div>
-                                                    
+                                                  </div>
+                                              </div>
+                                              
+                                          </div>
+                                          <div class="col-xl-6 col-md-12">
+                                            <div class="card text-start">
+                                                <div class="card-header">
+                                                    <h5>Highest Education Qualification - Other Designations</h5>
+                                                   
+                                                </div>
+                                                <div class="card-block" style="height: 300px;">
+                                                    <div id="educationChart" style="width: 100%; height: 100%;"></div>
+
                                                 </div>
                                             </div>
+                                            
+                                        </div>
+                                         
+                                          </div>
                                            
                                             <div class="row d-flex align-items-stretch h-100">
-                                              <div class="col-xl-8 col-md-12 d-flex flex-column">
+                                              <div class="col-xl-12 col-md-12 d-flex flex-column">
                                                 <div class="card text-start flex-grow-1">
                                                   <div class="card-header">
-                                                    <h5>Pay Hike Overview</h5>
+                                                    <h5>Salary Overview</h5>
                                                     
                                                   </div>
                                                   <div class="card-block d-flex align-items-center justify-content-center">
@@ -477,7 +639,7 @@
                                                 </div>
                                               </div>
                                             
-                                              <div class="col-xl-4 col-md-12 d-flex flex-column">
+                                              <!-- <div class="col-xl-4 col-md-12 d-flex flex-column">
                                                 <div class="row flex-grow-1 mb-2">
                                                   <div class="col-12">
                                                     <div class="card text-start shadow-sm border-0 rounded-3 hover-effect">
@@ -504,7 +666,7 @@
                                                     
                                                   </div>
                                                 </div>
-                                              </div>
+                                              </div> -->
                                             </div>
                                             
                                             <div class="row">
@@ -526,8 +688,8 @@
                                               </div>
                                               
                                               <div class="col-md-4 col-sm-12">
-                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100">
-                                                  <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100" data-toggle="modal" data-target="#invoiceModal" style="cursor: pointer;">
+                                                  <div class="card-body card-hover d-flex flex-column align-items-center justify-content-center">
                                                     <!-- Icon -->
                                                     <div class="mb-2 text-success" style="font-size: 2rem;">
                                                       
@@ -542,7 +704,7 @@
 
                                              
                                               <div class="col-md-4 col-sm-12">
-                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100">
+                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100" data-toggle="modal" data-target="#modernModal" style="cursor: pointer;">
                                                   <div class="card-body d-flex flex-column align-items-center justify-content-center">
                                                     
                                                     <div class="mb-2 text-success" style="font-size: 2rem;">
@@ -579,11 +741,74 @@
                                                 </div>
                                               </div>
                                               
-                                              
-                                               
+                                            
+                                             
+
+
+                                              <div class="row">
+
+                                              </div>
+                                              <div class="modal fade" id="invoiceModal" tabindex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header bg-primary text-white">
+                                                      <h5 class="modal-title" id="invoiceModalLabel">Manning Cost / Month</h5>
+                                                      <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                    </div>
+                                                    <div class="modal-body table-responsive">
+                                                      <table class="table modern-table mx-auto">
+                                                        <thead>
+                                                          <tr>
+                                                            <th>Organisation</th>
+                                                            <th>Manning Cost</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody id="manningCostTable">
+                                                         
+                                                        </tbody>
+                                                      </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
                                               
                                     </div>
                                     
+
+
+                                    <div class="modal fade" id="modernModal" tabindex="-1" aria-labelledby="modernModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <div class="modal-header bg-primary text-white">
+                                            <h5 class="modal-title" id="modernModalLabel">Invoice Summary</h5>
+                                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          <div class="modal-body table-responsive">
+                                            <table class="table modern-table" id="invoiceTable">
+                                              <thead>
+                                                <tr>
+                                                  <td>Organisation</td>
+                                                  <td>Invoice Raised</td>
+                                                </tr>
+                                              </thead>
+                                              <tbody id="modernTableBody">
+                                                <!-- Dynamic Data Here -->
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                     <!-- Page-body end -->
                                 </div>
                                 <div id="styleSelector"> </div>
@@ -658,10 +883,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <script type="module" src="./assets/js/axiosInstance.js"></script>
+    <script src="./assets/js/axiosInstance.js"></script>
     <script  src="./assets/js/api.js"></script>
     <script src="./assets/js/apiRequests.js"></script>
     <script type="text/javascript" src="assets/js/script.js "></script>
+    <script type="text/javascript" src="assets/js/popup.js"></script>
     <!-- <script src="/assets/js/index.js"></script> -->
     <script>
         const token=sessionStorage.getItem('token');
@@ -689,9 +915,43 @@
         icon.classList.toggle("fa-chevron-up");
     }
     </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      // var manningcost = await fetch('http://localhost:3000/dashboard/manningcost', {
+      //   method: 'GET',
+      //   headers: {
+      //     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      //     'Content-Type': 'application/json'
+      //   }
+      // }).then(response => response.json());
+      var response=await axiosInstance.get('/dashboard/manningcost');
+      var manningcost=response.data;
+      // console.log(manningcost);
+  
+      if (manningcost) {
+        const manningCostTable = document.getElementById('manningCostTable');
+        manningCostTable.innerHTML = '';
+        manningcost=manningcost.result;
+        // console.log(manningcost);
+        manningcost.forEach((data) => {
+manningCostTable.insertAdjacentHTML('beforeend', `
+  <tr>
+    <td>${data.organisation}</td>
+    <td>₹ ${data.manningCost}</td>
+  </tr>
+`);
+});
+      }
 
+
+   
+
+
+    });
+  </script>
 
     <script>
+
       am5.ready(async function() {
  
  var root = am5.Root.new("chartdiv");
@@ -711,16 +971,22 @@
  chart.set("tooltip", am5.Tooltip.new(root, {}));
 
  let backendData;
+ 
  try {
-   const response = await fetch('http://localhost:3000/dashboard/staffs/organisation', {
-     method: 'GET',
-     headers: {
-       'Content-Type': 'application/json',
-       'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-     }
-   });
+  //  const response = await fetch('http://localhost:3000/dashboard/staffs/organisation', {
+  //    method: 'GET',
+  //    headers: {
+  //      'Content-Type': 'application/json',
+  //      'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+  //    }
+  //  });
 
-   backendData = await response.json();
+  const response=await axiosInstance.get('/dashboard/staffs/organisation');
+
+   
+
+   backendData = response.data.result;
+  //  console.log(backendData);
  } catch (error) {
    console.error("Error fetching data:", error);
    return; 
@@ -755,7 +1021,7 @@
  }
 
  const designationSet = new Set();
- backendData.result.forEach(item => {
+ backendData.forEach(item => {
    Object.keys(item).forEach(key => {
      if (key !== "entity") {
        designationSet.add(key);
@@ -775,7 +1041,7 @@
      .join("");
  }
 
- const chartData = backendData.result.map(item => {
+ const chartData = backendData.map(item => {
    let newItem = { entity: getOrganizationShortForm(item.entity) };
    allDesignations.forEach(designation => {
      const key = toCamelCase(designation);
@@ -911,28 +1177,134 @@ var chart = root.container.children.push(
 );
 
 
+// var response=await fetch('http://localhost:3000/dashboard/staffs/hq',{
+//     method:'GET',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer '+sessionStorage.getItem('token')
+//     }
+// }).then(response => response.json());
 
-var response=await fetch('http://localhost:3000/dashboard/staffs/hq',{
-    method:'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem('token')
-    }
-}).then(response => response.json());
+var response=await axiosInstance.get('/dashboard/staffs/hq');
 
-// console.log('result : ',result);
 
-var data=response.result;
-// console.log('data: ',data);
+var data=response.data.result;
 
-// var data = [
-//   { qualification: "Post Graduation", count: 2 },
-//   { qualification: "Under Graduation", count: 5 },
-//   { qualification: "Diploma", count: 6 },
-//   { qualification: "SSLC", count: 5 },
-//   { qualification: "HSC", count: 0 }
-// ];
 
+// console.log('qualifications : ',data);
+
+var xAxis = chart.xAxes.push(
+  am5xy.CategoryAxis.new(root, {
+    categoryField: "qualification",
+    renderer: am5xy.AxisRendererX.new(root, {
+      minGridDistance: 20,
+      
+    })
+  })
+);
+
+xAxis.get("renderer").labels.template.setAll({
+  fontSize: "10px"
+});
+
+xAxis.data.setAll(data);
+
+var yAxis = chart.yAxes.push(
+  am5xy.ValueAxis.new(root, {
+    min: 0,  
+    renderer: am5xy.AxisRendererY.new(root, {})
+  })
+);
+
+yAxis.get("renderer").labels.template.setAll({
+  fontSize: "10px"                                                                                                                  
+});
+
+var series = chart.series.push(
+  am5xy.ColumnSeries.new(root, {
+    name: "Count",
+    xAxis: xAxis,
+    yAxis: yAxis,
+    valueYField: "count",
+    categoryXField: "qualification",
+    tooltip: am5.Tooltip.new(root, {
+      labelText: "{categoryX}: {valueY}"
+    })
+  })
+);
+
+series.columns.template.setAll({
+  width: am5.percent(40),
+  minWidth:20,
+  fill: am5.color(0x5BF0cE),  
+  strokeOpacity:0,
+  cornerRadiusTL: 5,
+  cornerRadiusTR: 5
+});
+
+series.bullets.push(function () {
+  return am5.Bullet.new(root, {
+    locationY: 0.5,
+    sprite: am5.Label.new(root, {
+      text: "{valueY}",
+      populateText: true,
+      centerX: am5.p50,
+      centerY: am5.p50,
+      fontSize: "15px",
+      fill: am5.color(0xffffff)
+    })
+  });
+});
+series.columns.template.setAll({
+  tooltipText: "[bold]{name}[/]\n{categoryX}: {valueY}",
+  interactive: true, 
+  cursorOverStyle: "pointer"
+});
+series.data.setAll(data);
+
+
+chart.appear(1000, 100);
+series.appear();
+
+});
+
+am5.ready(async function() {
+
+
+var root = am5.Root.new("operatorsEducationChart"); 
+
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+
+var chart = root.container.children.push(
+  am5xy.XYChart.new(root, {
+    panX: false,
+    panY: false,
+    wheelX: "panX",
+    wheelY: "zoomX",
+    layout: root.verticalLayout,
+    paddingTop: 20,
+    paddingBottom: 30
+  })
+);
+
+
+
+// var response=await fetch('http://localhost:3000/dashboard/staffs/operators/hq',{
+//     method:'GET',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer '+sessionStorage.getItem('token')
+//     }
+// }).then(response => response.json());
+
+var response=await axiosInstance.get('/dashboard/staffs/operators/hq');
+
+var data=response.data.result;
+
+// console.log('qualifications : ',data);
 
 var xAxis = chart.xAxes.push(
   am5xy.CategoryAxis.new(root, {
@@ -1037,13 +1409,16 @@ var chart = root.container.children.push(
 
 
 
-var response=await fetch('http://localhost:3000/dashboard/staffs/courses',{
-    method:'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem('token')
-    }
-}).then(response => response.json());
+// var response=await fetch('http://localhost:3000/dashboard/staffs/courses',{
+//     method:'GET',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer '+sessionStorage.getItem('token')
+//     }
+// }).then(response => response.json());
+
+
+var response=await axiosInstance.get('/dashboard/staffs/courses');
 
 // var data = [
 //   { course: "GDMSS", count: 4 },
@@ -1052,7 +1427,131 @@ var response=await fetch('http://localhost:3000/dashboard/staffs/courses',{
 //   { course: "NA", count: 4 },
 // ];
 
-var data=response.result;
+var data=response.data.result;
+
+// console.log(data);
+
+var xAxis = chart.xAxes.push(
+  am5xy.CategoryAxis.new(root, {
+    categoryField: "course",
+    renderer: am5xy.AxisRendererX.new(root, {
+      minGridDistance: 20,
+    
+    })
+  })
+);
+
+xAxis.get("renderer").labels.template.setAll({
+  fontSize: "10px"
+});
+
+xAxis.data.setAll(data);
+
+var yAxis = chart.yAxes.push(
+  am5xy.ValueAxis.new(root, {
+    min: 0,  // if all counts are >= 0
+    renderer: am5xy.AxisRendererY.new(root, {})
+  })
+);
+
+yAxis.get("renderer").labels.template.setAll({
+  fontSize: "10px"                                                                                                                  
+});
+
+var series = chart.series.push(
+  am5xy.ColumnSeries.new(root, {
+    name: "Count",
+    xAxis: xAxis,
+    yAxis: yAxis,
+    valueYField: "count",
+    categoryXField: "course",
+    tooltip: am5.Tooltip.new(root, {
+      labelText: "{categoryX}: {valueY}"
+    })
+  })
+);
+
+series.columns.template.setAll({
+  width: am5.percent(40),
+  minWidth:20,
+  fill: am5.color(0x5BF0cE),   
+  strokeOpacity:0,
+  cornerRadiusTL: 5,
+  cornerRadiusTR: 5
+});
+
+
+series.columns.template.setAll({
+  tooltipText: "[bold]{name}[/]\n{categoryX}: {valueY}",
+  interactive: true, 
+  cursorOverStyle: "pointer"
+});
+
+series.bullets.push(function () {
+  return am5.Bullet.new(root, {
+    locationY: 0.5,
+    sprite: am5.Label.new(root, {
+      text: "{valueY}",
+      populateText: true,
+      centerX: am5.p50,
+      centerY: am5.p50,
+      fontSize: "15px",
+      fill: am5.color(0xffffff)
+    })
+  });
+});
+
+series.data.setAll(data);
+
+
+chart.appear(1000, 100);
+series.appear();
+
+});
+
+am5.ready(async function() {
+
+
+var root = am5.Root.new("operatorsCertificationChart"); 
+
+
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+var chart = root.container.children.push(
+  am5xy.XYChart.new(root, {
+    panX: false,
+    panY: false,
+    wheelX: "panX",
+    wheelY: "zoomX",
+    layout: root.verticalLayout,
+    paddingTop: 20,
+    paddingBottom: 30
+  })
+);
+
+
+
+// var response=await fetch('http://localhost:3000/dashboard/staffs/operators/courses',{
+//     method:'GET',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer '+sessionStorage.getItem('token')
+//     }
+// }).then(response => response.json());
+
+var response=await axiosInstance.get('/dashboard/staffs/operators/courses');
+
+// var data = [
+//   { course: "GDMSS", count: 4 },
+//   { course: "VTS 103A", count: 5 },
+//   { course: "GDMSS & VTS 103A", count: 3 },
+//   { course: "NA", count: 4 },
+// ];
+
+var data=response.data.result;
+// console.log(data);
 
 var xAxis = chart.xAxes.push(
   am5xy.CategoryAxis.new(root, {
@@ -1154,34 +1653,38 @@ series.appear();
           );
         
           
-          const response=await fetch('http://localhost:3000/dashboard/hike',{
-            method:'GET',
-            headers:{
-              'Authorization':'Bearer '+sessionStorage.getItem('token'),
-              'Content-Type':'application/json'
-            }
-          }).then(response => response.json());
+          // const response=await fetch('http://localhost:3000/dashboard/hike',{
+          //   method:'GET',
+          //   headers:{
+          //     'Authorization':'Bearer '+sessionStorage.getItem('token'),
+          //     'Content-Type':'application/json'
+          //   }
+          // }).then(response => response.json());
 
-          const hikes=response.hikes;
+          const response=await axiosInstance.get('/dashboard/hike');
+
+          const hikes=response.data.hikes;
+
+          // console.log(hikes);
           
           var data=[
-            { category: "0", value: 0 },
-            { category: "less than 5 %", value:0 },
-            { category: "5 to 10 %", value: 0 },
-            { category: ">10 % hike", value: 0 }
+            { category: "less than 25000", value: 0 },
+            { category: "25000 to 50000", value:0 },
+            { category: "50000 to 1 lakh", value: 0 },
+            { category: "above 1 lakh", value: 0 }
           ]
 
           hikes.forEach(hike => {
-            if(hike==0){
+            if(hike<25000){
               data[0].value+=1;
             }else
-            if(hike>0 && hike<5){
+            if(hike>25000 && hike<50000){
               data[1].value+=1;
             }
-            else if(hike>=5 && hike<10){
+            else if(hike>=50000 && hike<100000){
               data[2].value+=1;
             }
-            else if(hike>=10){
+            else if(hike>=100000){
               data[3].value+=1;
             } 
           });
@@ -1303,16 +1806,21 @@ series.appear();
                 'HQ':92562
               };
 
-
-              var response=await fetch('http://localhost:3000/dashboard/manningcost',{
-                  method:'GET',
-                  headers:{
-                    'Authorization':'Bearer '+sessionStorage.getItem('token'),
-                    'Content-Type':'application/json'
-                  }
-              }).then(response=>response.json());
               
-              var apiData=response.result;
+
+              // var response=await fetch('http://localhost:3000/dashboard/manningcost',{
+              //     method:'GET',
+              //     headers:{
+              //       'Authorization':'Bearer '+sessionStorage.getItem('token'),
+              //       'Content-Type':'application/json'
+              //     }
+              // }).then(response=>response.json());
+
+              var response=await axiosInstance.get('/dashboard/manningCost');
+              
+              var apiData=response.data.result;
+
+              // console.log(apiData);
               
               var data=[];
 
@@ -1331,9 +1839,23 @@ series.appear();
               // console.log(sum);
               // console.log('formatted data: ',data);
 
-
+              function getOrgFullName(shortForm) {
+                 return Object.keys(orgNameMapping).find(key => orgNameMapping[key] === shortForm) || null;
+            }
             
               invoiceSum = Object.values(invoiceMapping).reduce((t, n) => t + n, 0);
+
+              let tableBody = document.getElementById("invoiceTable");
+              // tableBody.innerHTML = ""; 
+
+              Object.entries(invoiceMapping).forEach(([org, cost]) => {
+                let row = document.createElement("tr");
+                row.innerHTML = `
+                  <td>${getOrgFullName(org)}</td>
+                  <td>₹ ${cost.toLocaleString()}</td>
+                `;
+                tableBody.appendChild(row);
+              });
 
 
               
@@ -1469,49 +1991,55 @@ series.appear();
                 console.error("api not found");
               }
 
+            
+
+              // var response = await fetch('http://localhost:3000/dashboard/hike/hl', {
+              //  method: 'GET',
+              //   headers: {
+              //     'Content-Type': 'application/json',
+              //     'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+              //   }
+              // }).then(response => response.json());
+
+              // const result=response.result;
               
+              // document.getElementById('hph-name').textContent=result[0].staff_name;
+              // document.getElementById('hph-org').textContent=result[0].organisation;
+              // document.getElementById('hph-hike').textContent=result[0].hike+"%";
 
-              var response = await fetch('http://localhost:3000/dashboard/hike/hl', {
-               method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-                }
-              }).then(response => response.json());
-
-              const result=response.result;
-              
-              document.getElementById('hph-name').textContent=result[0].staff_name;
-              document.getElementById('hph-org').textContent=result[0].organisation;
-              document.getElementById('hph-hike').textContent=result[0].hike+"%";
-
-              document.getElementById('lph-name').textContent=result[1].staff_name;
-              document.getElementById('lph-org').textContent=result[1].organisation;
-              document.getElementById('lph-hike').textContent=result[1].hike+"%";
+              // document.getElementById('lph-name').textContent=result[1].staff_name;
+              // document.getElementById('lph-org').textContent=result[1].organisation;
+              // document.getElementById('lph-hike').textContent=result[1].hike+"%";
 
 
 
-              var response=await fetch('http://localhost:3000/dashboard/manpower/count',{
-                method:'GET',
-                headers:{
-                  'Content-Type':'application/json',
-                  'Authorization':'Bearer '+sessionStorage.getItem('token')
-                }
-              }).then(response=>response.json());
+              // var response=await fetch('http://localhost:3000/dashboard/manpower/count',{
+              //   method:'GET',
+              //   headers:{
+              //     'Content-Type':'application/json',
+              //     'Authorization':'Bearer '+sessionStorage.getItem('token')
+              //   }
+              // }).then(response=>response.json());
+
+              var response=await axiosInstance.get('/dashboard/manpower/count');
 
               // console.log(response);
-              document.getElementById('manpower-deployed').innerHTML=response.count;
+              document.getElementById('manpower-deployed').innerHTML=response.data.count;
 
 
-              var response=await fetch('http://localhost:3000/dashboard/staffs/designation',{
-                method:'GET',
-                headers:{
-                  'Content-Type':'application/json',
-                  'Authorization':'Bearer '+sessionStorage.getItem('token')
-                }
-              }).then(response=>response.json());
+              // var response=await fetch('http://localhost:3000/dashboard/staffs/designation',{
+              //   method:'GET',
+              //   headers:{
+              //     'Content-Type':'application/json',
+              //     'Authorization':'Bearer '+sessionStorage.getItem('token')
+              //   }
+              // }).then(response=>response.json());
 
-              const designationStaffsMap=response.result;
+
+              var response=await axiosInstance.get('/dashboard/staffs/designation');
+
+              const designationStaffsMap=response.data.result;
+              
               
               if(!designationStaffsMap){
                   document.querySelector('#manPowerTable').innerHTML='<p class="text-danger">No Data Found</p>';
@@ -1528,15 +2056,66 @@ series.appear();
                   });
               }
               
+              
 
               // console.log(response.result);
 
               
             });
+
+            
           </script>
           
+        
+        
+        
+        <script>
+          // const elements=document.querySelectorAll('.chart-container');
+          // elements.forEach(el=>{
+          //     el.addEventListener('mouseover',function(){
+          //       document.querySelector('.legend-container').classList.remove('d-none');
+          //     });
+          //     el.addEventListener('mouseout',function(){
+          //       document.querySelector('.legend-container').classList.add('d-none');
+          //     });
+          // });
           
-            
+        </script>
+
+      <!-- <script>
+        function showErrorPopupFadeInDown(message) {
+            toastr.options = {
+                positionClass: "toast-top-right",
+                showMethod: "fadeIn",  
+                hideMethod: "fadeOut" ,
+                timeOut:1000
+            };
+            toastr.error(message);  
+        }
+        function showSucessPopupFadeInDownLong(message){
+
+          toastr.options = {
+              positionClass: "toast-top-right", 
+              showMethod: "fadeIn",  
+              hideMethod: "fadeOut" ,
+              timeOut:3000
+          };
+          toastr.success(message);
+
+          }
+          function showPopupFadeInDown(message) {
+            toastr.options = {
+                positionClass: "toast-top-right",
+                showMethod: "fadeIn",  
+                hideMethod: "fadeOut" ,
+                timeOut:1000
+            };
+            toastr.success(message);
+          }
+
+      </script> -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

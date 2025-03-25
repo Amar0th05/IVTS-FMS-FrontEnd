@@ -127,11 +127,11 @@ updateDeisgnationButton.addEventListener('click',async ()=>{
 });
 
 
-//logout
-document.getElementById('logout-button').addEventListener('click', logout);
-function logout() {
-    sessionStorage.removeItem('token');
-}
+// //logout
+// document.getElementById('logout-button').addEventListener('click', logout);
+// function logout() {
+//     sessionStorage.removeItem('token');
+// }
 
 // toggle status
 async function toggleStatus(element, id) {
@@ -154,10 +154,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
 
     const user=JSON.parse(sessionStorage.getItem('user'));
     const token = sessionStorage.getItem('token');
-    document.getElementById('user-name-dsiplay').innerHTML=user.name;
+   
     // document.getElementById('more-details').innerHTML=user.name;
     
-    await refreshTable();
+    
     
     if (token === null || user === null) {
         window.location.replace("login.html");
@@ -165,7 +165,11 @@ document.addEventListener('DOMContentLoaded',async()=>{
         window.location.replace("index.html");
         return;
     }
+
+    document.getElementById('user-name-dsiplay').innerHTML=user.name;
     
+    await refreshTable();
+
     const designations=await api.getAllDesignations();
 
     

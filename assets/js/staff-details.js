@@ -66,24 +66,23 @@ async function loadHighestQualificationsOptions(id) {
 
 
 addStaffButton.addEventListener('click', async (e) => {
-    
     e.preventDefault();
-    let form = document.getElementById('new-staff-form');
-    let formData = new FormData(form);
 
-    const data={};
-    
+    let form = document.getElementById('new-staff-form');
+    let insuranceForm = document.getElementById('new-insurance-form');
+    let formData = new FormData(form);
+    let insuranceFormData = new FormData(insuranceForm);
+
+    const data = {};
     const intFields = ["courses", "locationOfWork", "highestQualification"];
     const numericFields = ["aadharNumber", "contactNumber"];
 
     formData.forEach((value, key) => {
-        value = value.trim(); 
-    
+        value = value.trim();
         if (value === "") {
-            data[key] = null; 
+            data[key] = null;
             return;
         }
-    
         if (intFields.includes(key)) {
             data[key] = parseInt(value, 10);
         } else if (numericFields.includes(key)) {
@@ -92,26 +91,31 @@ addStaffButton.addEventListener('click', async (e) => {
             data[key] = value;
         }
     });
-    data['status']=true;
+
+    data['status'] = true;
+    const insuranceData = Object.fromEntries(insuranceFormData.entries());
+
+    console.log("Staff Data:", data);
+    console.log("Insurance Data:", insuranceData);
 
     if (validateForm(formData)) {
         try {
-            // const response = await axiosInstance.post(API_ROUTES.staff, {
-            //     data: data
-            // });
-            
-
-            const responseData=await api.addStaff(data);
+            const response = await axiosInstance.post(API_ROUTES.staff, {
+                data,
+                insuranceData
+            });
 
             table.clear();
             await fetchAllData();
-            showSucessPopupFadeInDownLong(responseData.message);
+            showSucessPopupFadeInDownLong(response.data.message);
             form.reset();
+            insuranceForm.reset();
+            document.querySelector('#tab').classList.add('d-none');
+            document.querySelector('#tableCard').style.display = 'block';
+
         } catch (error) {
             showErrorPopupFadeInDown(error.response?.data?.message || 'Failed to add staff. Please try again later.');
         }
-        
-
     }
 });
 
@@ -196,13 +200,32 @@ function addRow(data){
         </div>`
         ,
         `<div class="row d-flex justify-content-center">
-            <div class="d-flex align-items-center justify-content-center p-0 " style="width: 40px; height: 40px;cursor:pointer" data-toggle="modal" data-target="#updateModal" onclick="loadUpdateDetails('${data.staffID}')">
-                <i class="ti-pencil-alt text-inverse" style="font-size: larger;"></i>
-            </div>
-        </div>`,
+    <div class="d-flex align-items-center justify-content-center p-0 edit-btn" 
+        style="width: 40px; height: 40px; cursor:pointer" 
+        data-staff-id="${data.staffID}">
+        <i class="ti-pencil-alt text-inverse" style="font-size: larger;"></i>
+    </div>
+</div>
+`,
         
     ]).draw(false);
 };
+
+document.querySelector('#myTable').addEventListener('click', function (event) {
+    if (event.target.closest('.edit-btn')) {
+        let button = event.target.closest('.edit-btn');
+        let staffID = button.getAttribute('data-staff-id');
+        loadUpdateDetails(staffID);
+        document.querySelector('#tabWrapper').classList.remove('d-none');
+        document.querySelector('#tableCard').style.display = 'none';
+    }
+});
+
+document.querySelector('#exitButton2').addEventListener('click', function () {
+    document.querySelector('#tabWrapper').classList.add('d-none');
+    document.querySelector('#tableCard').style.display = 'block';
+});
+
 
 document.addEventListener('DOMContentLoaded',async ()=>{
     const token = sessionStorage.getItem('token');
@@ -254,7 +277,6 @@ async function fetchAllData() {
             locations.add(staffDetail.locationOfWork);
         });
 
-        console.log(designations);
             designations.forEach(designation => {
             if(!designation) return;
             $('#designationFilter').append(`<option value="${designation}">${designation}</option>`);
@@ -281,10 +303,10 @@ function limitLength(str, length) {
     return str;
 };
 
-document.querySelector('.reload-card').addEventListener('click', async () => {
-    table.clear();
-    await fetchAllData();
-});
+// document.querySelector('.reload-card').addEventListener('click', async () => {
+//     table.clear();
+//     await fetchAllData();
+// });
 
 
 function validateForm(formData) {
@@ -339,30 +361,150 @@ function validateForm(formData) {
 async function loadUpdateDetails(id) {
     await loadCourseOptions('update-courseSelect');
     await loadHighestQualificationsOptions('update-highestQualification');
-    await loadOrganisationOptions('update-location')
+    await loadOrganisationOptions('update-location');
+
     try {
         const response = await axiosInstance.get(API_ROUTES.getStaff(id));
-
         const data = response.data.staffDetail;
+        const insurance = response.data.insuranceDetail;
+
         document.getElementById('update-staffId').value = data.staffID;
         document.getElementById('update-staffName').value = data.staffName;
         document.getElementById('update-contactNumber').value = data.contactNumber;
         document.getElementById('update-aadharNumber').value = data.aadharNumber;
         document.getElementById('update-mail').value = data.mail;
-        document.getElementById('update-dateOfBirth').value = new Date(data.dateOfBirth).toISOString().split('T')[0];
-
-        
-        document.getElementById('update-location').value = data.locationOfWork;        
+        document.getElementById('update-dateOfBirth').value = formatDate(data.dateOfBirth);
+        document.getElementById('update-location').value = data.locationOfWork;
         document.getElementById('update-highestQualification').value = data.highestQualification;
         document.getElementById('update-qualifications').value = data.qualifications;
         document.getElementById('update-courseSelect').value = data.courses;
-        document.getElementById('update-dateOfJoining').value = new Date(data.dateOfJoining).toISOString().split('T')[0];
-
+        document.getElementById('update-dateOfJoining').value = formatDate(data.dateOfJoining);
         document.getElementById('update-certifications').value = data.certifications;
         document.getElementById('update-salary').value = data.salary ? parseFloat(data.salary) : '';
-
         document.getElementById('update-permanentAddress').value = data.permanentAddress;
+
+       
+        let table = $('#policyTable').DataTable();
+        table.clear().draw();
+
+        if (insurance) {
+            insurance.forEach(ins=>{
+                table.row.add([
+                    formatDate(ins.policyStartDate),
+                    ins.policyNumber || 'N/A',
+                    ins.insuranceProvider || 'N/A',
+                    formatDate(ins.policyStartDate),
+                    formatDate(ins.policyExpiryDate),
+                    ins.updatedBy || '-',
+                ]).draw(false);
+            });
+            
+        }
     } catch (error) {
         console.error(error);
     }
-}       
+}
+
+
+function formatDate(dateStr) {
+    if (!dateStr) return '';
+    let date = new Date(dateStr);
+    return date.toISOString().split('T')[0];
+}
+
+
+$(document).on('click', '.edit-btn', function () {
+    let staffId = $(this).data('staff-id');
+    loadUpdateDetails(staffId);
+});
+
+async function fetchDataAndGeneratePDF() {
+    try {
+        const res = await api.downloadStaffData();
+        if (!Array.isArray(res) || res.length === 0) throw new Error("No staff data available");
+
+        const tableBody = [
+            ["ID", "Name", "Date Of Birth", "Aadhar Number", "Contact Number", "Mail", "Permanent Address", "Salary At Joining", "Qualifications", "Highest Qualification", "Location Of Work", "Date of Joining", "Certifications", "Courses", "Current Salary", "Current Designation", "Status"],
+            ...res.map(staff => [
+                staff.staffID || "N/A",
+                staff.staffName || "N/A",
+                staff.dateOfBirth || "N/A",
+                staff.aadharNumber || "N/A",
+                staff.contactNumber || "N/A",
+                staff.mail || "N/A",
+                staff.permanentAddress || "N/A",
+                staff.salaryAtJoining || "N/A",
+                staff.qualifications || "N/A",
+                staff.highestQualification || "N/A",
+                staff.locationOfWork || "N/A",
+                staff.dateOfJoining || "N/A",
+                staff.certifications || "N/A",
+                staff.courses || "N/A",
+                staff.currentSalary || "N/A",
+                staff.currentDesignation || "N/A",
+                staff.status || "N/A"
+            ])
+        ];
+
+        const docDefinition = {
+            pageOrientation: "landscape", 
+            content: [
+                { text: "Staff Details", style: "header" },
+                {
+                    table: {
+                        headerRows: 1,
+                        widths: ["5%", "5%", "10%", "10%", "10%", "5%", "5%", "10%", "10%", "10%", "10%", "10%", "10%", "10%", "10%", "15%", "10%"],
+                        body: tableBody
+                    }
+                }
+            ],
+            styles: {
+                header: { fontSize: 18, bold: true, margin: [0, 0, 0, 10]}
+            },
+            defaultStyle: {
+                fontSize: 6 // Decrease font size for all content
+            }
+        };
+
+        pdfMake.createPdf(docDefinition).download("Staff_List.html");
+        
+    } catch (err) {
+        console.error("Error fetching or generating PDF:", err);
+        showErrorPopupFadeInDown(err.message || "Can't download the staff details.");
+    }
+}
+
+async function fetchDataAndGenerateExcel() {
+    try {
+        const res = await api.downloadStaffData();
+
+        
+        const headers = [
+            "ID", "Name", "Date Of Birth", "Aadhar Number", "Contact Number", "Mail",
+            "Permanent Address", "Salary At Joining", "Qualifications", "Highest Qualification",
+            "Location Of Work", "Date of Joining", "Certifications", "Courses",
+            "Current Salary", "Current Designation", "Status"
+        ];
+
+       
+        const data = res.map(staff => [
+            staff.staffID, staff.staffName, new Date(staff.dateOfBirth).toLocaleDateString('eng-GB'), staff.aadharNumber, 
+            staff.contactNumber, staff.email, staff.permanentAddress, staff.salaryAtJoining, 
+            staff.qualification, staff.highestQualification, staff.locationOfWork, 
+            new Date(staff.dateOfJoining).toLocaleDateString('eng-GB')
+            , staff.certifications, staff.course, staff.currentSalary, 
+            staff.currentDesignation, staff.status
+        ]);
+
+      
+        const ws = XLSX.utils.aoa_to_sheet([headers, ...data]);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Staff Details");
+
+        
+        XLSX.writeFile(wb, "Staff_List.xlsx");
+    } catch (err) {
+        console.error("Error fetching or generating Excel:", err);
+        showErrorPopupFadeInDown("Can't download the staff details.");
+    }
+}
