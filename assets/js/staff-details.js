@@ -462,7 +462,7 @@ async function fetchDataAndGeneratePDF() {
                 header: { fontSize: 18, bold: true, margin: [0, 0, 0, 10]}
             },
             defaultStyle: {
-                fontSize: 6 // Decrease font size for all content
+                fontSize: 6 
             }
         };
 

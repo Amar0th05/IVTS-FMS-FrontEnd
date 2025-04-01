@@ -141,6 +141,13 @@ div.dt-button-background {
     border-radius: 5px !important;
 }
 
+
+.client{
+    height: 40px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+}
+
 .nav-tabs{
     border: none !important;
     

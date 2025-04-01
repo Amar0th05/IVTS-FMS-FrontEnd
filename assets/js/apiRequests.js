@@ -117,6 +117,12 @@ const api = {
     updateEquipmentInvoice:(data)=>putData(API_ROUTES.equipmentInvoiceBase,{data}),
 
     downloadStaffData:()=>fetchData('/staff/download/all',"staffDetails"),
+
+    getAllProjects:()=>fetchData(API_ROUTES.getAllProjects,"projects"),
+    getProjectById:(id)=>fetchData(API_ROUTES.projects+`/${id}`,"project"),
+    updateProjectDeliverable:(data)=>putData('/deliverables',data),
+
+
 };
 
 const fetchData = (url, key) => axiosInstance.get(url).then(res => key ? res.data[key] : res.data);

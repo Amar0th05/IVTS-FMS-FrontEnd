@@ -75,6 +75,11 @@ const   API_ROUTES = {
     equipmentInvoiceBase:`/equipmentInvoice`,
     groupEquipmentInvoiceByProjectNumber:`/equipmentInvoice/group`,
     getInvoicesByProjectNumber:`/equipmentInvoice/project`,
+
+
+    projects:`/projects`,
+    getAllProjects:`/projects/all`,
+    
 };
 
 
