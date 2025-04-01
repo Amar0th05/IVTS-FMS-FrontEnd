@@ -123,6 +123,11 @@ const api = {
     updateProjectDeliverable:(data)=>putData('/deliverables',data),
 
 
+    getAllClients:()=>fetchData(API_ROUTES.getAllClients,"clients"),
+    getClient:(id)=>fetchClient(API_ROUTES.clientBase+`/${id}`,"client"),
+    createClient:(ClientName)=>postData(API_ROUTES.clientBase,{ClientName}),
+
+
 };
 
 const fetchData = (url, key) => axiosInstance.get(url).then(res => key ? res.data[key] : res.data);

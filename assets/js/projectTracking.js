@@ -158,7 +158,7 @@ async function loadUpdateData(id){
         try{
             const project=await api.getProjectById(id);
 
-            console.log(project);
+            // console.log(project);
 
             document.querySelector('#update-ProjectID').value=project.ProjectID;
             document.querySelector('#update-ProjectName').value=project.ProjectName;
@@ -816,6 +816,20 @@ async function deleteDeliverableRow($row) {
 
 //     await getAllCourses();
 // }
+
+
+
+document.addEventListener('DOMContentLoaded',async ()=>{
+    const token = sessionStorage.getItem('token');
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (!token || !user) {
+        window.location.href = 'login.html';
+    } else if (user.role === 2) {
+        window.location.href = 'user-details.html';
+    }
+
+    document.querySelector('#username').textContent=user.name;
+});
 
 
 window.NoOfDeliverables=NoOfDeliverables;

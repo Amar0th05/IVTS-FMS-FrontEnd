@@ -79,7 +79,8 @@ const   API_ROUTES = {
 
     projects:`/projects`,
     getAllProjects:`/projects/all`,
-    
+    clientBase:`/clients`,
+    getAllClients:`/clients/all`
 };
 
 

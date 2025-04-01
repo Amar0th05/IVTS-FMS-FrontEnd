@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Designations</title>
+    <title>Clients</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -183,7 +183,7 @@
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
-                                    <span id="user-name-dsiplay">UNKNOWN</span>
+                                    <span id="user-name-display">John Doe</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -198,7 +198,7 @@
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a class="logout">
+                                        <a href="index.html" id="logout-button">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
                                     </li>
@@ -227,7 +227,7 @@
                                         <li class="more-details">
                                             <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
                                             <a href="#!"><i class="ti-settings"></i>Settings</a>
-                                            <a class="logout"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                            <a href="index.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -241,7 +241,6 @@
                                     </div>
                                 </form>
                             </div>
-                          
                             <div class="accordion">
                                 <div class="accordion-header">
                                   <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">User Management<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
@@ -273,14 +272,14 @@
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <li class="active">
                                                 <a href="clients.html" class="waves-effect waves-dark">
                                                     <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
                                                     <span class="pcoded-mtext">Clients</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
                                             </li>
-                                            <li  class="active">
+                                            <li>
                                                 <a href="designations.html" class="waves-effect waves-dark">
                                                     <span class="pcoded-micon"><i class="ti-id-badge"></i><b>BC</b></span>
                                                     <span class="pcoded-mtext">Designations</span>
@@ -324,8 +323,7 @@
                                             </li> -->
                                         </ul>
                                     </div>
-                                    </div>    
-                            
+                                    </div>                            
                     </nav>
                     <div class="pcoded-content">
                         <!-- Page-header start -->
@@ -335,7 +333,7 @@
                                     <div class="col-md-8">
                                         <!-- <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25" alt="NTCPWC LOGO"> -->
                                         <div class="page-header-title">
-                                            <h5 class="m-b-10">Designations</h5>
+                                            <h5 class="m-b-10">Clients</h5>
                                             <p class="m-b-0">Welcome to iVTS-FMS</p>
                                         </div>
                                     </div>
@@ -344,7 +342,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="index.html"> <i class="fa fa-home"></i> </a>
                                             </li>
-                                            <li class="breadcrumb-item"><a href="#!">Designations</a>
+                                            <li class="breadcrumb-item"><a href="#!">Clients</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -362,7 +360,7 @@
                                             <div class="col-sm-12">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h5>Designations</h5>
+                                                        <h5>Clients</h5>
 
                                                         <div class="card-header-right">
                                                             <ul class="list-unstyled card-option">
@@ -378,16 +376,16 @@
                                                     <div class="card-block">
 
 
- <!-----------------------------------------------UPDATE-DESIGNATION-MODAl-START--------------------------------------------------------------------->
+ <!-----------------------------------------------UPDATE-COURSE-MODAl-START--------------------------------------------------------------------->
  
-<div class="modal fade" id="updateDesignationModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+<div class="modal fade" id="updateclientModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
                 <h5 class="modal-title" id="updateModalLabel">
-                    Update Designation</h5>
+                    Update Client</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -398,9 +396,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="update-designationName">Designation</label>
-                            <input type="text" class="form-control form-control-sm" id="update-deignationName" name="designation"
-                                placeholder="Enter Designation">
+                            <label for="update-clientName">Course Name</label>
+                            <input type="text" class="form-control form-control-sm" id="update-clientName" name="ClientName"
+                                placeholder="Enter Client Name">
                         </div>
                     </div>
                 </div>
@@ -409,23 +407,23 @@
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
-                <button type="button" class="btn btn-success btn-sm" id="update_designation_btn">Update</button>
+                <button type="button" class="btn btn-success btn-sm" id="update_client_btn">Update</button>
             </div>
         </div>
     </div>
 </div>
 
-<!---------------------------------------------------------------------------------------------UPDATE-DESIGNATION-MODAL-END---------------------------------------------------->
+<!---------------------------------------------------------------------------------------------UPDATE-USER-MODAL-END---------------------------------------------------->
                                                         <div class="d-flex justify-content-end align-items-center mb-5">
                                                             <div class="w-25">
-                                                                <input type="text" name="name" maxlength="25" class="form-control" id="designation-name-input"
-                                                                    placeholder="Enter Designation">
+                                                                <input type="text" name="name" maxlength="25" class="form-control" id="client-name-input"
+                                                                    placeholder="Enter Client Name">
                                                             </div>
-                                                            <button class="btn btn-success d-flex align-items-center  px-sm-4 py-sm-1 rounded-pill shadow border" style="padding: 6.5px 20px !important; margin-left: 3px !important;" id="add_designation_btn">
-                                                                <span class="fw-bold">Add Designation</span>
+                                                            <button class="btn btn-success d-flex align-items-center  px-sm-4 py-sm-1 rounded-pill shadow border" style="padding: 6.5px 20px !important; margin-left: 3px !important;" id="add_client_btn">
+                                                                <span class="fw-bold">Add Client</span>
                                                             </button>
                                                         </div>
-                                                        <div class="row">
+                                                         <div class="row">
                                                             <div id="exportButtons" class="mb-3">
                                                             
                                                             </div>
@@ -436,7 +434,7 @@
                                                                     class="table table-striped rounded table-hover">
                                                                     <thead class="bg-primary text-white">
                                                                         <tr>
-                                                                            <th>Designation</th>
+                                                                            <th>Client Name</th>
                                                                             <th>Created On</th>
                                                                             <th>Status</th>
                                                                              <th>Update</th>
@@ -530,7 +528,7 @@
 </div>
 <![endif]-->
     <!-- Warning Section Ends -->
-<!-- Required jQuery -->
+<!-- Required Jquery -->
 <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
@@ -548,21 +546,12 @@
 <!-- DataTables CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
 
 <!-- jQuery and DataTables JS -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-<!-- DataTables Buttons Extension JS -->
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
 
 <!-- Menu JS -->
 <script src="assets/js/pcoded.min.js"></script>
@@ -572,10 +561,25 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="module" src="./assets/js/axiosInstance.js"></script>
 
+<!-- DataTables Buttons Extension JS -->
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+
+<!-- JSZip for Excel export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+
+<!-- pdfMake for PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<!-- Buttons for Excel, CSV, and PDF -->
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+
 <!-- Custom JS files -->
 <script src="assets/js/script.js"></script>
-<script src="assets/js/designations.js"></script>
 <script src="assets/js/popup.js"></script>
+<script src="assets/js/clients.js"></script>
 <script src="./assets/js/api.js"></script>
 <script src="./assets/js/apiRequests.js"></script>
 
@@ -586,12 +590,11 @@
             "paging": true,
             "pageLength": 25,
             "lengthMenu": [5, 10, 25, 50, 100],
-            dom: '<"top"l>frtip',
+            dom: '<"top"l>frtip', // Define the layout
             buttons: [
         {
             extend: 'excelHtml5',
             text: 'Excel',
-            
             exportOptions: {
                 columns: [0,1,2],
                 format: {
@@ -623,7 +626,6 @@
         {
             extend: 'pdfHtml5',
             text: 'PDF',
-            orientation: 'landscape',
             exportOptions: {
                 columns: [0,1,2],
                 format: {
@@ -639,7 +641,7 @@
     ]
         });
 
-        
+        // Append buttons to the specified container
         table.buttons().container().appendTo('#exportButtons');
     });
 
@@ -651,15 +653,19 @@
         icon.classList.toggle("fa-chevron-up");
     }
 
-    document.querySelectorAll('logout').forEach(button => {
-        button.addEventListener('click', () => {
-            sessionStorage.removeItem('token');
-            sessionStorage.removeItem('user');
-            window.location.href = 'login.html';
+
+    document.querySelectorAll('.logout').forEach(bnt=>{
+        bnt.addEventListener('click',function(){
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("user");
+            window.location.href = "login.html";
         });
-    })
+    });
+
 
 </script>
+
+
 
 </body>
 
