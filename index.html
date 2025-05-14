@@ -38,7 +38,11 @@
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     
-    
+    <style>
+      .hidden {
+        display: none !important;
+      }
+    </style>
   <style>
       .modern-table {
       color: black !important;
@@ -399,7 +403,10 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="accordion">
+                            <div id="sidebar-container">
+
+                            </div>
+                            <!-- <div class="accordion">
                               <div class="accordion-header">
                                 <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Project Tracking<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
                               </div>
@@ -457,7 +464,7 @@
                                       <li>
                                         <a href="procurementStagesDashboard.html" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                            <span class="pcoded-mtext">Procurements Dashboard</span>
+                                            <span class="pcoded-mtext">Equipments Dashboard</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
@@ -501,7 +508,7 @@
                                     </ul>
                                     
                                       </div>
-                                      </div>
+                                      </div> -->
                             
                             
                     </nav>
@@ -880,7 +887,7 @@
 </div>
 <![endif]-->
     <!-- Warning Section Ends -->
-
+    <script src="assets/js/roleUtil.js"></script>
     <!-- Required Jquery -->
     <script type="text/javascript" src="assets/js/jquery/jquery.min.js "></script>
     <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js "></script>
@@ -907,19 +914,22 @@
     <script type="text/javascript" src="assets/js/popup.js"></script>
     <!-- <script src="/assets/js/index.js"></script> -->
     <script>
-        const token=sessionStorage.getItem('token');
-        const user=JSON.parse(sessionStorage.getItem('user'));
-        if(token===null||user===null){
-            window.location.href="login.html";
-        }else if(user.role===2){
-            window.location.href="user-details.html";
-        }
 
-        $('#username').text(user.name);
+
+        // const token=sessionStorage.getItem('token');
+        // const user=JSON.parse(sessionStorage.getItem('user'));
+        // if(token===null||user===null){
+        //     window.location.href="login.html";
+        // }else if(user.role===2){
+        //     window.location.href="user-details.html";
+        // }
+
+        // $('#username').text(user.name);
 
         document.getElementById('logout-button').addEventListener('click',logout);
         function logout(){
             sessionStorage.removeItem('token');
+            window.location.href='login.html';
         }
 
 
@@ -941,6 +951,50 @@
       //     'Content-Type': 'application/json'
       //   }
       // }).then(response => response.json());
+
+      let user=JSON.parse(sessionStorage.getItem('user'));
+      let token=sessionStorage.getItem('token');
+      if(token===null||user===null){
+        window.location.href="login.html";
+      }else{
+            
+    roles=await axiosInstance.get('/roles/role/perms');
+    roles=roles.data.roles;
+    // console.log(roles); 
+    window.roles=roles;
+        handlePermission('#username');
+       
+    const sidebarContainer = document.getElementById('sidebar-container');
+    if (sidebarContainer) {
+        sidebarContainer.innerHTML = generateSidebar();
+        
+        // Set the current page as active
+        const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+        const navLinks = document.querySelectorAll('.pcoded-item a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes(currentPage)) {
+                link.parentElement.classList.add('active');
+                
+                // Expand the parent accordion
+                const accordionContent = link.closest('.accordion-content');
+                if (accordionContent) {
+                    accordionContent.style.display = 'block';
+                    const header = accordionContent.previousElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                }
+            }
+        });
+    }
+
+      }
+
+  
+
       var response=await axiosInstance.get('/dashboard/manningcost');
       var manningcost=response.data;
       // console.log(manningcost);

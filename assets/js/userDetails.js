@@ -184,17 +184,22 @@ async function toggleStatus(element, id) {
 //dom loaded
 document.addEventListener('DOMContentLoaded',async()=>{
 
-    const token = sessionStorage.getItem('token');
-    const user = JSON.parse(sessionStorage.getItem('user'));
-    if (token === null || user === null) {
-        window.location.href = "login.html";
-    } else if (user.role !== 2) {
-        window.location.href = "index.html";
-    }
+    // const token = sessionStorage.getItem('token');
+    // const user = JSON.parse(sessionStorage.getItem('user'));
+    // if (token === null || user === null) {
+    //     window.location.href = "login.html";
+    // } else if (user.role !== 2) {
+    //     window.location.href = "index.html";
+    // }
 
-    document.getElementById('user-name-display').textContent=user.name;
+    // document.getElementById('user-name-display').textContent=user.name;
     // document.getElementById('more-details').textContent=user.name;
 
+    roles = await axiosInstance.get('/roles/role/perms');
+    roles = roles.data.roles;
+    // console.log(roles);
+    window.roles = roles;
+    handlePermission('#user-name-display');
 
     await fetchAllUsers();
     await fetchAllRoles('roleSelect');

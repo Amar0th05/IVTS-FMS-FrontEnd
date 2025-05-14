@@ -34,8 +34,8 @@ function addRow(data){
     data.port,
     data.equipmentCategory,
     data.equipment,
-    data.totalQuantity,
-   `<input type="number" min="0" max="${data.totalQuantity}" value="${data.quantityDelivered}" class="form-control" id="quantityPendingForDelivery-${data.equipmentID}" data-equipmentId="${data.equipmentID}" data-deliveryId="${data.deliveryID}" data-totalQuantity="${data.totalQuantity}">`,
+    `<input type="number" min="0"  value="${data.totalQuantity}" class="form-control editElement" id="totalQuantity-${data.equipmentID}" data-equipmentId="${data.equipmentID}" data-deliveryId="${data.deliveryID}">`,
+   `<input type="number" min="0" max="${data.totalQuantity}" value="${data.quantityDelivered}" class="form-control editElement" id="quantityPendingForDelivery-${data.equipmentID}" data-equipmentId="${data.equipmentID}" data-deliveryId="${data.deliveryID}" data-totalQuantity="${data.totalQuantity}">`,
     data.quantityPendingForDelivery,
     data.stage,
     data.reasonForPendingDelivery,
@@ -58,24 +58,38 @@ function addRow(data){
 
 
 document.querySelector('#myTable').addEventListener('change', async function(event) {
-    if (event.target.classList.contains('form-control')) {  
-        const quantityDelivered = event.target.value;
+    if (event.target.classList.contains('form-control')) {
+        const fieldId = event.target.id;
+    
+        const totalQuantity = event.target.value;
         const equipmentID = event.target.dataset.equipmentid;
-        const totalQuantity=event.target.dataset.totalquantity;
-
-        if(parseInt(totalQuantity)<parseInt(quantityDelivered)){
-            showErrorPopupFadeInDown('Quantity delivered cannot be greater than total quantity.');
-            await refreshTable();
-            return;
+        const deliveryID = event.target.dataset.deliveryid;
+    
+        if (fieldId.startsWith("totalQuantity-")) {
+           
+            if (parseInt(totalQuantity) < 0) {
+                showErrorPopupFadeInDown('Total quantity cannot be negative.');
+                await refreshTable();
+                return;
+            }
+    
+            await updateTotalQuantity(equipmentID, totalQuantity, deliveryID);
         }
-
-        const deliveryID=event.target.dataset.deliveryid;
-
-        
-
-
-        updateQuantityDelivered(equipmentID, quantityDelivered,deliveryID);
+    
+        else if (fieldId.startsWith("quantityPendingForDelivery-")) {
+            const quantityDelivered = totalQuantity;
+            const maxQty = event.target.dataset.totalquantity;
+    
+            if (parseInt(quantityDelivered) > parseInt(maxQty)) {
+                showErrorPopupFadeInDown('Quantity delivered cannot be greater than total quantity.');
+                await refreshTable();
+                return;
+            }
+    
+            await updateQuantityDelivered(equipmentID, quantityDelivered, deliveryID);
+        }
     }
+    
 });
 
 
@@ -143,24 +157,84 @@ async function fetchAllData(){
             addRow(element);
             
         });
-
+        handlePermission('#username');
     }catch(err){
         console.error(err);
     }
 }
 
 $(document).ready(async function() {
-    
-    const user=JSON.parse(sessionStorage.getItem('user'));
-    const token = sessionStorage.getItem('token');
-    if (token === null || user === null) {
-        window.location.replace("login.html");
-    } else if (user.role === 2) {
-        window.location.replace("user-details.html");
-        return;
-    }
+    roles = await axiosInstance.get('/roles/role/perms');
+    roles = roles.data.roles;
+    // console.log(roles);
+    window.roles = roles;
 
-    document.getElementById('username').textContent=user.name;
+    handlePermission('#username');
+
+    const sidebarContainer = document.getElementById('sidebar-placeholer');
+    if (sidebarContainer) {
+        sidebarContainer.innerHTML = generateSidebar();
+        
+        // Set the current page as active
+        const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+        const navLinks = document.querySelectorAll('.pcoded-item a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes(currentPage)) {
+                link.parentElement.classList.add('active');
+                
+                // Expand the parent accordion
+                const accordionContent = link.closest('.accordion-content');
+                if (accordionContent) {
+                    accordionContent.style.display = 'block';
+                    const header = accordionContent.previousElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                }
+            }
+        });
+    }
+    
+    // const sidebarContainer = document.getElementById('sidebar-container');
+    // if (sidebarContainer) {
+    //     sidebarContainer.innerHTML = generateSidebar();
+        
+       
+    //     const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+    //     const navLinks = document.querySelectorAll('.pcoded-item a');
+        
+    //     navLinks.forEach(link => {
+    //         if (link.getAttribute('href').includes(currentPage)) {
+    //             link.parentElement.classList.add('active');
+                
+            
+    //             const accordionContent = link.closest('.accordion-content');
+    //             if (accordionContent) {
+    //                 accordionContent.style.display = 'block';
+    //                 const header = accordionContent.previousElementSibling;
+    //                 const icon = header.querySelector('.accordion-icon');
+    //                 if (icon) {
+    //                     icon.classList.remove('fa-chevron-down');
+    //                     icon.classList.add('fa-chevron-up');
+    //                 }
+    //             }
+    //         }
+    //     });
+    // }
+    
+    // const user=JSON.parse(sessionStorage.getItem('user'));
+    // const token = sessionStorage.getItem('token');
+    // if (token === null || user === null) {
+    //     window.location.replace("login.html");
+    // } else if (user.role === 2) {
+    //     window.location.replace("user-details.html");
+    //     return;
+    // }
+
+    // document.getElementById('username').textContent=user.name;
 
     await loadOrganisationOptions("portName");
     await loadEquipmentCategoryOptions('equipmentCategory');
@@ -304,6 +378,21 @@ async function updateQuantityDelivered(equipmentID, quantityDelivered,deliveryID
     }
 }
 
+
+async function updateTotalQuantity(equipmentID, totalQuantity,deliveryID){
+    try{
+        const data={
+            totalQuantity:totalQuantity
+        }
+        const response=await axiosInstance.put('/equipments/tq/'+equipmentID,{
+            data
+        });
+        
+        await refreshTable();
+    }catch(err){
+        console.log(err);
+    }
+}
 
 
 async function loadOrganisationOptions(id) {

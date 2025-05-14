@@ -107,6 +107,7 @@ addStaffButton.addEventListener('click', async (e) => {
 
             table.clear();
             await fetchAllData();
+            handlePermission('#username');
             showSucessPopupFadeInDownLong(response.data.message);
             form.reset();
             insuranceForm.reset();
@@ -154,6 +155,7 @@ updateStaffButton.addEventListener('click', async (e) => {
             const responseData=await api.updateStaff(data);
             table.clear();
             await fetchAllData();
+            handlePermission('#username');
             showSucessPopupFadeInDownLong(responseData.message);
         } catch (error) {
             showErrorPopupFadeInDown(error.response?.data?.message || 'Failed to add staff. Please try again later.');
@@ -162,6 +164,19 @@ updateStaffButton.addEventListener('click', async (e) => {
     
 });
 
+let decidedPermission;
+document.addEventListener('DOMContentLoaded',async ()=>{
+    roles = await axiosInstance.get('/roles/role/perms');
+roles = roles.data.roles;
+// console.log(roles);
+window.roles = roles;
+    decidedPermission=handlePermission('#username');
+});
+
+if(decidedPermission!==''){
+    decidedPermission='editElement';
+    // alert(decidedPermission)
+}
 
 let table;
 function addRow(data){
@@ -194,7 +209,7 @@ function addRow(data){
       data.currentSalary,
       data.currentDesignation,
         `<div class="container">
-            <div class="toggle-btn ${data.status===true?'active':''}" onclick="toggleStatus(this,'${data.staffID}')">
+            <div class="toggle-btn ${decidedPermission}  ${data.status===true?'active':''}" onclick="toggleStatus(this,'${data.staffID}')">
                 <div class="slider"></div>
             </div>
         </div>`
@@ -228,27 +243,67 @@ document.querySelector('#exitButton2').addEventListener('click', function () {
 
 
 document.addEventListener('DOMContentLoaded',async ()=>{
-    const token = sessionStorage.getItem('token');
-    const user = JSON.parse(sessionStorage.getItem('user'));
-    if (!token || !user) {
-        window.location.href = 'login.html';
-    } else if (user.role === 2) {
-        window.location.href = 'user-details.html';
+
+    roles = await axiosInstance.get('/roles/role/perms');
+    roles = roles.data.roles;
+    // console.log(roles);
+    window.roles = roles;
+    handlePermission('#username');
+
+
+    const sidebarContainer = document.getElementById('sidebar-container');
+    if (sidebarContainer) {
+        sidebarContainer.innerHTML = generateSidebar();
+        
+       
+        const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+        const navLinks = document.querySelectorAll('.pcoded-item a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes(currentPage)) {
+                link.parentElement.classList.add('active');
+                
+            
+                const accordionContent = link.closest('.accordion-content');
+                if (accordionContent) {
+                    accordionContent.style.display = 'block';
+                    const header = accordionContent.previousElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                }
+            }
+        });
     }
 
-    document.querySelector('#username').textContent = user.name;
+    // const token = sessionStorage.getItem('token');
+    // const user = JSON.parse(sessionStorage.getItem('user'));
+    // if (!token || !user) {
+    //     window.location.href = 'login.html';
+    // } else if (user.role === 2) {
+    //     window.location.href = 'user-details.html';
+    // }
+
+    // document.querySelector('#username').textContent = user.name;
     
 
     await loadCourseOptions('courseSelect');
     await loadOrganisationOptions("locationSelect");
     await loadHighestQualificationsOptions("highestQualificationSelect");
     await fetchAllData();
+    
+    handlePermission('#username');
 });
 
 
 
 
 async function toggleStatus(element, id) {
+
+    if(element.classList.contains('editElement')) return;
+
     if (!id) return;
 
     try {
@@ -276,6 +331,9 @@ async function fetchAllData() {
             designations.add(staffDetail.currentDesignation);
             locations.add(staffDetail.locationOfWork);
         });
+
+        handlePermission('#username');
+            
 
             designations.forEach(designation => {
             if(!designation) return;

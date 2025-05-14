@@ -50,6 +50,19 @@
             z-index: 1000; 
         }
     </style>
+    <style>
+        .addNewRecord{
+          all:unset;
+          color: white !important;
+          padding: 10px 10px !important;
+          background: linear-gradient(135deg, #4931d1, #7f86f3);
+        }
+      </style>
+      <style>
+        .hidden {
+          display: none !important;
+        }
+      </style>
 </head>
 
 <bo>
@@ -213,7 +226,8 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="accordion">
+                            <div id="sidebar-placeholer"></div>
+                            <!-- <div class="accordion">
                                 <div class="accordion-header">
                                   <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Project Tracking<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
                                 </div>
@@ -271,7 +285,7 @@
                                         <li>
                                             <a href="procurementStagesDashboard.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                                <span class="pcoded-mtext">Procurements Dashboard</span>
+                                                <span class="pcoded-mtext">Equipments Dashboard</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -315,7 +329,7 @@
                                       </ul>
                                       
                                         </div>
-                                        </div>
+                                        </div> -->
                     </nav>
 
 
@@ -476,40 +490,40 @@
                         <tbody >
                             <tr>
                                 <td>Vendor Finalized/Tender Finalized Date</td>
-                                <td><input type="date" name="vendorFinalised" id="vendorFinalised" class="form-control"></td>
+                                <td><input type="date" name="vendorFinalised" id="vendorFinalised" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td>Vendor Received Quotation Date</td>
-                                <td><input type="date"  name="vendorReceivedQuotation" id="vendorReceivedQuotation" class="form-control"></td>
+                                <td><input type="date"  name="vendorReceivedQuotation" id="vendorReceivedQuotation" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td>Intend Raised Date</td>
-                                <td><input type="date" name="intendRaised" id="intendRaised" class="form-control"></td>
+                                <td><input type="date" name="intendRaised" id="intendRaised" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td>Admin Approved Date</td>
-                                <td><input type="date" name="adminApproved" id="adminApproved" class="form-control"></td>
+                                <td><input type="date" name="adminApproved" id="adminApproved" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td>PO Released Date</td>
-                                <td><input type="date" name="poReleased" id="poReleased" class="form-control"></td>
+                                <td><input type="date" name="poReleased" id="poReleased" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td>Equipment Delivered to NTCPWC Date</td>
-                                <td><input type="date" name="equipmentDeliveredAtNtcpwc" id="equipmentDeliveredAtNtcpwc" class="form-control"></td>
+                                <td><input type="date" name="equipmentDeliveredAtNtcpwc" id="equipmentDeliveredAtNtcpwc" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td>Payment Settled to Vendor by NTCPWC Date</td>
-                                <td><input type="date" name="paymentSettledToVendorByNtcpwc" id="paymentSettledToVendorByNtcpwc" class="form-control"></td>
+                                <td><input type="date" editElementname="paymentSettledToVendorByNtcpwc" id="paymentSettledToVendorByNtcpwc" class="form-control "></td>
                             </tr>
                             
                             <tr>
                                 <td>Amount Paid (Excl. GST)</td>
-                                <td><input type="number" name="amountPaid" id="amountPaid" class="form-control"></td>
+                                <td><input type="number" name="amountPaid" id="amountPaid" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td>GST</td>
-                                <td><input type="number" name="gst" id="gst" class="form-control"></td>
+                                <td><input type="number" name="gst" id="gst" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td style="color:darkblue !important; font-weight: bolder;">Total Amount Paid</td>
@@ -518,19 +532,19 @@
                             
                             <tr>
                                 <td>Date at Which Supplied at Port</td>
-                                <td><input type="date" name="suppliedAtPort" id="suppliedAtPort" class="form-control"></td>
+                                <td><input type="date" name="suppliedAtPort" id="suppliedAtPort" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td>Installed at Port Date</td>
-                                <td><input type="date" name="installedAtPort" id="installedAtPort" class="form-control"></td>
+                                <td><input type="date" name="installedAtPort" id="installedAtPort" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td>Invoice Submitted by NTCPWC</td>
-                                <td><input type="date" name="invoiceSubmittedByNtcpwc" id="invoiceSubmittedByNtcpwc" class="form-control"></td>
+                                <td><input type="date" name="invoiceSubmittedByNtcpwc" id="invoiceSubmittedByNtcpwc" class="form-control editElement"></td>
                             </tr>
                             <tr>
                                 <td style="color:darkblue !important; font-weight: bolder;">Amount Received</td>
-                                <td><input type="number" name="amountReceived" id="amountReceived" class="form-control"></td>
+                                <td><input type="number" name="amountReceived" id="amountReceived" class="form-control editElement"></td>
                             </tr>
                         </tbody>
                         
@@ -541,7 +555,7 @@
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Exit</button>
-                <button type="button" class="btn btn-success btn-sm" id="submit_procurement_btn">Submit</button>
+                <button type="button" class="btn btn-success btn-sm writeElement" id="submit_procurement_btn">Submit</button>
             </div>
         </div>
     </div>
@@ -551,10 +565,10 @@
 
                                                         <div class="d-flex justify-content-end mb-5">
                                                             <button
-                                                                class="btn btn-primary d-flex align-items-center gap-2 px-sm-4 py-sm-2 rounded-pill shadow"
+                                                                class="btn btn-primary addNewRecord d-flex writeElement align-items-center gap-2 px-sm-4 py-sm-2 rounded-pill shadow"
                                                                 data-toggle="modal" data-target="#addNewModal">
                                                                 <i class="ti-plus text-white fs-5"></i>
-                                                                <span class="fw-bold">Add Equipment</span>
+                                                                <span class="fw-bold">Add New Equipment</span>
                                                             </button>
                                                             
                                                         </div>
@@ -645,7 +659,7 @@
 
         </div>
     </div>
-
+    <script src="assets/js/roleUtil.js"></script>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

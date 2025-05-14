@@ -184,7 +184,7 @@ function addRow(data){
       data.allowance,
       data.grossPay,
       data.currentDesignation,
-        `<div class="row d-flex justify-content-center">
+        `<div class="row d-flex justify-content-center writeElement">
             <span class="d-flex align-items-center justify-content-center p-0 " style="width: 40px; height: 40px;cursor:pointer;" data-toggle="modal" data-target="#updateModal" onclick="loadUpdateLogs('${data.contractID}')">
                 <i class="ti-pencil-alt text-inverse" style="font-size: larger;"></i>
             </span>
@@ -204,6 +204,8 @@ async function fetchAllData() {
     
        data.contractDetails.forEach(contractLog => {
             addRow(contractLog);
+
+            handlePermission('#username');
 
             designations.add(contractLog.currentDesignation);
             ids.add(contractLog.staffID);
@@ -228,18 +230,51 @@ async function fetchAllData() {
 
 
 document.addEventListener('DOMContentLoaded',async ()=>{
-    const token=sessionStorage.getItem('token');
-    const user=JSON.parse(sessionStorage.getItem('user'));
-    if(!token||!user){
-        window.location.href = 'login.html';
-        return;
-    }else if(user.role===2){
-        window.location.href = 'user-details.html';
-        return;
+    roles = await axiosInstance.get('/roles/role/perms');
+    roles = roles.data.roles;
+    // console.log(roles);
+    window.roles = roles;
+    handlePermission('#username');
+
+    const sidebarContainer = document.getElementById('sidebar-container');
+    if (sidebarContainer) {
+        sidebarContainer.innerHTML = generateSidebar();
+        
+        // Set the current page as active
+        const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+        const navLinks = document.querySelectorAll('.pcoded-item a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes(currentPage)) {
+                link.parentElement.classList.add('active');
+                
+                // Expand the parent accordion
+                const accordionContent = link.closest('.accordion-content');
+                if (accordionContent) {
+                    accordionContent.style.display = 'block';
+                    const header = accordionContent.previousElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                }
+            }
+        });
     }
 
+    // const token=sessionStorage.getItem('token');
+    // const user=JSON.parse(sessionStorage.getItem('user'));
+    // if(!token||!user){
+    //     window.location.href = 'login.html';
+    //     return;
+    // }else if(user.role===2){
+    //     window.location.href = 'user-details.html';
+    //     return;
+    // }
 
-    document.getElementById('username').innerText=user.name;
+
+    // document.getElementById('username').innerText=user.name;
     // document.getElementById('more-details').innerText=user.name;
 
     await loadStaffOptions('staffId-select');

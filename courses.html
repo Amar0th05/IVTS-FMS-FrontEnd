@@ -41,6 +41,20 @@
             text-align: center;
         }
     </style>
+
+<style>
+    .addNewRecord{
+      all:unset;
+      color: white !important;
+      padding: 10px 10px !important;
+      background: linear-gradient(135deg, #4931d1, #7f86f3);
+    }
+  </style>
+  <style>
+    .hidden {
+      display: none !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -255,6 +269,13 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="roles.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-id-badge"></i><b>D</b></span>
+                                                <span class="pcoded-mtext">User Roles</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 </div>
@@ -419,8 +440,8 @@
                                                                 <input type="text" name="name" maxlength="25" class="form-control" id="course-name-input"
                                                                     placeholder="Enter Course Name">
                                                             </div>
-                                                            <button class="btn btn-success d-flex align-items-center  px-sm-4 py-sm-1 rounded-pill shadow border" style="padding: 6.5px 20px !important; margin-left: 3px !important;" id="add_course_btn">
-                                                                <span class="fw-bold">Add course</span>
+                                                            <button class="btn btn-success d-flex align-items-center  px-sm-4 py-sm-1 rounded-pill shadow addNewRecord border" style="padding: 6.5px 20px !important; margin-left: 3px !important;" id="add_course_btn">
+                                                                <span class="fw-bold">Add New Course</span>
                                                             </button>
                                                         </div>
                                                          <div class="row">
@@ -528,6 +549,7 @@
 </div>
 <![endif]-->
     <!-- Warning Section Ends -->
+    <script src="assets/js/roleUtil.js"></script>
 <!-- Required Jquery -->
 <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>

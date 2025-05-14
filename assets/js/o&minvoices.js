@@ -193,32 +193,76 @@ async function getAllInvoiceLogs(){
 
 document.addEventListener('DOMContentLoaded',async ()=>{
 
-    const user=JSON.parse(sessionStorage.getItem('user'));
-    const token=sessionStorage.getItem('token');
+    roles = await axiosInstance.get('/roles/role/perms');
+    roles = roles.data.roles;
+    // console.log(roles);
+    window.roles = roles;
+    handlePermission('#username');
 
-    if(token===null||user===null){
-        window.location.href="login.html";
+
+    const sidebarContainer = document.getElementById('sidebar-container');
+    if (sidebarContainer) {
+        sidebarContainer.innerHTML = generateSidebar();
+        
+       
+        const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+        const navLinks = document.querySelectorAll('.pcoded-item a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes(currentPage)) {
+                link.parentElement.classList.add('active');
+                
+            
+                const accordionContent = link.closest('.accordion-content');
+                if (accordionContent) {
+                    accordionContent.style.display = 'block';
+                    const header = accordionContent.previousElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                }
+            }
+        });
     }
 
-    if(user.role===2){
-        window.location.href="user-details.html";
-        return;
-    }
+    // const user=JSON.parse(sessionStorage.getItem('user'));
+    // const token=sessionStorage.getItem('token');
 
-    document.getElementById('username').innerText=user.name;
+    // if(token===null||user===null){
+    //     window.location.href="login.html";
+    // }
+
+    // if(user.role===2){
+    //     window.location.href="user-details.html";
+    //     return;
+    // }
+
+    // document.getElementById('username').innerText=user.name;
 
 
 
     $('#year-title').text(date.getFullYear());
 
-    if(date.getDate()>=15){
-        month=months[date.getMonth()+1]
-        
+    if(date.getDate()>10){
+        month=months[date.getMonth()] 
     }else{
-        month=months[date.getMonth()]
+        month=months[date.getMonth()-1];
+    }
+    
+
+    if(date.getMonth()===0){
+        year=date.getFullYear()-1;
+        month=months[11];
     }
 
+    $('#year-title').text(year);
+
     $('#month-title').text(month);
+
+
+
 
 
         try{
@@ -250,14 +294,23 @@ async function getAllOrganisations(){
         organisations.forEach(item=>{
             addOrganisationsRow(item,i++);
         })
+
+        handlePermission('#username');
+
     }catch(err){
         console.log(err);
     }
 }
 
 
+
+
+
 function addOrganisationsRow(data,i){
-    let mailSentRow=`<input type="checkbox" class="form-check-input "  style="width: 30px; height: 30px; accent-color: blue; border-radius: 5px;" onchange="updateMailSentStatus(this.checked,'${data.org_id}')">`;
+
+
+
+    let mailSentRow=`<input type="checkbox"  class="form-check-input editElement "  style="width: 30px; height: 30px; accent-color: blue; border-radius: 5px;" onchange="updateMailSentStatus(this.checked,'${data.org_id}')">`;
     if ( $.fn.dataTable.isDataTable( '#monthlyStatusTable' ) ) {
         table = $('#monthlyStatusTable').DataTable();
     }
@@ -272,9 +325,9 @@ function addOrganisationsRow(data,i){
 
     let msrow=statuses.find(status=>status.org_id===data.org_id);
     if(msrow){
-       mailSentRow=`<input type="checkbox" checked class="form-check-input "  style="width: 30px; height: 30px; accent-color: blue; border-radius: 5px;" onchange="updateMailSentStatus(this.checked,'${data.org_id}')">`
+       mailSentRow=`<input type="checkbox" checked class="form-check-input editElement"  style="width: 30px; height: 30px; accent-color: blue; border-radius: 5px;" onchange="updateMailSentStatus(this.checked,'${data.org_id}')">`
     }else{
-        mailSentRow=`<input type="checkbox" class="form-check-input "  style="width: 30px; height: 30px; accent-color: blue; border-radius: 5px;" onchange="updateMailSentStatus(this.checked,'${data.org_id}')">`
+        mailSentRow=`<input type="checkbox" class="form-check-input editElement"  style="width: 30px; height: 30px; accent-color: blue; border-radius: 5px;" onchange="updateMailSentStatus(this.checked,'${data.org_id}')">`
     }
    }
   
@@ -285,7 +338,7 @@ function addOrganisationsRow(data,i){
       data.organisation_name,
       
      `
-        <button class="btn btn-success mx-auto rounded-1" data-bs-toggle="modal" data-bs-target="#pdfModal" data-port-id="${data.org_id}">
+        <button class="btn btn-success mx-auto rounded-1 editElement" data-bs-toggle="modal" data-bs-target="#pdfModal" data-port-id="${data.org_id}">
                                                                                     <i class="fa fa-upload "></i>
                                                                                 </button>  
      `,
@@ -338,3 +391,16 @@ async function updateMailSentStatus(status,id){
         await refreshMonthlyStatusTable();
     }
 }
+
+
+document.getElementById('logout-button').addEventListener('click',()=>{
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    window.location.href="login.html";
+});
+
+document.getElementsByClassName('logout')[0].addEventListener('click',()=>{
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    window.location.href="login.html";
+});

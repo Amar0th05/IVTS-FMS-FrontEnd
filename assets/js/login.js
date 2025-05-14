@@ -36,13 +36,21 @@ document.addEventListener('DOMContentLoaded',()=>{
                 sessionStorage.setItem('token', token);
                 sessionStorage.setItem('user', JSON.stringify(user));
                 showPopupFadeInDown(`Login Successful`);
+                roles = await axiosInstance.get('/roles/role/perms');
+                roles = roles.data.roles;
+                // console.log(roles);
+                window.roles = roles;
                 e.target.reset();
                 setTimeout(() => {
-                    if(user.role===2){
-                        window.location.href = 'user-details.html';
-                    }else{
-                        window.location.href = 'index.html';
-                    }
+                    // if(user.role===2){
+                    //     window.location.href = 'user-details.html';
+                    // }else{
+                    //     window.location.href = 'index.html';
+                    // }
+
+                 
+                    roleUtil.loginRedirect(user.role);
+
                 }, 1000);
             } else {
                 showErrorPopupFadeInDown('Invalid credentials. Please try again.');

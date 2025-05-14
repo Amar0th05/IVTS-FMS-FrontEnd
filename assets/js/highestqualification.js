@@ -90,24 +90,27 @@ async function fetchAllQualifications(){
 
 document.addEventListener('DOMContentLoaded',async ()=>{
 
+    roles = await axiosInstance.get('/roles/role/perms');
+    roles = roles.data.roles;
+    // console.log(roles);
+    window.roles = roles;
+    handlePermission('#user-name-dsiplay');
 
+    // const user=JSON.parse(sessionStorage.getItem('user'));
+    // const token = sessionStorage.getItem('token');
     
-
-    const user=JSON.parse(sessionStorage.getItem('user'));
-    const token = sessionStorage.getItem('token');
-    
-    // document.getElementById('more-details').innerHTML=user.name;
+    // // document.getElementById('more-details').innerHTML=user.name;
 
 
        
-    if (token === null || user === null) {
-        window.location.replace("login.html");
-    } else if (user.role !== 2) {
-        window.location.replace("index.html");
-        return;
-    }
+    // if (token === null || user === null) {
+    //     window.location.replace("login.html");
+    // } else if (user.role !== 2) {
+    //     window.location.replace("index.html");
+    //     return;
+    // }
 
-    document.getElementById('user-name-dsiplay').innerHTML=user.name;
+    // document.getElementById('user-name-dsiplay').innerHTML=user.name;
     
     await refreshTable();
 

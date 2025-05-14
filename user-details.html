@@ -41,6 +41,21 @@
             text-align: center;
         }
     </style>
+    <style>
+        .hidden {
+          display: none !important;
+        }
+      </style>
+
+<style>
+    .addNewRecord{
+      all:unset;
+      color: white !important;
+      padding: 10px 10px !important;
+      background: linear-gradient(135deg, #4931d1, #7f86f3);
+    }
+  </style>
+
 </head>
 
 <body>
@@ -252,6 +267,13 @@
                                             <a href="user-details.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
                                                 <span class="pcoded-mtext">User Details</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="roles.html" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-id-badge"></i><b>D</b></span>
+                                                <span class="pcoded-mtext">User Roles</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -573,10 +595,10 @@
 
                                                         <div class="d-flex justify-content-end mb-5">
                                                             <button
-                                                                class="btn btn-primary d-flex align-items-center gap-2 px-sm-4 py-sm-2 rounded-pill shadow"
+                                                                class="btn btn-primary addNewRecord d-flex align-items-center gap-2 px-sm-4 py-sm-2 rounded-pill shadow"
                                                                 data-toggle="modal" data-target="#addNewModal">
                                                                 <i class="ti-plus text-white fs-5"></i>
-                                                                <span class="fw-bold">Add New</span>
+                                                                <span class="fw-bold">Add New User</span>
                                                             </button>
                                                         </div>
                                                         <div class="row">
@@ -666,7 +688,7 @@
 </div>
 <![endif]-->
     <!-- Warning Section Ends -->
-
+    <script src="assets/js/roleUtil.js"></script>
  <!-- jQuery and Bootstrap -->
 <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>

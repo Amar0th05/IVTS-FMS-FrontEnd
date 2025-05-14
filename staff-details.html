@@ -46,6 +46,19 @@
             border-radius: 5px;
         }
     </style>
+<style>
+    .hidden {
+      display: none !important;
+    }
+  </style>
+<style>
+    .addNewRecord{
+      all:unset;
+      color: white !important;
+      padding: 10px 10px !important;
+      background: linear-gradient(135deg, #4931d1, #7f86f3);
+    }
+  </style>
 
 </head>
 
@@ -260,7 +273,8 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="accordion">
+                            <div id="sidebar-container"></div>
+                            <!-- <div class="accordion">
                                 <div class="accordion-header">
                                   <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Project Tracking<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
                                 </div>
@@ -318,7 +332,7 @@
                                         <li>
                                             <a href="procurementStagesDashboard.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                                <span class="pcoded-mtext">Procurements Dashboard</span>
+                                                <span class="pcoded-mtext">Equipments Dashboard</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -362,7 +376,7 @@
                                       </ul>
                                       
                                         </div>
-                                        </div>
+                                        </div> -->
                     </nav>
 
 
@@ -642,7 +656,7 @@
                              <!-- Staff ID -->
                              <div class="form-group">
                                  <label for="update-staffId">Staff ID</label>
-                                 <input type="text" name="staffID" class="form-control form-control-sm" id="update-staffId" maxlength="20"
+                                 <input type="text" name="staffID" class="form-control form-control-sm editElement" id="update-staffId" maxlength="20"
                                      placeholder="Enter Staff ID">
                              </div>
                          </div>
@@ -650,7 +664,7 @@
                              <!-- Staff Name -->
                              <div class="form-group">
                                  <label for="update-staffName">Staff Name</label>
-                                 <input type="text" maxlength="25" class="form-control form-control-sm" name="staffName" id="update-staffName"
+                                 <input type="text" maxlength="25" class="form-control form-control-sm editElement" name="staffName" id="update-staffName"
                                      placeholder="Enter Staff Name">
                              </div>
     
@@ -661,14 +675,14 @@
                          <div class="col-md-6">
                              <div class="form-group">
                                  <label for="update-dateOfBirth">Date of Birth</label>
-                                 <input type="date" name="dateOfBirth" class="form-control form-control-sm" id="update-dateOfBirth">
+                                 <input type="date" name="dateOfBirth" class="form-control form-control-sm editElement" id="update-dateOfBirth">
                              </div>
                          </div>
                          <div class="col-md-6">
                              <!-- Aadhaar Number -->
                              <div class="form-group">
                                  <label for="update-aadharNumber" id="aadharLabel">Aadhaar Number</label>
-                                 <input type="number" name="aadharNumber" class="form-control form-control-sm" id="update-aadharNumber"
+                                 <input type="number" name="aadharNumber" class="form-control form-control-sm editElement" id="update-aadharNumber"
                                      placeholder="Aadhaar Number" maxlength="12">
                              </div>
                          </div>
@@ -678,7 +692,7 @@
                              <!-- Contact Number -->
                              <div class="form-group">
                                  <label for="update-contactNumber">Contact Number</label>
-                                 <input type="tel" class="form-control form-control-sm" maxlength="10" name="contactNumber" id="update-contactNumber"
+                                 <input type="tel" class="form-control form-control-sm editElement" maxlength="10" name="contactNumber" id="update-contactNumber"
                                      placeholder="Enter Contact Number">
                              </div>
                          </div>
@@ -686,7 +700,7 @@
                              <!-- Email ID -->
                              <div class="form-group">
                                  <label for="update-mail">Email ID</label>
-                                 <input type="email" name="mail" class="form-control form-control-sm" id="update-mail"
+                                 <input type="email" name="mail" class="form-control form-control-sm editElement" id="update-mail"
                                      placeholder="Enter Email ID">
                              </div>
     
@@ -697,7 +711,7 @@
                              <!-- Permanent Address -->
                              <div class="form-group">
                                  <label for="update-permanentAddress">Permanent Address</label>
-                                 <textarea class="form-control form-control-sm" id="update-permanentAddress" name="permanentAddress" rows="2" maxlength="255"
+                                 <textarea class="form-control form-control-sm editElement" id="update-permanentAddress" name="permanentAddress" rows="2" maxlength="255"
                                      placeholder="Enter Permanent Address"></textarea>
                              </div>
                          </div>
@@ -706,7 +720,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="update-location">Location of Work</label>
-                                <select class="form-control form-control-sm" id="update-location" name="locationOfWork">  </select> 
+                                <select class="form-control form-control-sm editElement" id="update-location" name="locationOfWork">  </select> 
                             </div>
                         </div>
                     </div>
@@ -715,14 +729,14 @@
                              <!-- Date of Joining -->
                              <div class="form-group">
                                  <label for="update-dateOfJoining">Date of Joining</label>
-                                 <input type="date" name="dateOfJoining" class="form-control form-control-sm" id="update-dateOfJoining">
+                                 <input type="date" name="dateOfJoining" class="form-control form-control-sm editElement" id="update-dateOfJoining">
                              </div>
                          </div>
                          <div class="col-md-6">
                              <!-- Salary at Joining -->
                              <div class="form-group">
                                  <label for="update-salary">Salary at Joining</label>
-                                 <input type="number" name="salary" class="form-control form-control-sm" id="update-salary"
+                                 <input type="number" name="salary" class="form-control form-control-sm editElement" id="update-salary"
                                      placeholder="Enter Salary">
                              </div>
                          </div>
@@ -732,7 +746,7 @@
                          <div class="col-md-6">
                              <div class="form-group">
                                  <label for="update-qualifications">Qualifications</label>
-                                 <input type="text" name="qualifications" maxlength="100" class="form-control form-control-sm" id="update-qualifications"
+                                 <input type="text" name="qualifications" maxlength="100" class="form-control form-control-sm editElement" id="update-qualifications"
                                      placeholder="Enter qualifications">
                              </div>
                          </div>
@@ -740,7 +754,7 @@
                              <!-- Highest Qualification -->
                              <div class="form-group">
                                  <label for="update-highestQualification">Highest Qualification</label>
-                                 <select class="form-control form-control-sm" id="update-highestQualification" name="highestQualification">
+                                 <select class="form-control form-control-sm editElement" id="update-highestQualification" name="highestQualification">
                                      
                                  </select>
                              </div>
@@ -750,7 +764,7 @@
                          <div class="col-md-6">
                              <div class="form-group">
                                  <label for="update-certifications">Certifications</label>
-                                 <input type="text" class="form-control form-control-sm" id="update-certifications"
+                                 <input type="text" class="form-control form-control-sm editElement" id="update-certifications"
                                      placeholder="Enter Certifications" name="certifications">
                              </div>
                          </div>
@@ -759,7 +773,7 @@
                              <!-- Courses -->
                              <div class="form-group">
                                  <label for="update-courses">Courses</label>
-                                 <select class="form-control form-control-sm" id="update-courseSelect" name="courses">
+                                 <select class="form-control form-control-sm editElement" id="update-courseSelect" name="courses">
                                      <option value="" disabled selected>Select Course</option>
                                  </select>
                              </div>
@@ -801,7 +815,7 @@
                     </tbody>
                 </table>
                 <div class="text-end mt-2">
-                    <button class="btn btn-success btn-sm" id="addRowBtn">
+                    <button class="btn btn-success btn-sm writeElement" id="addRowBtn">
                         <i class="ti-plus"></i> Add Row
                     </button>
                 </div>
@@ -819,7 +833,7 @@
          <!-- Modal Footer -->
          <div class="modal-footer">
              <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" id="exitButton2">Exit</button>
-             <button type="button" id="update_staff_btn" class="btn btn-success btn-sm">Update</button>
+             <button type="button" id="update_staff_btn" class="btn btn-success btn-sm writeElement">Update</button>
          </div>
      
  </div>
@@ -831,10 +845,10 @@
                                                        <div id="tableCard">
                                                         <div class="d-flex justify-content-end mb-5">
                                                             <button id="addNew"
-                                                                class="btn btn-primary d-flex align-items-center gap-2 px-sm-4 py-sm-2 rounded-pill shadow"
+                                                                class="btn btn-primary addNewRecord writeElement d-flex align-items-center gap-2 px-sm-4 py-sm-2 rounded-pill shadow"
                                                                 data-toggle="modal" data-target="#addNewModal">
                                                                 <i class="ti-plus text-white fs-5"></i>
-                                                                <span class="fw-bold">Add New</span>
+                                                                <span class="fw-bold">Add New Staff</span>
                                                             </button>
                                                         </div>
 
@@ -943,7 +957,7 @@
 
         </div>
     </div>
-
+    <script src="assets/js/roleUtil.js"></script>
 
    <!-- Required jQuery -->
 <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
@@ -1054,7 +1068,7 @@
 
 </script>
 <script>
- $(document).ready(function () {
+ $(document).ready(async function () {
     let table = $('#policyTable').DataTable();
 
     
@@ -1074,13 +1088,13 @@
         }
 
         let rowNode = table.row.add([
-            `<input type="date" class="form-control policyStartDate">`,
-            `<input type="text" class="form-control policyNumber" placeholder="Policy Number">`,
-            `<input type="text" class="form-control provider" placeholder="Provider">`,
-            `<input type="date" class="form-control policyStartDate">`,
-            `<input type="date" class="form-control policyExpiryDate" readonly>`,
-            `<input type="text" class="form-control updatedBy" placeholder="Updated By">`,
-            `<button class="btn btn-danger btn-sm deleteRow">Delete</button>`
+            `<input type="date" class="form-control policyStartDate editElement">`,
+            `<input type="text" class="form-control policyNumber editElement" placeholder="Policy Number">`,
+            `<input type="text" class="form-control provider editElement" placeholder="Provider">`,
+            `<input type="date" class="form-control policyStartDate editElement">`,
+            `<input type="date" class="form-control policyExpiryDate editElement" readonly>`,
+            `<input type="text" class="form-control updatedBy editElement" placeholder="Updated By">`,
+            `<button class="btn btn-danger btn-sm deleteRow writeElement">Delete</button>`
         ]).draw(false).node();
 
         
@@ -1149,6 +1163,14 @@
     $('#policyTable tbody').on('click', '.deleteRow', function () {
         table.row($(this).parents('tr')).remove().draw();
     });
+
+
+    roles = await axiosInstance.get('/roles/role/perms');
+roles = roles.data.roles;
+// console.log(roles);
+window.roles = roles;
+    handlePermission('#username');
+
 });
 
 

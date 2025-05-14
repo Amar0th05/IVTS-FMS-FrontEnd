@@ -1,16 +1,24 @@
-$(document).ready(()=>{
-    const user=JSON.parse(sessionStorage.getItem('user'));
-    const token=sessionStorage.getItem('token');
+$(document).ready(async ()=>{
 
-    if(!token||!user){
-        window.location.replace("login.html");
-    }
+    roles = await axiosInstance.get('/roles/role/perms');
+    roles = roles.data.roles;
+    // console.log(roles);
+    window.roles = roles;
 
-    if(user.role!==2){
-        window.location.replace("index.html");
-    }
+    handlePermission('#user-name-display');
 
-    $('#user-name-display').text(user.name);
+    // const user=JSON.parse(sessionStorage.getItem('user'));
+    // const token=sessionStorage.getItem('token');
+
+    // if(!token||!user){
+    //     window.location.replace("login.html");
+    // }
+
+    // if(user.role!==2){
+    //     window.location.replace("index.html");
+    // }
+
+    // $('#user-name-display').text(user.name);
 
     
 

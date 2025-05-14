@@ -103,18 +103,53 @@ document.querySelector('#submit-btn').addEventListener('click', async (event) =>
 });
 
 document.addEventListener('DOMContentLoaded', async function () {
-    const token = sessionStorage.getItem('token');
-    const user = JSON.parse(sessionStorage.getItem('user'));
-    if (!token || !user) {
-        window.location.href = 'login.html';
-        return;
-    }
-    if(user.role===2){
-        window.location.href = 'user-details.html';
-        return;
+    roles = await axiosInstance.get('/roles/role/perms');
+    roles = roles.data.roles;
+    // console.log(roles);
+    window.roles = roles;
+
+    handlePermission('#username');
+
+
+    const sidebarContainer = document.getElementById('sidebar-container');
+    if (sidebarContainer) {
+        sidebarContainer.innerHTML = generateSidebar();
+        
+        // Set the current page as active
+        const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+        const navLinks = document.querySelectorAll('.pcoded-item a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes(currentPage)) {
+                link.parentElement.classList.add('active');
+                
+                // Expand the parent accordion
+                const accordionContent = link.closest('.accordion-content');
+                if (accordionContent) {
+                    accordionContent.style.display = 'block';
+                    const header = accordionContent.previousElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                }
+            }
+        });
     }
 
-    document.getElementById('username').innerText = user.name;  
+    // const token = sessionStorage.getItem('token');
+    // const user = JSON.parse(sessionStorage.getItem('user'));
+    // if (!token || !user) {
+    //     window.location.href = 'login.html';
+    //     return;
+    // }
+    // if(user.role===2){
+    //     window.location.href = 'user-details.html';
+    //     return;
+    // }
+
+    // document.getElementById('username').innerText = user.name;  
 
     await loadOrganisationOptions('port');
     initializeDataTables();
@@ -153,7 +188,7 @@ function addRow(data, i) {
         i,
         data.organisation,
         data.projectNO,
-        `<p class="invoice-link" data-bs-toggle="modal" data-bs-target="#invoiceModal" data-project-no="${data.projectNO}">${data.count}</p>`
+        `<p class="invoice-link " data-bs-toggle="modal" data-bs-target="#invoiceModal" data-project-no="${data.projectNO}" style="color:blue !important; font-weight:600 !important; text-decoration:underline !important;">${data.count}</p>`
     ];
 
     equipmentInvoiceTable.row.add(row).draw(false);
@@ -173,17 +208,21 @@ function invoiceRow(data) {
     }
     
 
-    equipmentInvoiceModalTable.row.add([
+    const rowNode = equipmentInvoiceModalTable.row.add([
         data.invoiceNumber || 'N/A',
         data.invoiceSubject || 'N/A',
         data.invoiceAmount || 0,
         data.gst || 0,
         data.totalInvoiceAmount,
         data.invoiceSubmittedDate 
-    ? data.invoiceSubmittedDate.split('T')[0] 
-    : 'N/A',
+            ? data.invoiceSubmittedDate.split('T')[0] 
+            : 'N/A',
         data.fundReceivedFromPort || 0
-    ]).draw(false).node().dataset.invoiceId = data.invoiceID;
+    ]).draw(false).node();
+    
+
+    rowNode.dataset.invoiceId = data.invoiceID;
+
 
 }
 
@@ -194,6 +233,9 @@ async function refreshEquipmentInvoiceTable() {
         result.forEach((data, i) => {
             addRow(data, i + 1);
         });
+
+        
+
     } catch (error) {
         console.error("Error refreshing equipment invoice table:", error);
     }
@@ -206,6 +248,11 @@ async function loadInvoices(projectNO) {
         result.forEach((data) => {
             invoiceRow(data);
         });
+        handlePermission('#username');
+
+        
+
+
     } catch (error) {
         console.error("Error loading invoices:", error);
     }
@@ -236,6 +283,14 @@ var columnTypes = {
 
 
 $('#equipmentInvoiceModalTable tbody').on('click', 'td', function () {
+
+    let decidedPermission=handlePermission('#username');
+
+    if(decidedPermission!==''){
+        return;
+    }
+
+ 
     var $cell = $(this);
     var colIndex = $cell.index();
     var currentValue = $cell.text().trim();

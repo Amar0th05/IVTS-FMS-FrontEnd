@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Equipment Invoices</title>
+    <title>Indents Dashboard</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -36,88 +36,94 @@
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
 
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- 
-
-
-
-<link rel="stylesheet" href="assets/css/custom.css">
-
-    <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> -->
+     <style>
+
+.table-container {
+  padding: 1rem;
+  /* border-radius: 12px; */
+  background: #ffffff;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); */
+  overflow-x: auto;
+  font-family: 'Inter', sans-serif;
+}
+
+
+.table-modern {
+  width: 100%;
+  /* border-collapse: collapse; */
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 15px;
+  color: #1f2937; 
+}
+
+
+.table-modern thead {
+  /* background-color: ;  */
+  /* color: #111827;  */
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.table-modern th,
+.table-modern td {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb; 
+}
+
+
+.table-modern tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+
+.delayed {
+  background-color: #fccfcf;
+  color: #b91c1c;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+      
+     </style>
     <style>
-        .ColVis_collection {
-            position: absolute;
-            z-index: 1000; 
+        #policyTable {
+            border-radius: 5px;
         }
-        .dataTables_wrapper table.dataTable {
-            border-radius: 30px;
-            overflow: hidden; 
-            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.103);
-            border: 1px solid rgba(0, 0, 0, 0.159) !important;
+    </style>
+    <style>
+        .hidden {
+            display: none !important;
         }
+    </style>
+    <style>
+        .addNewRecord {
+            all: unset;
+            color: white !important;
+            padding: 10px 10px !important;
+            background: linear-gradient(135deg, #4931d1, #7f86f3);
+        }
+    </style>
 
-
-        .dataTables_wrapper table.dataTable td, 
-        .dataTables_wrapper table.dataTable th {
-            padding: 12px 15px; 
-            text-align: center;
-        }
-        .dataTables_wrapper table.dataTable th ,
-        .dataTables_wrapper table.dataTable td:last-child {
-            text-align: center;
-            cursor: pointer;
-        }
-
-        #invoiceForm label{
-            font-weight: 600 !important;
-            color: black !important;
-        }
-        #invoiceForm input,
-        #invoiceForm textarea,
-        #invoiceForm select{
-            border: 1px solid rgba(0, 0, 0, 0.3) !important;
-            border-radius: 5px !important;
-        }
-        #invoiceForm input,
-        #invoiceForm select{
-            height: 40px !important;
-            color:black !important;
-        }
-        #invoiceForm{
-            margin: 10px !important;
-            
-        }
-        </style>
-<style>
-    .hidden {
-      display: none !important;
-    }
-  </style>
-
-
-<style>
-    .addNewRecord{
-      all:unset;
-      color: white !important;
-      padding: 10px 10px !important;
-      background: linear-gradient(135deg, #4931d1, #7f86f3);
-    }
-  </style>
 </head>
 
 <body>
     <!-- Pre-loader start -->
     <div class="theme-loader">
+
         <div class="loader-track">
+
             <div class="preloader-wrapper">
+
                 <div class="spinner-layer spinner-blue">
                     <div class="circle-clipper left">
                         <div class="circle"></div>
@@ -320,10 +326,8 @@
                                         <label class="float-label"><i class="fa fa-search m-r-10"></i>Search</label>
                                     </div>
                                 </form>
-                            </div>  
-
+                            </div>
                             <div id="sidebar-container"></div>
-                            
                             <!-- <div class="accordion">
                                 <div class="accordion-header">
                                   <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Project Tracking<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
@@ -343,19 +347,19 @@
                                 </div>
                             <div class="accordion">
                                 <div class="accordion-header">
-                                  <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Invoices<i class="fa fa-chevron-up ml-1" id="accordion-icon"></i></div>
+                                  <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Invoices<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
                                 </div>
-                                <div class="accordion-content" style="display: block;">
+                                <div class="accordion-content" style="display: none;">
                                 
                                     <ul class="pcoded-item pcoded-left-item">
-                                        <li >
+                                        <li>
                                             <a href="o&mInvoices.html" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-calendar"></i><b>D</b></span>
                                                 <span class="pcoded-mtext">O&M Invoices</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class="active">
+                                        <li>
                                           <a href="equipment-invoices.html" class="waves-effect waves-dark">
                                               <span class="pcoded-micon"><i class="ti-settings"></i><b>D</b></span>
                                               <span class="pcoded-mtext">Equipment Invoices</span>
@@ -372,7 +376,6 @@
                                     </ul>
                                 </div>
                                 </div>
-                                
                                 <div class="accordion">
                                   <div class="accordion-header">
                                     <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Equipments<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
@@ -399,9 +402,9 @@
                                     </div>
                                     <div class="accordion">
                                       <div class="accordion-header">
-                                        <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Man Power Management<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
+                                        <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Man Power Management<i class="fa fa-chevron-up ml-1" id="accordion-icon"></i></div>
                                       </div>
-                                      <div class="accordion-content" style="display: none;">
+                                      <div class="accordion-content" style="display: block;">
                                         <ul class="pcoded-item pcoded-left-item">
                                           <li>
                                               <a href="index.html" class="waves-effect waves-dark">
@@ -410,7 +413,7 @@
                                                   <span class="pcoded-mcaret"></span>
                                               </a>
                                           </li>
-                                          <li>
+                                          <li class="active">
                                               <a href="staff-details.html" class="waves-effect waves-dark">
                                                   <span class="pcoded-micon"><i class="ti-user"></i><b>BC</b></span>
                                                   <span class="pcoded-mtext">Staff Details</span>
@@ -438,10 +441,10 @@
                             <div class="page-block">
                                 <div class="row align-items-center">
                                     <div class="col-md-8">
-                                        <!-- <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25"
-                                            alt="NTCPWC LOGO"> -->
+                                        <!-- <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25" -->
+                                        <!-- alt="NTCPWC LOGO"> -->
                                         <div class="page-header-title">
-                                            <h5 class="m-b-10">Equipment Invoices</h5>
+                                            <h5 class="m-b-10">Indents Dashboard</h5>
                                             <p class="m-b-0">Welcome to iVTS-FMS</p>
                                         </div>
                                     </div>
@@ -450,7 +453,7 @@
                                             <li class="breadcrumb-item">
                                                 <a href="index.html"> <i class="ti-home"></i> </a>
                                             </li>
-                                            <li class="breadcrumb-item"><a href="#!">Equipment Invoices</a>
+                                            <li class="breadcrumb-item"><a href="#!">Indents Dashboard</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -464,43 +467,47 @@
                                     <div class="page-body">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                               <div class="card">
-                                                <div class="card-header">
-                                                    <h5>Equipment Invoices</h5>
-                                                </div>
-                                                <div class="card-block">
-                                                    <div class="d-flex justify-content-end">
-                                                        <button class="btn addNewRecord btn-primary btn-sm writeElement" data-bs-toggle="modal" data-bs-target="#addInvoiceModal"><i class="ti-plus text-white fs-5"></i>Add New Invoice</button>
-                                                    </div>
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        
-                                                        <div class="table-responsive">
-                                                            <div class="row mb-3">
-                                                                <div id="exportButtons" class="mb-3">
-                                                                
-                                                                </div>
-                                                            </div>
-                                                            <table id="equipmentInvoiceTable"
-                                                                class="table table-striped  rounded table-hover">
-                                                                <thead class="bg-primary text-white">
-                                                                    <tr>
-                                                                        <th>S.NO.</th>
-                                                                        <th>Port</th>
-                                                                        <th>Project NO.</th>
-                                                                        <th>Total Invoices</th>
-                                                                        
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                  
-                                                                   
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
+                                                <div class="card">
+                                                    <!-- <div class="card-header"> -->
+                                                        <!-- <h5>Staff Details</h5> -->
 
+                                                        <!-- <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li><i class="fa fa fa-wrench open-card-option"></i>
+                                                                </li>
+                                                                <li><i class="fa fa-minus minimize-card"></i></li>
+                                                                <li><i class="fa fa-refresh reload-card"></i></li>
+                                                            </ul>
+                                                        </div> -->
+                                                    <!-- </div> -->
+
+                                                    <div class="card-block">
+                                                        <div class="table-container">
+                                                            <table class="table-modern table-striped" id="indentsTable">
+                                                              <thead class="bg-primary">
+                                                                <tr>
+                                                                  <th>Indent ID</th>
+                                                                  <th>Created At</th>
+                                                                  <th>Fund Check</th>
+                                                                  <th>LPC Completion</th>
+                                                                  <th>Indent Approval</th>
+                                                                  <th>PO Approval</th>
+                                                                  <th>PO Generation</th>
+                                                                  <th>SRB Created</th>
+                                                                  <th>IC & SR Submission</th>
+                                                                </tr>
+                                                              </thead>
+                                                             <tbody>
+                                                                
+                                                             </tbody>
+                                                            </table>
+                                                          </div>
+                                                          
+                                                          
+
+                                                    </div>
+                                                    <!-- table staff details end -->
                                                 </div>
-                                               </div>
                                             </div>
                                         </div>
                                     </div>
@@ -508,214 +515,89 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                 </div>
             </div>
         </div>
     </div>
     </div>
-    <div class="modal fade" id="invoiceModal" tabindex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen modal-dialog-centered" style="min-width: 95% !important;">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <h6 class="modal-title" id="invoiceModalLabel">Equipment Invoices</h6>
-                   <i class="ti ti-close" data-bs-dismiss="modal" style="cursor: pointer;"></i>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-2">
-                        <div id="equipmentInvoiceModalExportButtons" class="mb-3">
-                        
-                        </div>
-                    </div>
-                        <div class="table-responsive">
-                            <table id="equipmentInvoiceModalTable"
-                                class="table  table-striped  rounded table-hover h-100" style="overflow-y: auto !important;">
-                                <thead class="bg-primary text-white">
-                                    <tr>
-                                        <th>Invoice Number</th>
-                                        <th>Invoice Subject</th>
-                                        <th>Invoice Subject ( Exc GST )</th>
-                                        <th>GST</th>
-                                        <th>Total Invoice Amount</th>
-                                        <th>Invoice Submitted Date</th>
-                                        <th>Fund Received From Port</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                    </tbody>
-                                    </table>
-                                    </div>
-                                    
-                       
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-danger m-1 btn-sm" data-bs-dismiss="modal">close</button>
-                            
-                           
-                        </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="addInvoiceModal" tabindex="-1" aria-labelledby="addInvoiceModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addInvoiceModalLabel">Add Invoice</h5>
-                   <i class="ti ti-close" data-bs-dismiss="modal"></i>
-                </div>
-                <div class="modal-body">
-                    <form id="invoiceForm">
-                       <div class="row p-2 mb-2">
-                           <div class="col-md-6">
-                            <label for="port" class="form-label">Port<span class="text-danger m-1">*</span></label>
-                            <select name="port" id="port" class="form-select form-control">
-                                <option value="" selected disabled>Select Port</option>
+    <!-- Warning Section Starts -->
 
-                            </select>
-                           </div>
-                           <div class="col-md-6">
-                            <label for="projectNumber">Project Number<span class="text-danger m-1">*</span></label>
-                            <input type="text" name="projectNumber" id="projectNumber" class="form-control" placeholder="Enter Project Number">
-                           </div>
-                       </div>
-                       <div class="row p-2 mb-2">
-                           <div class="col-md-12 mb-2">
-                            <label for="invoiceNumber">Invoice Number<span class="text-danger m-1">*</span></label>
-                            <input type="text" name="invoiceNumber" id="invoiceNumber" class="form-control" placeholder="Enter Invoice Number">
-                           </div>
-                           <div class="col-md-12">
-                            <label for="invoiceSubject">Invoice Subject<span class="text-danger m-1">*</span></label>
-                            <textarea name="invoiceSubject" id="invoiceSubject" class="form-control" placeholder="Enter Invoice Subject" rows="3"></textarea>
-                           </div>
-                       </div>
-                       <div class="row p-2 mb-2">
-                           <div class="col-md-6">
-                            <label for="invoiceAmount" class="form-label">Invoice Amount (Exc GST)<span class="text-danger m-1">*</span></label>
-                            <input type="number" name="invoiceAmount" id="invoiceAmount" class="form-control" placeholder="Enter Invoice Amount (Exc GST)">
-                           </div>
-                           <div class="col-md-6">
-                            <label for="gst" class="form-label">GST<span class="text-danger m-1">*</span></label>
-                            <input type="number" name="gst" id="gst" class="form-control" placeholder="Enter GST">
-                           </div>
-                       </div>
-                       <div class="row p-2 mb-2">
-                        <div class="col-md-12">
-                            <label for="totalInvoiceAmount" class="form-label">Total Invoice Amount<span class="text-danger m-1">*</span></label>
-                            <input type="number" name="totalInvoiceAmount" id="totalInvoiceAmount" class="form-control" placeholder="0" readonly>
-                        </div>
-                       </div>
-                       <div class="row p-2 mb-2">
-                        <div class="col-md-6">
-                            <label for="invoiceSubmittedDate" class="form-label">Invoice Submitted Date<span class="text-danger m-1">*</span></label>
-                            <input type="date" name="invoiceSubmittedDate" id="invoiceSubmittedDate" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="fundRecievedFromPort" class="form-label">Fund Received From Port ( INR )</label>
-                            <input type="number" name="fundRecievedFromPort" id="fundRecievedFromPort" class="form-control" placeholder="Enter Fund Received From Port">
-                        </div>
-                       </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-danger m-1 btn-sm" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-success m-1 btn-sm" id="submit-btn">Submit</button>
-                           
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="pcoded-container" class="pcoded">
         <div class="pcoded-innenr-content">
 
         </div>
     </div>
-
-
     <script src="assets/js/roleUtil.js"></script>
-<!-- jQuery & Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="assets/js/popper.js/popper.min.js"></script>
-<script src="assets/js/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- DataTables & Buttons -->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+    <!-- Required jQuery -->
+    <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Plugins -->
-<script src="assets/pages/waves/js/waves.min.js"></script>
-<script src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="assets/js/pcoded.min.js"></script>
-<script src="assets/js/vertical/vertical-layout.min.js"></script>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
-<!-- Axios -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- jQuery and DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-<!-- Custom Scripts -->
-<script type="module" src="./assets/js/axiosInstance.js"></script>
-<script src="./assets/js/apiRequests.js"></script>
-<script src="./assets/js/api.js"></script>
-<script src="assets/js/equipmentInvoices.js"></script>
-<script src="assets/js/popup.js"></script>
-<script src="assets/js/script.js"></script>
+    <!-- DataTables Buttons Extension JS -->
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
 
-<!-- Inline Script -->
+    <!-- Buttons for Excel, CSV, and PDF -->
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+
+    <!-- Excel export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+
+    <!-- JSZip for Excel export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+
+    <!-- pdfMake for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+    <!-- DataTables Buttons CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+
+    <!-- Toastr and other scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="assets/pages/waves/js/waves.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="assets/js/pcoded.min.js"></script>
+    <script src="assets/js/vertical/vertical-layout.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script type="module" src="./assets/js/axiosInstance.js"></script>
+    <script src="assets/js/popup.js"></script>
+    <script src="assets/js/indentsDashboard.js"></script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script src="./assets/js/api.js"></script>
+    <script src="./assets/js/apiRequests.js"></script>
+
+    <!-- Initialize DataTable -->
+
+</body>
 <script>
     $(document).ready(function () {
-        const datatable=$('#equipmentInvoiceTable').DataTable({
-            "paging": true,
-            "pageLength": 25,
-            "lengthMenu": [5, 10, 25, 50, 100],
-            dom: '<"top"l>frtip',
-            buttons: ['excel', 'csv', 'pdf']
-        });
-        const equipmentInvoiceModalTable=$('#equipmentInvoiceModalTable').DataTable({
-            "paging": true,
-            "pageLength": 25,
-            "lengthMenu": [5, 10, 25, 50, 100],
-            dom: '<"top"l>frtip',
-            buttons: ['excel', 'csv', 'pdf']
-        });
-        
+  const datatable = $('#indentsTable').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
+      'csv', 'excel', 'pdf', 'colvis'
+    ]
+  });
 
-          
-       
-        datatable.buttons().container().appendTo($('#exportButtons'));
-        equipmentInvoiceModalTable.buttons().container().appendTo($('#equipmentInvoiceModalExportButtons'));
-    });
+//   datatable.buttons().container().appendTo($('#exportButtons'));
 
-    function toggleAccordion(button) {
-        const content = button.parentElement.nextElementSibling;
-        content.style.display = content.style.display === "none" || content.style.display === "" ? "block" : "none";
-        button.querySelector("i").classList.toggle("fa-chevron-down");
-        button.querySelector("i").classList.toggle("fa-chevron-up");
-    }
 
-    $('#invoiceAmount, #gst').on('input', function () {
-        let invoiceAmount = Math.max(parseFloat($('#invoiceAmount').val()) || 0, 0);
-        let gst = Math.max(parseFloat($('#gst').val()) || 0, 0);
-        $('#invoiceAmount').val(invoiceAmount);
-        $('#gst').val(gst);
-        $('#totalInvoiceAmount').val(invoiceAmount + gst);
-    });
+});
 </script>
-
-
-
-
-    
-</body>
-
 </html>
-

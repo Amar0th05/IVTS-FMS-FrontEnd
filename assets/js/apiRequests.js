@@ -127,6 +127,8 @@ const api = {
     getClient:(id)=>fetchClient(API_ROUTES.clientBase+`/${id}`,"client"),
     createClient:(ClientName)=>postData(API_ROUTES.clientBase,{ClientName}),
 
+    
+
 
 };
 

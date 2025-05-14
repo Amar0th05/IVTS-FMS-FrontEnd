@@ -161,19 +161,24 @@ async function toggleStatus(element, id) {
 
 //dom loaded
 document.addEventListener('DOMContentLoaded',async()=>{
+    roles = await axiosInstance.get('/roles/role/perms');
+    roles = roles.data.roles;
+    // console.log(roles);
+    window.roles = roles;
    
+    handlePermission('#user-name-display');
     
-    const token = sessionStorage.getItem('token');
-    const user=JSON.parse(sessionStorage.getItem('user'));
-    if (token === null||user===null) {
-        window.location.href = "login.html";
-    }else if(user.role!==2){
-        window.location.href = "index.html";
-        return;
-    }
+    // const token = sessionStorage.getItem('token');
+    // const user=JSON.parse(sessionStorage.getItem('user'));
+    // if (token === null||user===null) {
+    //     window.location.href = "login.html";
+    // }else if(user.role!==2){
+    //     window.location.href = "index.html";
+    //     return;
+    // }
 
-    document.getElementById('user-name-display').innerText=user.name;
-    // document.getElementById('more-details').innerText=user.name;
+    // document.getElementById('user-name-display').innerText=user.name;
+    // // document.getElementById('more-details').innerText=user.name;
     
     await getAllCourses();
     
