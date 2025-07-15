@@ -684,7 +684,7 @@
                                                   </div>
                                                   <div class="col-md-6 form-group mb-2">
                                                     <label for="" class="form-label">Vendor PAN NO</label>
-                                                    <input type="text" id="newVendorPAN" class="form-control" placeholder="Enter Vendor PAN NO" name="VendorPAN">
+                                                    <input type="text" id="newVendorPAN" class="form-control" placeholder="Enter Vendor PAN NO" name="VendorPAN" onchange="validatePAN(this)">
                                                   </div>
                                                 </div>
                                                 <div class="row mb-2">
@@ -706,6 +706,21 @@
                                                     <label for="" class="form-label">Branch<span class="text-danger m-1">*</span></label>
                                                     <input type="text" id="newVendorBranch" class="form-control" placeholder="Enter Branch" name="VendorBranch">
                                                   </div>
+                                                </div>
+                                                <div class="row mb-2">
+                                                <div class="col-md-12 mb-2">
+                                                <label for="supportDoc3" class="form-label">Bank Details<span class="text-danger m-1">*</span><span
+                                                    class="text-danger m-1 fw-bold">(PDF only)</span></label>
+
+                                                <label class="custom-upload-box w-100 p-2" for="supportDoc4">
+                                                  <i class="fa-solid fa-file fa-2x  text-danger"></i>
+                                                  <div>Click to upload File</div>
+                                                </label>
+
+                                                <input type="file" id="supportDoc4" name="BankDetailsDoc"
+                                                  accept="application/pdf" onchange="showFileName3(this)">
+                                                <div id="fileNameDisplay3"></div>
+                                              </div>
                                                 </div>
                                                 <div class="row mb-5 ">
                                                  <div class="col-md-12  d-flex justify-content-end">
@@ -775,15 +790,61 @@
                                               <!-- <h6 class="font-weight-bold mb-3 text-primary">Add Item</h6> -->
                                               <div class="form-row" id="itemsDForm">
                                                 <div class="form-group col-md-4">
-                                                  <label>Product Name<span class="text-danger m-1">*</span></label>
+                                                  <!-- <label>Product Name<span class="text-danger m-1">*</span></label>
                                                   <input type="text" class="form-control" name="productName"
                                                     id="productName" placeholder="Enter Product Name"
-                                                    data-name="Product Name">
+                                                    data-name="Product Name"> -->
+                                                      <label>Product Name<span
+                                                      class="text-danger m-1">*</span></label>
+                                                  <select class="form-control" id="productCategory" name="productCategory" data-name="Product Category">
+                                                    <!-- <option disabled selected>Select Classification</option> -->
+                                                          <option value="" disabled selected>Select Product Name</option>
+                                                          <option value="equipment">Equipment</option>
+                                                          <option value="spares">Spares</option>
+                                                          <option value="services">Services</option>
+                                                          <option value="computer">Computer Peripherals</option> 
+                                                          <option value="laptops">Laptops</option>
+                                                          <option value="workstation">Workstation</option>
+                                                          <option value="consumable">Consumable</option>                                              
+                                                          <option value="server">Server</option>    
+                                                          <option value="printer">Printer</option>          
+                                                          <option value="tab">Tab</option>     
+                                                          <option value="component">Component</option>                                          
+                                                          <option value="others">Others</option>                       
+                                                          <option value="switch">Switch</option>                       
+                                                          <option value="fabricationandsupply">fabrication and supply</option>                       
+                                                          <option value="work">work</option>                       
+                                                          <option value="battery"> Battery</option>                       
+                                                          <option value="monitor">Monitor</option>                       
+                                                          <option value="sensor">Sensor</option>                       
+                                                          <option value="gps">GPS</option>                       
+                                                          <option value="camera">Camera</option>                       
+                                                          <option value="cableandaccessories">Cable and Accessories</option>                       
+                                                          <option value="softwares">Softwares</option>                       
+                                                          <option value="communicationdevices">communication Devices</option>                                
+                                                          <option value="applicances">Appliances</option>                       
+                                                          <option value="furniture">Furniture</option>                       
+                                                          <option value="hardwaretool">Hardware Tool</option>
+                                                          <option value="electricaldevices">Electrical Devices</option>
+                                                          <option value="accessories">Accessories</option>                       
+                                                          <option value="safetyitem">Safety Item</option>                       
+                                                          <option value="radarandperipherals">Radar and Peripherals</option>                       
+                                                          <option value="ipconferencephone">IP Conference Phone</option>                       
+                                                          <option value="software">Software</option>
+                                                          <option value="biometric">Biometric</option>                       
+  
+                                                      
+                                                   </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                  <label>Item Name<span class="text-danger m-1">*</span></label>
+                                                <div class="form-group col-md-4" id="productNameContainer">
+                                                  <!-- <label>Item Name<span class="text-danger m-1">*</span></label>
                                                   <input type="text" class="form-control" name="itemName" id="itemName"
-                                                    placeholder="Enter Item Name" data-name="Item Name">
+                                                    placeholder="Enter Item Name" data-name="Item Name"> -->
+                                                      <label for="productName" class="form-label">Item Name<span class="text-danger">*</span></label>
+                                                      <select class="form-control" id="productName" name="productName" data-name="Product Name">
+                                                          <option value="" disabled selected>Select Product Name</option>
+                                                      <!-- Sub-product options will be populated dynamically -->
+                                                      </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                   <label>Description<span class="text-danger m-1">*</span></label>
@@ -962,7 +1023,7 @@
                                             </div>
                                             <div class="form-row">
                                               <div class="form-group col-md-6">
-                                                <label class="font-weight-bold">Payment<span
+                                                <label class="font-weight-bold">Payment Terms<span
                                                     class="text-danger m-1">*</span></label>
                                                 <input type="text" id="formPayment" class="form-control" name="payment"
                                                   data-name="Payment" required>
@@ -975,7 +1036,7 @@
                                               </div>
                                             </div>
                                             <div class="form-group">
-                                              <label class="font-weight-bold">Delivery<span
+                                              <label class="font-weight-bold">Estimated Delivery<span
                                                   class="text-danger m-1">*</span></label>
                                               <input type="text" id="formDelivery" class="form-control" name="delivery"
                                                 data-name="Delivery" required>
@@ -1055,10 +1116,10 @@
                                                 <select class="form-control" id="formIndentMode" name="indentMode" data-name="Indent Mode"
                                                   required>
                                                   <!-- <option disabled selected>Select Mode</option> -->
-                                                  <option value=">10L through IC&SR by placing purchase schedule">>10L through IC&SR by placing purchase schedule</option>
+                                                  <!-- <option value=">10L through IC&SR by placing purchase schedule">>10L through IC&SR by placing purchase schedule</option> -->
                                                   <option value="> 1L & <10L through purchase order">> 1L & < 10L through purchase order</option>
                                                     <option value="<1L through purchase order">< 1L through purchase order</option>
-                                                      <option value="<25k through purchase">< 25k through purchase</option>
+                                                      <!-- <option value="<25k through purchase">< 25k through purchase</option> -->
                                                 </select>
                                               </div>
                                               <div class="form-group col-md-6 mb-0">
@@ -1068,7 +1129,7 @@
                                                   data-name="Indent Purpose" id="formIndentPurpose" required>
                                               </div>
                                               <div class=" mb-5 col-md-12 mt-5">
-                                                <label for="supportDoc3" class="form-label">File Upload <span
+                                                <label for="supportDoc3" class="form-label">File Upload<span
                                                     class="text-danger m-1 fw-bold">(PDF only)</span></label>
 
                                                 <label class="custom-upload-box w-100" for="supportDoc3">
@@ -1193,7 +1254,9 @@
                     <span class="text-black w-40">Bank Address:</span>
                     <span class="fw-medium" id="vendorBankAddressDisplay"></span>
                   </p>
+                  
                 </div>
+
               </div>
 
 
@@ -1351,7 +1414,8 @@
           <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
             <i class="bi bi-pencil-square me-2"></i>Cancel
           </button>
-          <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal" id="submitIndentBtn">
+          <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal" id="
+          ">
             <i class="bi bi-check-circle me-2"></i>Submit
           </button>
         </div>
@@ -1401,7 +1465,7 @@
               <div class="stage-icon">6</div>
               <div class="stage-label">PO Generated</div>
             </div>
-            <div class="indent-line"></div>
+            <div class="indent-line" id="srbCreated"></div>
             <div class="indent-stage completed" id="srbCreatedStage" data-access-module="SRB CREATED">
               <div class="stage-icon">7</div>
               <div class="stage-label">SRB Created</div>
@@ -1468,6 +1532,20 @@
                       <span class="text-black w-40">Bank Address:</span>
                       <span class="fw-medium" id="VendorBankAddressDisplay"></span>
                     </p>
+                    <p class="d-flex mb-2 align-items-center">
+                    <span class="text-black w-40 me-2">Bank Details:</span>
+
+                     <!-- Buttons -->
+                     <span class="btn btn-success btn-sm me-2" id="view">View</span>
+                    <span class="btn btn-danger btn-sm" id="edit">Edit</span>
+
+                     <!-- Upload Section -->
+                    <span class="ms-3 d-none" id="uploadSection">
+                     <input type="file" class="form-control form-control-sm d-inline-block" id="bankFileInput" accept="application/pdf" />
+                    <button class="btn btn-primary btn-sm ms-2" id="saveBtn">Save</button>
+                    <button class="btn btn-secondary btn-sm ms-1" id="cancelBtn">Cancel</button>
+                    </span>
+                    </p>
                   </div>
                 </div>
 
@@ -1487,7 +1565,7 @@
                       <span class="fw-medium" id="PriceDisplay"></span>
                     </p>
                     <p class="d-flex mb-2">
-                      <span class="text-black w-40">Payment:</span>
+                      <span class="text-black w-40">Payment Terms:</span>
                       <span class="fw-medium" id="PaymentDisplay"></span>
                     </p>
                     <p class="d-flex mb-2">
@@ -1495,7 +1573,7 @@
                       <span class="fw-medium" id="DeliveryPlaceDisplay"></span>
                     </p>
                     <p class="d-flex mb-2">
-                      <span class="text-black w-40">Delivery:</span>
+                      <span class="text-black w-40">Estimated Delivery:</span>
                       <span class="fw-medium" id="DeliveryDisplay"></span>
                     </p>
                     <p class="d-flex mb-2">
@@ -1863,11 +1941,10 @@
               <div class="row">
                 <div class="col-md-12 mb-3 form-group">
                   <label for="" class="form-label">Name Of Work<span class="text-danger m-1">*</span></label>
-                  <!-- <select name="Category" id="NameOfWOrk" class="form-control form-select"> -->
-                  <!-- <option value="" selected>Select Category</option> -->
-                  <!-- </select> -->
-                  <input type="text" name="Category" id="NameOfWork" class="form-control"
-                    placeholder="Enter Name Of Work">
+                        <select name="" id="NameOfWork" class="form-control form-select">
+                          <option value="Supply of following item">Supply of following item</option>
+                          <option value="Executing of following work">Executing of following work</option>
+                        </select>
                 </div>
               </div>
               <div class="row">
@@ -2064,10 +2141,8 @@
                       <div class="col-md-6 mb-3 form-group">
                         <label for="" class="form-label">Type Of SRB</label>
                         <select name="" id="srbTypeSelect" class="form-control form-select">
-                          <option value="type 1">type 1</option>
-                          <option value="type 2">type 2</option>
-                          <option value="type 3">type 3</option>
-                          <option value="type 4">type 4</option>
+                          <option value="Recuring SRB">Recuring SRB</option>
+                          <option value="Non-Recuring SRB">Non-Recuring SRB</option>
                         </select>
                       </div>
                       <div class="col-md-6 mb-3 form-group">
@@ -2084,7 +2159,7 @@
                       </div>
                       <div class="col-md-6 mb-3 form-group">
                         <label for="" class="form-label">Employee Name<span class="text-danger m-1">*</span></label>
-                        <input type="text" name="" class="form-control" id="srbEmployeeName">
+                        <input type="text" name="" class="form-control" id="srbEmployeeName" value="Prof.Murali.K">
                       </div>
                     </div>
                     <div class="row mt-5 mb-5">
@@ -2180,7 +2255,7 @@
                     <div class="row">
                       <div class=" mb-5 col-md-12 mt-5">
                         <label for="srbDocument" class="form-label">File Upload <span
-                            class="text-danger m-1 fw-bold">(PDF only)</span></label>
+                            class="text-danger m-1 fw-bold">(PDF only)</span><span class="text-danger m-1">*</span></label>
 
                         <label class="custom-upload-box w-100" for="srbDocument">
                           <i class="fa-solid fa-file fa-2x mb-2 text-danger"></i>
@@ -2332,9 +2407,9 @@
     <script src="./assets/js/apiRequests.js"></script>
 
 
-
-
+    <script src="assets/js/productDetails.js"></script>
     <script src="assets/js/indents.js"></script>
+    <script src="assets/js/validation.js"></script>
 
 </body>
 <script>

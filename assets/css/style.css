@@ -447,7 +447,7 @@ code {
 }
 
 .page-header .page-block {
-	padding: 35px 40px;
+	padding: 15px 40px;
 }
 
 .page-header .page-block .breadcrumb {
@@ -4872,16 +4872,17 @@ table tbody .border-bottom-info td {
 
 .main-menu .main-menu-header {
 	/* padding: 16px 0 17px; */
-	padding:25px;
+	padding:18px 25px;
 	background-image: url("../images/user-bg.jpg");
 	background-size: cover;
 	text-align: center;
 	position: relative;
-	height:123px;
+	height:100px;
 }
 
 .main-menu .main-menu-header img {
 	position: relative;
+	height: 70px;
 	width: 95%;
 }
 

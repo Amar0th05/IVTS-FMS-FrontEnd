@@ -4,6 +4,30 @@ document.querySelector('#logout-button').addEventListener('click', () => {
   window.location.href = 'login.html';
 });
 
+//Item Details
+const quantityInput = document.getElementById('itemQty');
+const unitPriceInput = document.getElementById('unitPrice');
+const totalPriceInput = document.getElementById('itemPrice');
+ const formPrice = document.getElementById('formPrice');
+// Trigger calculation when quantity or unit price changes
+quantityInput.addEventListener('input', calculateTotalPrice);
+unitPriceInput.addEventListener('input', calculateTotalPrice);
+function calculateTotalPrice() {
+  console.log('Calculating total price...');
+  const quantity = quantityInput.valueAsNumber;
+  const unitPrice = unitPriceInput.valueAsNumber;
+
+  // Check for invalid or empty input
+  const total = (isNaN(quantity) ? 0 : quantity) * (isNaN(unitPrice) ? 0 : unitPrice);
+
+  // Set total price with 2 decimal places
+  totalPriceInput.value = total.toFixed(2);
+ 
+  formPrice.value=total.toFixed(2);
+}
+
+
+
   //-----------------------------------------------------------------------------------//
  //                                   GLOBAL VARIABLES                                //
 //-----------------------------------------------------------------------------------//
@@ -116,6 +140,7 @@ async function getIndentByID(id) {
   try {
     const response = await axiosInstance.get(`/indents/${id}`);
     const indent = response.data.indent;
+    console.log(indent);
     return indent;
   } catch (err) {
     console.error('Error fetching indent:', err);
@@ -145,6 +170,8 @@ async function downloadFile(id) {
     showErrorPopupFadeInDown("Download failed!");
   }
 }
+
+
 
 
 let fundCheckSubmit = document.querySelector('#fundCheckSubmit');
@@ -205,7 +232,10 @@ fundCheckSubmit.addEventListener('click', async () => {
 function resetState() {
   window.location.reload();
 }
+
+// ! Fullscreen Modal
 async function openFullscreenModal(button) {
+  console.log('Opening fullscreen modal', button);
 
   let stageIDs = [
     'indentCreatedStage',
@@ -234,8 +264,131 @@ async function openFullscreenModal(button) {
   // alert('Indent ID: ' + indentID);
 
 
-
   let indent = await getIndentByID(indentID);
+  // -----------------------------------------------------------------------------------//
+  //                                  SRB Logic                          //
+
+if(indent.TypeOfIndent=="Work indent"){
+const srbCreatedStage = document.getElementById('srbCreatedStage');
+const srbCreated = document.getElementById('srbCreated');
+
+srbCreatedStage.style.display = 'none'; // Hide SRB Created stage initially
+srbCreated.style.display = 'none'; // Hide SRB Created stage initially
+}
+else{
+const srbCreatedStage = document.getElementById('srbCreatedStage');
+const srbCreated = document.getElementById('srbCreated');
+
+srbCreatedStage.style.display = 'block'; // Hide SRB Created stage initially
+srbCreated.style.display = 'block'; // Hide SRB Created stage initially
+}
+
+
+
+
+  // ! Bank details
+  const editBtn = document.getElementById("edit");
+const viewBtn = document.getElementById("view");
+const uploadSection = document.getElementById("uploadSection");
+const saveBtn = document.getElementById("saveBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+const bankFileInput = document.getElementById("bankFileInput");
+
+viewBtn.addEventListener("click", () => {
+  if (typeof indent !== "undefined" && indent.VendorID) {
+    downloadBankFile(indent.VendorID);
+  } else {
+    showErrorPopupFadeInDown("Vendor ID is missing!");
+  }
+});
+
+// Assume indent.VendorID is defined and valid
+const vendorId = indent.VendorID;
+
+editBtn.addEventListener("click", () => {
+  uploadSection.classList.remove("d-none");
+  editBtn.classList.add("d-none");
+  viewBtn.classList.add("d-none");
+});
+
+cancelBtn.addEventListener("click", () => {
+  uploadSection.classList.add("d-none");
+  editBtn.classList.remove("d-none");
+  viewBtn.classList.remove("d-none");
+  bankFileInput.value = ""; // clear input
+});
+
+// 🟩 Save/upload new file to replace previous
+saveBtn.addEventListener("click", async () => {
+  console.log("Save button clicked");
+  const file = bankFileInput.files[0];
+
+  if (!file) {
+    showErrorPopupFadeInDown("Please select a file to upload.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("bankDocument", file); // field name should match server
+  console.log("Vendor ID:", vendorId);
+  formData.append("vendorId", vendorId);
+  console.log("Form data prepared:", formData);
+
+  try {
+    const token = localStorage.getItem("accessToken");
+    const response = await axiosInstance.post(`/vendors/upload/${vendorId}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 200) {
+      showErrorPopupFadeInDown("File uploaded successfully!");
+    } else {
+      showErrorPopupFadeInDown("Upload failed. Try again.");
+    }
+
+    uploadSection.classList.add("d-none");
+    editBtn.classList.remove("d-none");
+    viewBtn.classList.remove("d-none");
+    bankFileInput.value = "";
+  } catch (error) {
+    console.error("Upload failed:", error);
+    showErrorPopupFadeInDown("Error uploading file.");
+  }
+});
+
+async function downloadBankFile(id) {
+  try {
+    const token = localStorage.getItem("accessToken");
+
+    const response = await axiosInstance.get(`/vendors/download/${id}`, {
+      responseType: "blob", // Important: treat response as binary
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const blob = new Blob([response.data], { type: "application/pdf" });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `vendor_${id}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    window.URL.revokeObjectURL(url);
+  } catch (error) {
+    console.error("Error downloading PDF:", error);
+    showErrorPopupFadeInDown("Download failed!");
+  }
+}
+
+// end
+
   srbItems = indent.items;
   if (!indent) {
     showErrorPopupFadeInDown('Error fetching indent');
@@ -368,7 +521,6 @@ async function openFullscreenModal(button) {
   });
 
   console.table(indent);
-
   setText('VendorNameDisplay', indent.VendorName);
   setText('VendorAddressDisplay', indent.VendorAddress);
   setText('VendorPhoneDisplay', indent.VendorPhone);
@@ -482,6 +634,7 @@ async function openFullscreenModal(button) {
   myModal.show();
 }
 
+// ! Fullscreen Modal End
 
 function renderData(data, index) {
   document.getElementById('stageDetailsContent').innerHTML = '';
@@ -999,11 +1152,30 @@ document.getElementById('createVendorBtn').addEventListener('click', async (e) =
 
   // selectedVendor = null;
 
-  let form = document.getElementById('newVendorForm');
-  let formData = new FormData(form);
-  let data = Object.fromEntries(formData);
+let form = document.getElementById('newVendorForm');
+let formData = new FormData(form);
 
-  let requiredFields = ["VendorName", "VendorAddress", "VendorPhone", "VendorMailAddress", "VendorGST", "VendorAccountNumber", "VendorIFSC", "VendorBank", "VendorBranch"];
+// Convert text fields to object
+let Data = {};
+for (let [key, value] of formData.entries()) {
+  if (value instanceof File) {
+    // Handle file input separately
+    if (value.name) {
+      Data[key] = value; // assign the File object
+    } else {
+      Data[key] = null; // no file selected
+    }
+  } else {
+    Data[key] = value;
+  }
+}
+const data = new FormData();
+for (let key in Data) {
+  data.append(key, Data[key]);
+}
+
+
+  let requiredFields = ["VendorName", "VendorAddress", "VendorPhone", "VendorMailAddress", "VendorGST", "VendorAccountNumber", "VendorIFSC", "VendorBank", "VendorBranch","BankDetailsDoc"];
 
   let hasErrors = false;
   let i = 0;
@@ -1025,7 +1197,11 @@ document.getElementById('createVendorBtn').addEventListener('click', async (e) =
   console.log(selectedVendor);
 
   try {
-    let response = await axiosInstance.post('/vendors/', data);
+       let response = await axiosInstance.post('/vendors/', data, {
+  headers: {
+    'Content-Type': 'multipart/form-data'
+  }  
+});
     if (response.status === 200) {
       populateVendors();
       vendorSelect.selectedIndex = vendorSelect.options.length - 1;
@@ -1343,15 +1519,16 @@ function showPOName(input) {
 
 
 
+
 let items = [];
 
 function addItem() {
   if (!globalIndentID) {
-
-
-
-    const productName = document.getElementById('productName').value.trim();
-    const name = document.getElementById('itemName').value.trim();
+    const productDropdown = document.getElementById('productCategory');
+    const productName = productDropdown.options[productDropdown.selectedIndex].text;
+    const subProductDropdown = document.getElementById('productName');
+    const name = subProductDropdown.options[subProductDropdown.selectedIndex].text;
+    // const name = document.getElementById('itemName').value.trim();
     const desc = document.getElementById('itemDesc').value.trim();
     const classification = document.getElementById('itemClass').value;
     const qty = parseInt(document.getElementById('itemQty').value);
@@ -1958,7 +2135,7 @@ function renderPreviewDisplay(data) {
   setText('projectNumberDisplay', data.projectData.ProjectID);
   setText('subProjectNumberDisplay', data.projectData.SubProjectNo);
   setText('remarksDisplay', data.projectData.ProjectRemarks);
-  // setText('departmentDisplay', data.projectData.ProjectRemarks);
+  // setText('departmentDisplay', data.projectData.ProjectRemarks); 
   setText('projectInvestigatorDisplay', data.projectData.ProjectIncharge);
 
   setText('modeOfPurchaseDisplay', data.indentMode);
@@ -2044,27 +2221,29 @@ async function createIndent() {
 }
 
 
-document.getElementById('submitIndentBtn').addEventListener('click', async () => {
-  const action = document.getElementById('projectIndentModal').dataset.action;
+// document.getElementById('submitIndentBtn').addEventListener('click', async () => {
+//   const action = document.getElementById('projectIndentModal').dataset.action;
 
-  try {
-    if (action === 'update') {
-      // alert('update');
-      await updateIndent(updateIndentData)
-      showPopupFadeInDown("Indent Updated Successfully");
-    } else {
-      // alert('create');
-      await createIndent();
-      showPopupFadeInDown("Indent Created Successfully");
-    }
 
-    // window.location.reload(); // Refresh after action done
+//   try {
+//     if (action === 'update') {
+//       // alert('update');
+//       await updateIndent(updateIndentData)
+//       showPopupFadeInDown("Indent Updated Successfully");
+//     } else {
+//       // alert('create');
+//       await createIndent();
+//       showPopupFadeInDown("Indent Created Successfully");
+//     }
 
-  } catch (err) {
-    console.error("Failed to process indent:", err);
-    showPopupFadeInDown("Something went wrong");
-  }
-});
+//     // window.location.reload(); // Refresh after action done
+//     location.reload();
+
+//   } catch (err) {
+//     console.error("Failed to process indent:", err);
+//     showPopupFadeInDown("Something went wrong");
+//   }
+// });
 
 
 // function downloadPreview() {
@@ -2469,6 +2648,8 @@ lpcSubmitButton.addEventListener('click', async (event) => {
     console.error("LPC Submit Error:", error);
     showErrorPopupFadeInDown("Network error. Please try again.");
   }
+
+  location.reload();
 
 });
 

@@ -338,3 +338,10 @@
   box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.3);
   background: #3c3c50;
 } */
+
+
+/* validation */
+    .validate{
+      transition: background-color 0.3s;
+      background-color: red;
+    }
