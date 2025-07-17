@@ -28,6 +28,7 @@ function calculateTotalPrice() {
 
 
 
+
   //-----------------------------------------------------------------------------------//
  //                                   GLOBAL VARIABLES                                //
 //-----------------------------------------------------------------------------------//
@@ -265,6 +266,9 @@ async function openFullscreenModal(button) {
 
 
   let indent = await getIndentByID(indentID);
+  // po approval
+ document.getElementById('typeOfOrder').value = indent.TypeOfIndent; // or any dynamic value
+
   // -----------------------------------------------------------------------------------//
   //                                  SRB Logic                          //
 
@@ -344,7 +348,7 @@ saveBtn.addEventListener("click", async () => {
     });
 
     if (response.status === 200) {
-      showErrorPopupFadeInDown("File uploaded successfully!");
+      showSucessPopupFadeInDownLong("File uploaded successfully!");
     } else {
       showErrorPopupFadeInDown("Upload failed. Try again.");
     }
@@ -1150,77 +1154,84 @@ document.getElementById('cancelCreateVendor').addEventListener('click', (e) => {
 document.getElementById('createVendorBtn').addEventListener('click', async (e) => {
   e.preventDefault();
 
-  // selectedVendor = null;
+  let form = document.getElementById('newVendorForm');
+  let formData = new FormData(form);
 
-let form = document.getElementById('newVendorForm');
-let formData = new FormData(form);
-
-// Convert text fields to object
-let Data = {};
-for (let [key, value] of formData.entries()) {
-  if (value instanceof File) {
-    // Handle file input separately
-    if (value.name) {
-      Data[key] = value; // assign the File object
+  // Convert formData to object with trimming and file handling
+  let Data = {};
+  for (let [key, value] of formData.entries()) {
+    if (value instanceof File) {
+      Data[key] = value.name ? value : null;
     } else {
-      Data[key] = null; // no file selected
+      Data[key] = value.trim?.() ?? value;
     }
-  } else {
-    Data[key] = value;
   }
-}
-const data = new FormData();
-for (let key in Data) {
-  data.append(key, Data[key]);
-}
 
+  // Reconstruct FormData for submission
+  const data = new FormData();
+  for (let key in Data) {
+    data.append(key, Data[key]);
+  }
 
-  let requiredFields = ["VendorName", "VendorAddress", "VendorPhone", "VendorMailAddress", "VendorGST", "VendorAccountNumber", "VendorIFSC", "VendorBank", "VendorBranch","BankDetailsDoc"];
+  // List of required fields
+  let requiredFields = [
+    "VendorName",
+    "VendorAddress",
+    "VendorPhone",
+    "VendorMailAddress",
+    "VendorGST",
+    "VendorAccountNumber",
+    "VendorIFSC",
+    "VendorBank",
+    "VendorBranch",
+    "BankDetailsDoc"
+  ];
 
+  // Validate required fields
   let hasErrors = false;
-  let i = 0;
-
-  while (!hasErrors && i < requiredFields.length) {
-    if (data[requiredFields[i]] == '') {
-      showErrorPopupFadeInDown(`Please Enter ${requiredFields[i].replace(/([A-Z])/g, ' $1').trim()} `);
+  for (let field of requiredFields) {
+    console.log(data.get(field));
+    if (!data.get(field)) {
+      showErrorPopupFadeInDown(`Please Enter ${field.replace(/([A-Z])/g, ' $1').trim()}`);
       hasErrors = true;
+      break; // Stop on first error
     }
-
-    i++;
   }
 
   if (hasErrors) {
     return;
   }
 
-  console.log(data);
-  console.log(selectedVendor);
+  console.log('Submitting data:', data);
 
   try {
-       let response = await axiosInstance.post('/vendors/', data, {
-  headers: {
-    'Content-Type': 'multipart/form-data'
-  }  
-});
+    let response = await axiosInstance.post('/vendors/', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+
     if (response.status === 200) {
       populateVendors();
+
+      // Select newly added vendor
       vendorSelect.selectedIndex = vendorSelect.options.length - 1;
       vendorSelect.value = vendorSelect.options[vendorSelect.options.length - 1].value;
+
       showPopupFadeInDown('Vendor Created Successfully');
+
+      // Toggle form sections
+      document.getElementById('newVendorSection').classList.add('d-none');
+      document.getElementById('existingVendorSection').classList.remove('d-none');
     }
   } catch (err) {
     console.log(err);
-    showPopupFadeInDown(err.response.data.message);
+    showPopupFadeInDown(err?.response?.data?.message || 'An error occurred while creating the vendor.');
   }
 
-
   vendorSelect.selectedIndex = 0;
-  document.getElementById('newVendorSection').classList.add('d-none');
-  document.getElementById('existingVendorSection').classList.remove('d-none');
-
-
-
 });
+
 
 vendorSelect.addEventListener('change', (e) => {
 
@@ -1870,16 +1881,10 @@ function formDataToObject(formData) {
 let updateIndentData = null;
 
 async function showPreviewModal() {
-
-
-
-
   if (!selectedVendor) {
     showErrorPopupFadeInDown('Please select a vendor');
     return;
   }
-
-
   const allForms = [
     '#vendorForm',
     '#itemDetailsForm',
@@ -1888,12 +1893,9 @@ async function showPreviewModal() {
     '#projectForm',
     '#indentForm'
   ];
-
   for (let formSelector of allForms) {
     if (!validateRequiredFields(formSelector)) return;
   }
-
-
   const vendorFormData = formDataToObject(new FormData(document.querySelector('#vendorForm')));
   const itemDetailsForm = formDataToObject(new FormData(document.querySelector('#itemDetailsForm')));
   const itemForm = formDataToObject(new FormData(document.querySelector('#itemForm')));
@@ -1997,7 +1999,6 @@ async function showPreviewModal() {
 
 async function showUpdatePreviewModal() {
   alert('triggered');
-
   const vendorForm = formDataToObject(new FormData(document.querySelector('#vendorForm')));
   const itemDetailsForm = formDataToObject(new FormData(document.querySelector('#itemDetailsForm')));
   const itemForm = formDataToObject(new FormData(document.querySelector('#itemForm')));
@@ -2221,29 +2222,29 @@ async function createIndent() {
 }
 
 
-// document.getElementById('submitIndentBtn').addEventListener('click', async () => {
-//   const action = document.getElementById('projectIndentModal').dataset.action;
+document.getElementById('submitIndentBtn').addEventListener('click', async () => {
+  const action = document.getElementById('projectIndentModal').dataset.action;
 
 
-//   try {
-//     if (action === 'update') {
-//       // alert('update');
-//       await updateIndent(updateIndentData)
-//       showPopupFadeInDown("Indent Updated Successfully");
-//     } else {
-//       // alert('create');
-//       await createIndent();
-//       showPopupFadeInDown("Indent Created Successfully");
-//     }
+  try {
+    if (action === 'update') {
+      // alert('update');
+      await updateIndent(updateIndentData)
+      showPopupFadeInDown("Indent Updated Successfully");
+    } else {
+      // alert('create');
+      await createIndent();
+      showPopupFadeInDown("Indent Created Successfully");
+    }
 
-//     // window.location.reload(); // Refresh after action done
-//     location.reload();
+    // window.location.reload(); // Refresh after action done
+    location.reload();
 
-//   } catch (err) {
-//     console.error("Failed to process indent:", err);
-//     showPopupFadeInDown("Something went wrong");
-//   }
-// });
+  } catch (err) {
+    console.error("Failed to process indent:", err);
+    showPopupFadeInDown("Something went wrong");
+  }
+});
 
 
 // function downloadPreview() {
