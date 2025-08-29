@@ -19,6 +19,7 @@
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
+<script src="https://kit.fontawesome.com/1799ed0397.js" crossorigin="anonymous"></script>
 
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
@@ -30,9 +31,6 @@
     <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
     <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
-
-    <script src="https://kit.fontawesome.com/1799ed0397.js" crossorigin="anonymous"></script>
-
     <!-- font-awesome-n -->
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome-n.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
@@ -42,12 +40,12 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <style>
-        .hidden {
-          display: none !important;
-        }
-      </style>
     
+    <style>
+      .hidden {
+        display: none !important;
+      }
+    </style>
   <style>
       .modern-table {
       color: black !important;
@@ -203,9 +201,10 @@
     
   </style>
 
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 </head>
 
@@ -337,7 +336,7 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-                   <nav class="pcoded-navbar">
+                    <nav class="pcoded-navbar">
                         <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
@@ -369,14 +368,15 @@
                             <div class="page-block">
                                 <div class="row align-items-center">
                                     <div class="col-md-8">
-                                        <!-- <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25" alt="NTCPWC LOGO"> -->
-                                      <div class="page-title">
+                                        <div class="page-title">
   <span class="page-title-icon bg-gradient-primary text-white mr-2">
     <i class="fa fa-home"></i>
   </span>
-  <h5>Dashboard</h5>
+  <h5>Interns</h5>
 </div>
+
                                     </div>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -387,60 +387,7 @@
                                 <div class="page-wrapper">
                                     <!-- Page-body start -->
                                     <div class="page-body">
-
-                                        <div class="row">
-                                            <div class="col-xl-12 col-md-12">
-                                                <div class="card text-start">
-                                                    <div class="card-header">
-                                                        <h5>Project Status Overview</h5>
-                                                      
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div id="chartdiv1" style="height: 350px;"></div>
-                                                    </div>
-                                                </div>
-                                              
-                                                
-                                            </div>
-                                        </div>
-                                            
-                                        <div class="row">
-                                            <div class="col-xl-6 col-md-12">
-                                                <div class="card text-start">
-                                                    <div class="card-header">
-                                                        <h5>Payments Received - Completed Projects</h5>
-                                                      
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div id="chartdiv2" style="height: 350px;"></div>
-                                                    </div>
-                                                </div>
-                                              
-                                                
-                                            </div>
-                                            <div class="col-xl-6 col-md-12">
-                                                <div class="card text-start">
-                                                    <div class="card-header">
-                                                        <h5>Payments Received  -  Ongoing Projects</h5>
-                                                      
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div id="chartdiv3" style="height: 350px;"></div>
-                                                    </div>
-                                                </div>
-                                              
-                                                
-                                            </div>
-                                        </div>
-                                            
-                                             
-
-
-                                    </div>
-                                    
-
-
-                                  
+                                       
                                     <!-- Page-body end -->
                                 </div>
                                 <div id="styleSelector"> </div>
@@ -451,49 +398,6 @@
             </div>
         </div>
     </div>
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-    <!--[if lt IE 10]>
-<div class="ie-warning">
-    <h1>Warning!!</h1>
-    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-    <div class="iew-container">
-        <ul class="iew-download">
-            <li>
-                <a href="http://www.google.com/chrome/">
-                    <img src="assets/images/browser/chrome.png" alt="Chrome">
-                    <div>Chrome</div>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.mozilla.org/en-US/firefox/new/">
-                    <img src="assets/images/browser/firefox.png" alt="Firefox">
-                    <div>Firefox</div>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.opera.com">
-                    <img src="assets/images/browser/opera.png" alt="Opera">
-                    <div>Opera</div>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.apple.com/safari/">
-                    <img src="assets/images/browser/safari.png" alt="Safari">
-                    <div>Safari</div>
-                </a>
-            </li>
-            <li>
-                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                    <img src="assets/images/browser/ie.png" alt="">
-                    <div>IE (9 & above)</div>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <p>Sorry for the inconvenience!</p>
-</div>
-<![endif]-->
     <!-- Warning Section Ends -->
     <script src="assets/js/roleUtil.js"></script>
     <!-- Required Jquery -->
@@ -520,10 +424,24 @@
     <script src="./assets/js/apiRequests.js"></script>
     <script type="text/javascript" src="assets/js/script.js "></script>
     <script type="text/javascript" src="assets/js/popup.js"></script>
-    <script src="assets/js/projectDashboard.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async function(event) {
-            roles=await axiosInstance.get('/roles/role/perms');
+    <!-- <script src="/assets/js/index.js"></script> -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      // var manningcost = await fetch('http://localhost:3000/dashboard/manningcost', {
+      //   method: 'GET',
+      //   headers: {
+      //     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      //     'Content-Type': 'application/json'
+      //   }
+      // }).then(response => response.json());
+
+      let user=JSON.parse(sessionStorage.getItem('user'));
+      let token=sessionStorage.getItem('token');
+      if(token===null||user===null){
+        window.location.href="login.html";
+      }else{
+            
+    roles=await axiosInstance.get('/roles/role/perms');
     roles=roles.data.roles;
     // console.log(roles); 
     window.roles=roles;
@@ -555,289 +473,36 @@
             }
         });
     }
-        })
-        const token=sessionStorage.getItem('token');
-        const user=JSON.parse(sessionStorage.getItem('user'));
-        if(token===null||user===null){
-            window.location.href="login.html";
-        }
 
-        
+      }
 
-        $('#username').text(user.name);
+  
 
-        document.getElementById('logout-button').addEventListener('click',logout);
-        function logout(){
-            sessionStorage.removeItem('token');
-        }
-
-
-        function toggleAccordion(button) {
-        const content = button.parentElement.nextElementSibling;
-        content.style.display = (content.style.display === "none" || content.style.display === "") ? "block" : "none";
-
-        const icon = button.querySelector("i");
-        icon.classList.toggle("fa-chevron-down");
-        icon.classList.toggle("fa-chevron-up");
-    }
-    </script>
- 
-
- <script>
-    am5.ready(async function() {
-let data=await axiosInstance.get('/projects/all/status');
-let apiResponse=data.data;
-// console.log(data);
-var root = am5.Root.new("chartdiv1");
-
-var chart = root.container.children.push(
-am5percent.PieChart.new(root, {
-layout: root.verticalLayout
-})
-);
-
-var series = chart.series.push(
-am5percent.PieSeries.new(root, {
-name: "Project Status",
-categoryField: "status",
-valueField: "count",
-innerRadius: am5.percent(40)
-})
-);
-
-
-const statusColors = {
-  "Ongoing": am5.color("#3a86ff"),
-  "Completed": am5.color("#4cc9f0"),
-  "Withdrawn": am5.color("#f72585"),
-  "": am5.color("#adb5bd") 
-};
-
-const chartData = apiResponse.map(item => ({
-  status: item.ProjectStatus || "Unknown",
-  count: item.Count,
-  color: statusColors[item.ProjectStatus] || am5.color("#cccccc") 
-}));
-series.data.setAll(chartData);
-
-series.labels.template.set("visible", false);
-series.ticks.template.set("visible", false);
-
-var legend = chart.children.push(
-am5.Legend.new(root, {
-centerX: am5.percent(50),
-x: am5.percent(50),
-layout: root.horizontalLayout
-})
-);
-legend.data.setAll(series.dataItems);
+      var response=await axiosInstance.get('/dashboard/manningcost');
+      var manningcost=response.data;
+      // console.log(manningcost);
+  
+      if (manningcost) {
+        const manningCostTable = document.getElementById('manningCostTable');
+        manningCostTable.innerHTML = '';
+        manningcost=manningcost.result;
+        // console.log(manningcost);
+        manningcost.forEach((data) => {
+manningCostTable.insertAdjacentHTML('beforeend', `
+  <tr>
+    <td>${data.organisation}</td>
+    <td>₹ ${data.manningCost}</td>
+  </tr>
+`);
 });
-</script>
-      
-<script>
-   am5.ready(function () {
-    let rs=[
-    {
-        "TotalCost": 105,
-        "PaymentReceived": 105,
-        "ProjectStatus": "Ongoing"
-    },
-    {
-        "TotalCost": 105,
-        "PaymentReceived": 105,
-        "ProjectStatus": "Ongoing"
-    },
-    {
-        "TotalCost": 105,
-        "PaymentReceived": 105,
-        "ProjectStatus": "Ongoing"
-    },
-    {
-        "TotalCost": 1005,
-        "PaymentReceived": 105,
-        "ProjectStatus": "Ongoing"
-    }
-];
-
-let ongoing={};
-let completed={};
-
-rs.forEach(r=>{
-    if(r.ProjectStatus=='Ongoing'){
-        let tc=r.TotalCost;
-        let pr=r.PaymentReceived;
-        let percentage=pr/tc*100;
-        percentage=percentage.toFixed(2);
-        // ongoing['percentage']=percentage,
-        let count=ongoing[percentage]?ongoing[percentage]+1:1;
-        if(percentage==0){
-            ongoing['0']=count;
-        }else if(percentage<25){
-           ongoing['<25']=count;
-        }else if(percentage<50){
-            ongoing['<50']=count;
-        }else if(percentage<75){
-            ongoing['<75']=count;
-        }else if(percentage>=75){
-            ongoing['>75']=count;
-        }
-    }
-    else if(r.ProjectStatus=='Completed'){
-        let tc=r.TotalCost;
-        let pr=r.PaymentReceived;
-        let percentage=pr/tc*100;
-        completed[percentage]=completed[percentage]?completed[percentage]+1:1;
-    }
-});
-
-let ongoingStatus=[];
-let completedStatus=[];
+      }
 
 
+   
 
 
-console.log(ongoing,completed);
-
-// console.log(data);
-  var root = am5.Root.new("chartdiv2");
-
-  // Optional: use theme
-  root.setThemes([am5themes_Animated.new(root)]);
-
-  var chart = root.container.children.push(
-    am5percent.PieChart.new(root, {
-      layout: root.verticalLayout
-    })
-  );
-
-  var series = chart.series.push(
-    am5percent.PieSeries.new(root, {
-      name: "Payment Progress",
-      categoryField: "milestone",
-      valueField: "count",
-      innerRadius: am5.percent(30),
-      legendLabelText: "{category}: {value}"
-    })
-  );
-
-  // Custom color set
-  var customColors = ["#ffbe0b", "#fc79d3", "#8338ec", "#06d6a0"];
-  series.get("colors").setAll({
-    colors: customColors.map(c => am5.color(c))
-  });
-
-  // Set data
-  series.data.setAll([
-    { milestone: "25% Paid", count: 2 },
-    { milestone: "50% Paid", count: 40 },
-    { milestone: "75% Paid", count: 26 },
-    { milestone: "more than 75% Paid", count: 20 }
-  ]);
-
-  // Automatically hide 0% slices
-  series.slices.template.adapters.add("visible", function (visible, target) {
-    return target.dataItem.get("valueY") > 0;
-  });
-
-  // Add legend with gridLayout for multiple rows
-  var legend = chart.children.push(
-    am5.Legend.new(root, {
-      centerX: am5.percent(50),
-      x: am5.percent(50),
-      layout: root.gridLayout,
-      width: am5.percent(100)
-    })
-  );
-
-  legend.labels.template.setAll({
-    text: "{category}: {value}  {valuePercentTotal.formatNumber('0.00')}%",
-    fontSize: 11,
-    populateText: true
-  });
-
-  // Set the number of columns in the grid layout
-  legend.itemContainers.template.setAll({
-    layout: root.horizontalLayout
-  });
-
-  // Connect legend to series
-  legend.data.setAll(series.dataItems);
-});
-
-</script>
-    
-<script>
-    am5.ready(function () {
-  var root = am5.Root.new("chartdiv3");
-
-  // Optional: use theme
-  root.setThemes([am5themes_Animated.new(root)]);
-
-  var chart = root.container.children.push(
-    am5percent.PieChart.new(root, {
-      layout: root.verticalLayout
-    })
-  );
-
-  var series = chart.series.push(
-    am5percent.PieSeries.new(root, {
-      name: "Payment Progress",
-      categoryField: "milestone",
-      valueField: "count",
-      innerRadius: am5.percent(30),
-      legendLabelText: "{category}: {value}"
-    })
-  );
-
-  // Custom color set
-  var customColors = ["#ffa0ab", "#fb5607", "#8338ec", "#06d6a0"];
-  series.get("colors").setAll({
-    colors: customColors.map(c => am5.color(c))
-  });
-
-  // Set data
-  series.data.setAll([
-    { milestone: "25% Paid", count: 20 },
-    { milestone: "50% Paid", count: 4 },
-    { milestone: "75% Paid", count: 10 },
-    { milestone: "more than 75% Paid", count: 20 }
-  ]);
-
-  // Automatically hide 0% slices
-  series.slices.template.adapters.add("visible", function (visible, target) {
-    return target.dataItem.get("valueY") > 0;
-  });
-
-  // Add legend with gridLayout for multiple rows
-  var legend = chart.children.push(
-    am5.Legend.new(root, {
-      centerX: am5.percent(50),
-      x: am5.percent(50),
-      layout: root.gridLayout,
-      width: am5.percent(100)
-    })
-  );
-
-  legend.labels.template.setAll({
-    text: "{category}: {value}  {valuePercentTotal.formatNumber('0.00')}%",
-    fontSize: 11,
-    populateText: true
-  });
-
-  // Set the number of columns in the grid layout
-  legend.itemContainers.template.setAll({
-    layout: root.horizontalLayout
-  });
-
-  // Connect legend to series
-  legend.data.setAll(series.dataItems);
-});
-
-
-</script>
-        
-        
-       
+    });
+  </script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

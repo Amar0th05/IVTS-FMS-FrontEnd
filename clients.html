@@ -36,6 +36,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <script src="https://kit.fontawesome.com/1799ed0397.js" crossorigin="anonymous"></script>
     <style>
         #myTable th:last-of-type{
             text-align: center;
@@ -117,35 +118,22 @@
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
-            <nav class="navbar header-navbar pcoded-header">
+          <nav class="navbar header-navbar pcoded-header">
                 <div class="navbar-wrapper">
                     <div class="navbar-logo align-items-center">
                         <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
                             <i class="ti-menu"></i>
                         </a>
-                        <div class="mobile-search waves-effect waves-light">
-                            <div class="header-search">
-                                <div class="main-search morphsearch-search">
-                                    <div class="input-group">
-                                        <span class="input-group-prepend search-close"><i class="ti-close input-group-text"></i></span>
-                                        <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn"><i class="ti-search input-group-text"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <a href="index.html">
-                            <!-- <img class="img-fluid" src="https://ntcpwc.iitm.ac.in/New/images/ntcpwc-logo.jpg" alt="Theme-Logo" style="height: 50px;" /> -->
-                             <h4 class="d-inline"><span class="text-lowercase">i</span>VTS-FMS</h4>
-                        </a>
-                        <a class="mobile-options waves-effect waves-light">
-                            <i class="ti-more"></i>
+                            <img class="img-fluid" src="assets/images/generated-image (8).png" alt="Theme-Logo" style="height: 40px;" />
+                            <h4 class="d-inline">WorkSphere</h4>
                         </a>
                     </div>
                     <div class="navbar-container container-fluid">
                         <ul class="nav-left">
                             <li>
-                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a>
+                                </div>
                             </li>
                             <li>
                                 <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
@@ -154,48 +142,6 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <!-- <li class="header-notification">
-                                <a href="#!" class="waves-effect waves-light">
-                                    <i class="ti-bell"></i>
-                                    <span class="badge bg-c-red"></span>
-                                </a>
-                                <ul class="show-notification">
-                                    <li>
-                                        <h6>Notifications</h6>
-                                        <label class="label label-danger">New</label>
-                                    </li>
-                                    <li class="waves-effect waves-light">
-                                        <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">John Doe</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="waves-effect waves-light">
-                                        <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="assets/images/avatar-4.jpg" alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">Joseph William</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="waves-effect waves-light">
-                                        <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="assets/images/avatar-3.jpg" alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">Sara Soudein</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li> -->
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
@@ -204,19 +150,10 @@
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li class="waves-effect waves-light">
-                                        <a href="#!">
-                                            <i class="ti-settings"></i> Settings
-                                        </a>
+                                        <a href="user-profile.html"><i class="ti-user"></i> Profile</a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="user-profile.html">
-                                            <i class="ti-user"></i> Profile
-                                        </a>
-                                    </li>
-                                    <li class="waves-effect waves-light">
-                                        <a href="index.html" id="logout-button">
-                                            <i class="ti-layout-sidebar-left"></i> Logout
-                                        </a>
+                                        <a href="index.html" id="logout-button"><i class="ti-layout-sidebar-left"></i> Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -227,126 +164,22 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
+                      <!-- Dynamic Sidebar -->
                     <nav class="pcoded-navbar">
                         <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
                         <div class="pcoded-inner-navbar main-menu">
-                            <div class="">
-                                <div class="main-menu-header">
-                                    <!-- <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
-                                    <div class="user-details">
-                                        <span id="more-details">John Doe<i class="fa fa-caret-down"></i></span>
-                                    </div> -->
-                                    <img src="assets/images/ntcpwc-logo.jpg" alt="ntcpwc-logo">
-                                </div>
-                                <div class="main-menu-content">
-                                    <ul>
-                                        <li class="more-details">
-                                            <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
-                                            <a href="#!"><i class="ti-settings"></i>Settings</a>
-                                            <a href="index.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="main-menu-content">
+                                <ul>
+                                    <li class="more-details">
+                                        <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
+                                        <a href="index.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="p-15 p-b-0">
-                                <form class="form-material">
-                                    <div class="form-group form-primary">
-                                        <input type="text" name="footer-email" class="form-control">
-                                        <span class="form-bar"></span>
-                                        <label class="float-label"><i class="fa fa-search m-r-10"></i>Search</label>
-                                    </div>
-                                </form>
+                            <div id="sidebar-container">
+                                <!-- Dynamic sidebar will load here -->
                             </div>
-                            <div class="accordion">
-                                <div class="accordion-header">
-                                  <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">User Management<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
-                                </div>
-                                <div class="accordion-content" style="display: none;">
-                                
-                                    <ul class="pcoded-item pcoded-left-item">
-                                        <li>
-                                            <a href="user-details.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
-                                                <span class="pcoded-mtext">User Details</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="roles.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-id-badge"></i><b>D</b></span>
-                                                <span class="pcoded-mtext">User Roles</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                </div>
-                                <div class="accordion">
-                                    <div class="accordion-header">
-                                      <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Master Management<i class="fa fa-chevron-up ml-1" id="accordion-icon"></i></div>
-                                    </div>
-                                    <div class="accordion-content" style="display: block;">
-                                    
-                                        <ul class="pcoded-item pcoded-left-item">
-                                            <li>
-                                                <a href="courses.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-micon"><i class="ti-book"></i><b>D</b></span>
-                                                    <span class="pcoded-mtext">Courses</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                            <li class="active">
-                                                <a href="clients.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-micon"><i class="ti-user"></i><b>D</b></span>
-                                                    <span class="pcoded-mtext">Clients</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="designations.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-micon"><i class="ti-id-badge"></i><b>BC</b></span>
-                                                    <span class="pcoded-mtext">Designations</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="highestqualifications.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-micon"><i class="ti-medall"></i><b>BC</b></span>
-                                                    <span class="pcoded-mtext">Highest Qualification</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="organisations.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-micon"><i class="ti-briefcase"></i><b>BC</b></span>
-                                                    <span class="pcoded-mtext">Organisations</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="stages.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-micon"><i class="ti-stats-up"></i><b>BC</b></span>
-                                                    <span class="pcoded-mtext">Procurement Stages</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="equipmentCategory.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-micon"><i class="ti-layout-list-thumb"></i><b>BC</b></span>
-                                                    <span class="pcoded-mtext">Equipment Category</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li> 
-                                            <!-- <li>
-                                                <a href="roles.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-micon"><i class="ti-tag"></i><b>BC</b></span>
-                                                    <span class="pcoded-mtext">User Roles</span>
-                                                    <span class="pcoded-mcaret"></span>
-                                                </a>
-                                            </li> -->
-                                        </ul>
-                                    </div>
-                                    </div>                            
+                        </div>
                     </nav>
                     <div class="pcoded-content">
                         <!-- Page-header start -->
@@ -688,7 +521,84 @@
 
 
 </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      // var manningcost = await fetch('http://localhost:3000/dashboard/manningcost', {
+      //   method: 'GET',
+      //   headers: {
+      //     'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+      //     'Content-Type': 'application/json'
+      //   }
+      // }).then(response => response.json());
 
+      let user=JSON.parse(sessionStorage.getItem('user'));
+      let token=sessionStorage.getItem('token');
+      if(token===null||user===null){
+        window.location.href="login.html";
+      }else{
+            
+    roles=await axiosInstance.get('/roles/role/perms');
+    roles=roles.data.roles;
+    // console.log(roles); 
+    window.roles=roles;
+        handlePermission('#user-name-display');
+
+    const sidebarContainer = document.getElementById('sidebar-container');
+    if (sidebarContainer) {
+        sidebarContainer.innerHTML = generateSidebar();
+        
+        // Set the current page as active
+        const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+        const navLinks = document.querySelectorAll('.pcoded-item a');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes(currentPage)) {
+                link.parentElement.classList.add('active');
+                
+                // Expand the parent accordion
+                const accordionContent = link.closest('.accordion-content');
+                if (accordionContent) {
+                    accordionContent.style.display = 'block';
+                    const header = accordionContent.previousElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                }
+            }
+        });
+    }
+
+      }
+
+  
+
+      var response=await axiosInstance.get('/dashboard/manningcost');
+      var manningcost=response.data;
+      // console.log(manningcost);
+  
+      if (manningcost) {
+        const manningCostTable = document.getElementById('manningCostTable');
+        manningCostTable.innerHTML = '';
+        manningcost=manningcost.result;
+        // console.log(manningcost);
+        manningcost.forEach((data) => {
+manningCostTable.insertAdjacentHTML('beforeend', `
+  <tr>
+    <td>${data.organisation}</td>
+    <td>₹ ${data.manningCost}</td>
+  </tr>
+`);
+});
+      }
+
+
+   
+
+
+    });
+  </script>
 
 
 </body>
