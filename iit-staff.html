@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>iVTS-FMS</title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="keywords" content="" />
+    <meta name="author" content="Codedthemes" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+<script src="https://kit.fontawesome.com/1799ed0397.js" crossorigin="anonymous"></script>
+
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+    <!-- font-awesome-n -->
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    
+    <style>
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  <style>
+      .modern-table {
+      color: black !important;
+      width: 90%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+      border: 1px solid #ddd;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 10px;
+    }
+    .modern-table thead {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+    }
+    .modern-table th, .modern-table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 2px solid #ddd;
+    }
+    .modern-table tbody tr {
+      background: white;
+      transition: transform 0.2s ease-in-out;
+    }
+    .modern-table tbody tr:hover {
+      transform: scale(1.02);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    .modern-table tr:hover{
+      transform: scale(1.02);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    }
+   .modern-table td{
+    width: 50%;
+   }
+
+   .chart-container {
+        width: 100%;
+        height: 250px;
+    }
+    
+    .legend-container {
+        width: 100%;
+        max-height: 100px; 
+        overflow-y: auto;
+        text-align: center;
+        padding: 10px;
+    }
+   
+
+  </style>
+    <style>
+    
+      .table-modern {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .table-modern th,
+      .table-modern td {
+        padding: 12px 15px;
+        text-align: center;
+      }
+      .table-modern th:first-child,
+      .table-modern td:first-child {
+        text-align: justify;
+        color:white;
+        background-color: #007bffc9;
+        font-weight: 600;
+        width: fit-content;
+      }
+      .table-modern thead th {
+        background-color: #007bffc9;
+        color: white;
+        font-weight: 600;
+      }
+      .table-modern tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+      }
+      .table-modern tbody tr:hover {
+        background-color: #e9ecef;
+      }
+     
+    </style>
+    <style>
+ 
+    .modal-body table th {background: #f8f9fa;}
+      .table-equipments {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        font-size: 14px !important;
+      }
+      .table-equipments tbody {
+        display: block;
+        max-height: 290px;
+        overflow-y: auto;
+      }
+      .table-staffs th,
+      .table-staffs td {
+        padding: 5px 10px;
+        text-align: center;
+      }
+     
+      .table-staffs thead th {
+        background-color: #007bffc9 !important;
+        color: white;
+        font-weight: 600;
+      }
+      .table-equipments tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+      }
+      .table-equipments tbody tr:hover {
+        background-color: #e9ecef;
+      }
+      .table-equipments thead, 
+      .table-equipments tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+      
+    </style>
+    <style>
+         #chartdiv {
+      width: 100%;
+      height: 280px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    #equipmentChart {
+      width: 100%;
+      height: 500px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    .am5chart-Legend {
+      margin-top: 20px; 
+    }
+    #payHikeChart {
+      width: 100%;
+      height: 350px;
+     
+      min-height: 250px;
+    }
+  
+    .card-block {
+      padding: 10px;
+     
+    }
+    
+  </style>
+
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+</head>
+
+<body>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo align-items-center">
+                        <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+                        <div class="mobile-search waves-effect waves-light">
+                            <div class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-prepend search-close"><i class="ti-close input-group-text"></i></span>
+                                        <input type="text" class="form-control" placeholder="Enter Keyword">
+                                        <span class="input-group-append search-btn"><i class="ti-search input-group-text"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                        <a href="index.html">
+                            <img class="img-fluid" src="assets\images\generated-image (8).png" alt="Theme-Logo" style="height: 50px;" />
+                             <h4 class="d-inline"><span class="text-lowercase">i</span>VTS-FMS</h4>
+                        </a>
+                        </div>
+                        <a class="mobile-options waves-effect waves-light">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                            </li>
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                                    <i class="ti-fullscreen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="user-profile header-notification">
+                                <a href="#!" class="waves-effect waves-light">
+                                    <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
+                                    <span id="username">John Doe</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification">
+                                    <!-- <li class="waves-effect waves-light">
+                                        <a href="#!">
+                                            <i class="ti-settings"></i> Settings
+                                        </a>
+                                    </li> -->
+                                    <li class="waves-effect waves-light">
+                                        <a href="user-profile.html">
+                                            <i class="ti-user"></i> Profile
+                                        </a>
+                                    </li>
+                                    <li class="waves-effect waves-light">
+                                        <a href="index.html" id="logout-button">
+                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+
+                                <div class="main-menu-content">
+                                    <ul>
+                                        <li class="more-details">
+                                            <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
+                                            <a href="#!"><i class="ti-settings"></i>Settings</a>
+                                            <a href="index.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                        </div>
+                            <div id="sidebar-container">
+                            </div>
+                            
+                    </nav>
+                    <div class="pcoded-content">
+                        <!-- Page-header start -->
+                        <div class="page-header">
+                            <div class="page-block">
+                                <div class="row align-items-center">
+                                    <div class="col-md-8">
+                                        <div class="page-title">
+  <span class="page-title-icon bg-gradient-primary text-white mr-2">
+    <i class="fa fa-home"></i>
+  </span>
+  <h5>Staff </h5>
+                                         </div>
+
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Page-header end -->
+                        <div class="pcoded-inner-content">
+                            <!-- Main-body start -->
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <!-- Page-body start -->
+                                    <div class="page-body">
+                                        <div class="row">
+                                              <!-- 1st box -->
+                                              <div class="col-md-4 col-sm-12">
+                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100">
+                                                  <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                                    <!-- Icon -->
+                                                    <h4 class="card-title mb-0 text-primary fw-bold" id="TotalStaffs"><i class="ti-user"></i> 61</h4><h6 class="text-dark fw-bold">Total Staff</h6>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              
+                                              <div class="col-md-4 col-sm-12">
+                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100" data-toggle="modal" data-target="#invoiceModal" style="cursor: pointer;">
+                                                  <div class="card-body card-hover d-flex flex-column align-items-center justify-content-center">
+                                                    <!-- Icon -->
+                                                    <div class="mb-2 text-success" style="font-size: 2rem;">
+                                                      
+                                                      <!-- <i class="bi bi-currency"></i> -->
+                                                    </div>
+                                                   
+                                                    <h4 class="card-title mb-0 text-primary fw-bold" id="FullTimeStaffs">0</h4>
+                                                    <h6 class="text-dark fw-bold">Full Time Staff</h6>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                             
+                                              <div class="col-md-4 col-sm-12">
+                                                <div class="card shadow-sm border-0 rounded-3 text-center h-100" data-toggle="modal" data-target="#modernModal" style="cursor: pointer;">
+                                                  <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                                    
+                                                    <div class="mb-2 text-success" style="font-size: 2rem;">
+                                                     
+                                                      <i class="bi bi-currency-rupee"></i>
+                                                    </div>
+                                                    
+                                                    <h4 class="card-title text-primary mb-0 fw-bold" id="PartTimeStaffs">0</h4>
+                                                    <!-- Label -->
+                                                    <h6 class="text-dark fw-bolder">Part Time Staff</h6>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 20px;">
+                                               
+                                                <div class="col-xl-12 col-md-12">
+                                                    <div class="card text-start">
+                                                        <div class="card-header">
+                                                            <h5>Staffs Details</h5>
+                                                          
+                                                        </div>
+                                                        <div class="card-block">
+                                                          <div class="table-responsive custom-table">
+                                                            <!-- Staffs Table -->
+ <table id="staffsTable" class="table table-striped table-hover table-bordered align-middle w-100">
+    <thead class="table-primary table-staffs" style="background-color: #007bffc9 !important;color: white;">
+      <tr>
+        <th>S.NO</th>
+        <th>Staff Name</th>
+        <th>Employee Id</th>
+        <th>Department</th>
+        <th>Designation</th>
+        <th>Contact Number</th>
+        <th>Work Location</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="staffModal" tabindex="-1" style="overflow-x: hidden !important;">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content rounded shadow-lg">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Staff Details</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-striped">
+          <tbody id="staffDetails"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                                                          </div>
+                                                                  
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                        </div>
+                                        
+                                    </div>   
+                                    <!-- Page-body end -->
+                                </div>
+                                <div id="styleSelector"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Warning Section Ends -->
+    <script src="assets/js/roleUtil.js"></script>
+
+
+<!-- ✅ jQuery first -->
+<script src="assets/js/jquery/jquery.min.js"></script>
+<script src="assets/js/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="assets/js/popper.js/popper.min.js"></script>
+<script src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- ✅ DataTables after jQuery + Bootstrap -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- Other scripts -->
+<script src="assets/pages/waves/js/waves.min.js"></script>
+<script src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/pcoded.min.js"></script>
+<script src="assets/js/vertical/vertical-layout.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./assets/js/axiosInstance.js"></script>
+<script src="./assets/js/api1.js"></script>
+<script src="./assets/js/apiRequests.js"></script>
+<script src="assets/js/script.js"></script>
+<script src="assets/js/popup.js"></script>
+<script src="assets/js/stages.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Your DataTable initialization -->
+<script src="assets/js/iit-staff.js"></script>
+
+</body>
+
+</html>

@@ -80,7 +80,10 @@ const   API_ROUTES = {
     projects:`/projects`,
     getAllProjects:`/projects/all`,
     clientBase:`/clients`,
-    getAllClients:`/clients/all`
+    getAllClients:`/clients/all`,
+    getAllStaffs: `/staffs/all`,
+  getAllIntern: `/intern`,
+  downlodeIntern:`http://localhost:5000/intern`
 };
 
 

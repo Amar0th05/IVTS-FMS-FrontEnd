@@ -18,6 +18,8 @@
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
@@ -28,6 +30,9 @@
     <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
     <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+
+    <script src="https://kit.fontawesome.com/1799ed0397.js" crossorigin="anonymous"></script>
+
     <!-- font-awesome-n -->
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome-n.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
@@ -279,10 +284,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
                         <a href="index.html">
-                            <!-- <img class="img-fluid" src="https://ntcpwc.iitm.ac.in/New/images/ntcpwc-logo.jpg" alt="Theme-Logo" style="height: 50px;" /> -->
+                            <img class="img-fluid" src="assets\images\generated-image (8).png" alt="Theme-Logo" style="height: 50px;" />
                              <h4 class="d-inline"><span class="text-lowercase">i</span>VTS-FMS</h4>
                         </a>
+                        </div>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
                         </a>
@@ -306,11 +313,11 @@
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
-                                    <li class="waves-effect waves-light">
+                                    <!-- <li class="waves-effect waves-light">
                                         <a href="#!">
                                             <i class="ti-settings"></i> Settings
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li class="waves-effect waves-light">
                                         <a href="user-profile.html">
                                             <i class="ti-user"></i> Profile
@@ -330,17 +337,17 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-                    <nav class="pcoded-navbar">
+                   <nav class="pcoded-navbar">
                         <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
-                                <div class="main-menu-header">
-                                    <!-- <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                                <!-- <div class="main-menu-header">
+                                    <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span id="more-details">John Doe<i class="fa fa-caret-down"></i></span>
-                                    </div> -->
+                                    </div>
                                     <img src="assets/images/ntcpwc-logo.jpg" alt="ntcpwc-logo">
-                                </div>
+                                </div> -->
                                 <div class="main-menu-content">
                                     <ul>
                                         <li class="more-details">
@@ -351,120 +358,9 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="p-15 p-b-0">
-                                <form class="form-material">
-                                    <div class="form-group form-primary">
-                                        <input type="text" name="footer-email" class="form-control">
-                                        <span class="form-bar"></span>
-                                        <label class="float-label"><i class="fa fa-search m-r-10"></i>Search</label>
-                                    </div>
-                                </form>
+                            <div id="sidebar-container">
+
                             </div>
-                            <div id="sidebar-container"></div>
-                            <!-- <div class="accordion">
-                              <div class="accordion-header">
-                                <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Project Tracking<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
-                              </div>
-                              <div class="accordion-content" style="display: none;">
-                              
-                                  <ul class="pcoded-item pcoded-left-item">
-                                      <li>
-                                          <a href="projectTracking.html" class="waves-effect waves-dark">
-                                              <span class="pcoded-micon"><i class="ti-folder"></i><b>D</b></span>
-                                              <span class="pcoded-mtext">Projects</span>
-                                              <span class="pcoded-mcaret"></span>
-                                          </a>
-                                      </li>
-                                  </ul>
-                              </div>
-                              </div>
-                            <div class="accordion">
-                              <div class="accordion-header">
-                                <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Invoices<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
-                              </div>
-                              <div class="accordion-content" style="display: none;">
-                              
-                                  <ul class="pcoded-item pcoded-left-item">
-                                      <li>
-                                          <a href="o&mInvoices.html" class="waves-effect waves-dark">
-                                              <span class="pcoded-micon"><i class="ti-calendar"></i><b>D</b></span>
-                                              <span class="pcoded-mtext">O&M Invoices</span>
-                                              <span class="pcoded-mcaret"></span>
-                                          </a>
-                                      </li>
-                                      <li>
-                                        <a href="equipment-invoices.html" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="ti-settings"></i><b>D</b></span>
-                                            <span class="pcoded-mtext">Equipment Invoices</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                      <a href="invoices.html" class="waves-effect waves-dark">
-                                          <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
-                                          <span class="pcoded-mtext">C&H Invoices</span>
-                                          <span class="pcoded-mcaret"></span>
-                                      </a>
-                                  </li>
-                                  </ul>
-                              </div>
-                              </div>
-                              <div class="accordion">
-                                <div class="accordion-header">
-                                  <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Equipments<i class="fa fa-chevron-down ml-1" id="accordion-icon"></i></div>
-                                </div>
-                                <div class="accordion-content" style="display: none;">
-                                  
-                                  <ul class="pcoded-item pcoded-left-item">
-                                      <li>
-                                        <a href="procurementStagesDashboard.html" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                            <span class="pcoded-mtext">Equipments Dashboard</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                      <li>
-                                          <a href="equipmentlist.html" class="waves-effect waves-dark">
-                                              <span class="pcoded-micon"><i class="ti-receipt"></i><b>D</b></span>
-                                              <span class="pcoded-mtext">Equipment List</span>
-                                              <span class="pcoded-mcaret"></span>
-                                          </a>
-                                      </li>
-                                  </ul>
-                                  </div>
-                                  </div>
-                                  <div class="accordion">
-                                    <div class="accordion-header">
-                                      <div class="pcoded-navigation-label accordion-toggle waves-effect waves-dark" onclick="toggleAccordion(this)">Man Power Management<i class="fa fa-chevron-up ml-1" id="accordion-icon"></i></div>
-                                    </div>
-                                    <div class="accordion-content" style="display: block;">
-                                      <ul class="pcoded-item pcoded-left-item">
-                                        <li class="active">
-                                            <a href="index.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                                <span class="pcoded-mtext">Dashboard</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="staff-details.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-user"></i><b>BC</b></span>
-                                                <span class="pcoded-mtext">Staff Details</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="contract-logs.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-notepad"></i><b>BC</b></span>
-                                                <span class="pcoded-mtext">Contract Logs</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    
-                                      </div>
-                                      </div> -->
-                            
                             
                     </nav>
                     <div class="pcoded-content">
@@ -474,19 +370,12 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-8">
                                         <!-- <img src="assets/images/ntcpwc-logo.jpg" class="img-fluid w-25" alt="NTCPWC LOGO"> -->
-                                        <div class="page-header-title">
-                                            <h5 class="m-b-10">Dashboard</h5>
-                                            <p class="m-b-0">Welcome to iVTS-FMS</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul class="breadcrumb">
-                                            <li class="breadcrumb-item">
-                                                <a href="index.html"> <i class="fa fa-home"></i> </a>
-                                            </li>
-                                            <li class="breadcrumb-item"><a href="#!">Dashboard</a>
-                                            </li>
-                                        </ul>
+                                      <div class="page-title">
+  <span class="page-title-icon bg-gradient-primary text-white mr-2">
+    <i class="fa fa-home"></i>
+  </span>
+  <h5>Dashboard</h5>
+</div>
                                     </div>
                                 </div>
                             </div>
