@@ -2,7 +2,7 @@
 function getBaseUrl() {
     const { hostname } = location;
     const environments = {
-      dev: { host: "localhost", baseUrl: "http://localhost:5500" },
+      dev: { host: "localhost", baseUrl: "http://localhost:5000" },
       prod: { host: "ntcpwcit.in", baseUrl: "https://ntcpwcit.in/ivts-fms/api" } 
     };
   
@@ -12,7 +12,7 @@ function getBaseUrl() {
       }
     }
   
-    return "http://localhost:5500"; 
+    return "http://localhost:5000"; 
   }
   
 
