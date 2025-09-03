@@ -327,7 +327,7 @@ function getPageInfo(page) {
         'user-details': { title: 'User Details', icon: 'fa-solid fa-users-gear' },
         'indents': { title: 'FMS Process', icon: 'fa-solid fa-clipboard-list' },
         'indentsDashboard': { title: 'Dashboard', icon: 'fa-solid fa-chart-bar' },
-        'new-joinies': { title: 'New Joinies', icon: 'fa-solid fa-user-group' },
+        'new-joinies': { title: 'Talent Pool', icon: 'fa-solid fa-user-group' },
         'interns': { title: 'Interns', icon: 'fa-solid fa-user-graduate' },
         'iit-staff': { title: 'Staff', icon: 'fa-solid fa-user-tie' },
         'roles': { title: 'User Roles', icon: 'fa-solid fa-user-tag' },

@@ -76,11 +76,25 @@ function logout(){
 }
 
 
+       document.addEventListener("DOMContentLoaded", async function () {
+
+      let user=JSON.parse(sessionStorage.getItem('user'));
+      let token=sessionStorage.getItem('token');
+      if(token===null||user===null){
+        window.location.href="login.html";
+      }else{
+            
+    roles=await axiosInstance.get('/roles/role/perms');
+    roles=roles.data.roles;
+    // console.log(roles); 
+    window.roles=roles;
+        handlePermission('#username');
+       
     const sidebarContainer = document.getElementById('sidebar-container');
     if (sidebarContainer) {
         sidebarContainer.innerHTML = generateSidebar();
         
-       
+        // Set the current page as active
         const currentPage = window.location.pathname.split('/').pop().split('.')[0];
         const navLinks = document.querySelectorAll('.pcoded-item a');
         
@@ -88,7 +102,7 @@ function logout(){
             if (link.getAttribute('href').includes(currentPage)) {
                 link.parentElement.classList.add('active');
                 
-            
+                // Expand the parent accordion
                 const accordionContent = link.closest('.accordion-content');
                 if (accordionContent) {
                     accordionContent.style.display = 'block';
@@ -102,3 +116,17 @@ function logout(){
             }
         });
     }
+      }
+
+    });
+    
+    $(document).ready(function () {
+  if ($.fn.DataTable.isDataTable('#staffsTable')) {
+    $('#staffsTable').DataTable().destroy();
+  }
+
+  $('#staffsTable').DataTable({
+    dom: 'Bfrtip',
+    buttons: ['csv', 'excel', 'pdf', 'colvis']
+  });
+});
